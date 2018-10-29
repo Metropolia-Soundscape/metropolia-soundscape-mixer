@@ -13,6 +13,8 @@
 		4183491A2187082F0048E24A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 418349192187082F0048E24A /* Assets.xcassets */; };
 		4183491D2187082F0048E24A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4183491B2187082F0048E24A /* LaunchScreen.storyboard */; };
 		41834928218708300048E24A /* SoundScape_MixerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41834927218708300048E24A /* SoundScape_MixerTests.swift */; };
+		4FD1D3CF6C742250CB5EC27A /* Pods_SoundScape_MixerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4C62AC0ED8903DF724C48E8 /* Pods_SoundScape_MixerTests.framework */; };
+		71D2531A4884E04FC068B761 /* Pods_SoundScape_Mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0423DB344547C32CDB1400B9 /* Pods_SoundScape_Mixer.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,6 +28,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0423DB344547C32CDB1400B9 /* Pods_SoundScape_Mixer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SoundScape_Mixer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0CC470480A5B775645565282 /* Pods-SoundScape-Mixer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoundScape-Mixer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SoundScape-Mixer/Pods-SoundScape-Mixer.debug.xcconfig"; sourceTree = "<group>"; };
 		4183490F2187082C0048E24A /* SoundScape-Mixer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SoundScape-Mixer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		418349122187082C0048E24A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		418349142187082C0048E24A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -36,6 +40,10 @@
 		41834923218708300048E24A /* SoundScape-MixerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SoundScape-MixerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		41834927218708300048E24A /* SoundScape_MixerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundScape_MixerTests.swift; sourceTree = "<group>"; };
 		41834929218708300048E24A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		560B36C8E4703B6BB28A94BA /* Pods-SoundScape-MixerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoundScape-MixerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SoundScape-MixerTests/Pods-SoundScape-MixerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A9F1DB03294E5308C656727C /* Pods-SoundScape-Mixer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoundScape-Mixer.release.xcconfig"; path = "Pods/Target Support Files/Pods-SoundScape-Mixer/Pods-SoundScape-Mixer.release.xcconfig"; sourceTree = "<group>"; };
+		B4C62AC0ED8903DF724C48E8 /* Pods_SoundScape_MixerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SoundScape_MixerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9DB8FA08641A27F02651A78 /* Pods-SoundScape-MixerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoundScape-MixerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SoundScape-MixerTests/Pods-SoundScape-MixerTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71D2531A4884E04FC068B761 /* Pods_SoundScape_Mixer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FD1D3CF6C742250CB5EC27A /* Pods_SoundScape_MixerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +72,8 @@
 				418349112187082C0048E24A /* SoundScape-Mixer */,
 				41834926218708300048E24A /* SoundScape-MixerTests */,
 				418349102187082C0048E24A /* Products */,
+				4D4C8677A606CDD04765C1E3 /* Pods */,
+				427B4AF3001E95BBA05FAF2A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -96,6 +108,26 @@
 			path = "SoundScape-MixerTests";
 			sourceTree = "<group>";
 		};
+		427B4AF3001E95BBA05FAF2A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0423DB344547C32CDB1400B9 /* Pods_SoundScape_Mixer.framework */,
+				B4C62AC0ED8903DF724C48E8 /* Pods_SoundScape_MixerTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4D4C8677A606CDD04765C1E3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0CC470480A5B775645565282 /* Pods-SoundScape-Mixer.debug.xcconfig */,
+				A9F1DB03294E5308C656727C /* Pods-SoundScape-Mixer.release.xcconfig */,
+				560B36C8E4703B6BB28A94BA /* Pods-SoundScape-MixerTests.debug.xcconfig */,
+				E9DB8FA08641A27F02651A78 /* Pods-SoundScape-MixerTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -103,6 +135,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4183492C218708300048E24A /* Build configuration list for PBXNativeTarget "SoundScape-Mixer" */;
 			buildPhases = (
+				1C4024939253AC9B82D676C1 /* [CP] Check Pods Manifest.lock */,
 				4183490B2187082C0048E24A /* Sources */,
 				4183490C2187082C0048E24A /* Frameworks */,
 				4183490D2187082C0048E24A /* Resources */,
@@ -120,6 +153,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4183492F218708300048E24A /* Build configuration list for PBXNativeTarget "SoundScape-MixerTests" */;
 			buildPhases = (
+				3808785895C6ADA30852E0B7 /* [CP] Check Pods Manifest.lock */,
 				4183491F218708300048E24A /* Sources */,
 				41834920218708300048E24A /* Frameworks */,
 				41834921218708300048E24A /* Resources */,
@@ -191,6 +225,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1C4024939253AC9B82D676C1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SoundScape-Mixer-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3808785895C6ADA30852E0B7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SoundScape-MixerTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4183490B2187082C0048E24A /* Sources */ = {
@@ -358,6 +431,7 @@
 		};
 		4183492D218708300048E24A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0CC470480A5B775645565282 /* Pods-SoundScape-Mixer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -376,6 +450,7 @@
 		};
 		4183492E218708300048E24A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A9F1DB03294E5308C656727C /* Pods-SoundScape-Mixer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -394,6 +469,7 @@
 		};
 		41834930218708300048E24A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 560B36C8E4703B6BB28A94BA /* Pods-SoundScape-MixerTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -415,6 +491,7 @@
 		};
 		41834931218708300048E24A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E9DB8FA08641A27F02651A78 /* Pods-SoundScape-MixerTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
