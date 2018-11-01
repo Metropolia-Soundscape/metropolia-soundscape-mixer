@@ -15,6 +15,7 @@
 		41834928218708300048E24A /* SoundScape_MixerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41834927218708300048E24A /* SoundScape_MixerTests.swift */; };
 		4FD1D3CF6C742250CB5EC27A /* Pods_SoundScape_MixerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4C62AC0ED8903DF724C48E8 /* Pods_SoundScape_MixerTests.framework */; };
 		71D2531A4884E04FC068B761 /* Pods_SoundScape_Mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0423DB344547C32CDB1400B9 /* Pods_SoundScape_Mixer.framework */; };
+		ACEFDCFE218B5A2700CED22E /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEFDCFD218B5A2700CED22E /* Networking.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		41834929218708300048E24A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		560B36C8E4703B6BB28A94BA /* Pods-SoundScape-MixerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoundScape-MixerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SoundScape-MixerTests/Pods-SoundScape-MixerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A9F1DB03294E5308C656727C /* Pods-SoundScape-Mixer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoundScape-Mixer.release.xcconfig"; path = "Pods/Target Support Files/Pods-SoundScape-Mixer/Pods-SoundScape-Mixer.release.xcconfig"; sourceTree = "<group>"; };
+		ACEFDCFD218B5A2700CED22E /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		B4C62AC0ED8903DF724C48E8 /* Pods_SoundScape_MixerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SoundScape_MixerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9DB8FA08641A27F02651A78 /* Pods-SoundScape-MixerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoundScape-MixerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SoundScape-MixerTests/Pods-SoundScape-MixerTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -91,6 +93,7 @@
 			children = (
 				418349122187082C0048E24A /* AppDelegate.swift */,
 				418349142187082C0048E24A /* ViewController.swift */,
+				ACEFDCFD218B5A2700CED22E /* Networking.swift */,
 				418349162187082C0048E24A /* Main.storyboard */,
 				418349192187082F0048E24A /* Assets.xcassets */,
 				4183491B2187082F0048E24A /* LaunchScreen.storyboard */,
@@ -270,6 +273,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACEFDCFE218B5A2700CED22E /* Networking.swift in Sources */,
 				418349152187082C0048E24A /* ViewController.swift in Sources */,
 				418349132187082C0048E24A /* AppDelegate.swift in Sources */,
 			);
