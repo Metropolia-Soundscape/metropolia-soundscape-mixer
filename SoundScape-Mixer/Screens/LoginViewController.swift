@@ -5,6 +5,7 @@ class LoginViewController: UIViewController {
     @IBOutlet var passwordLbl: UITextField!
     @IBOutlet var signInBtn: UIButton!
 
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupVC()
@@ -17,6 +18,12 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func logInPressed(_: UIButton) {
-        print(123)
+        let network = AppDelegate.appDelegate.appController.networking
+        guard let username = usernameLbl.text, let password = passwordLbl.text else { return }
+        network.authenticate(username: username, password: password) { (authjson, error) in
+            if let authJSON = authjson {
+                print(authJSON)
+            }
+        }
     }
 }
