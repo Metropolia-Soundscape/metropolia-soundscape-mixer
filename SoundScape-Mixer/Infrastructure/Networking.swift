@@ -35,16 +35,55 @@ class Network {
     }
 
     enum Endpoint: String {
-        case auth = "url/plugins/api_auth/auth.php"
+        case auth = "/plugins/api_auth/auth.php"
+        case audio = ""
     }
 
     typealias RequestCompletion = (Decodable?, Error?) -> Void
 
-    func performRequest<T: Decodable>(method: HTTPMethod, endpoint: Endpoint, completion: @escaping (T?, Error?) -> Void) {
+    enum Body {
+        case urlEncoded(dictionary: [String: String])
+        case rawData(data: Data)
+    }
+    
+    struct HTTPHeader {
+        var key: String
+        var value: String
+    }
+    
+    func performRequest<T: Decodable>(method: HTTPMethod, headers: [HTTPHeader]? = nil, endpoint: Endpoint, body: Body? = nil, completion: @escaping (T?, Error?) -> Void) {
+
         guard let url = URL(string: endpoint.rawValue, relativeTo: baseURL) else { fatalError() }
         var request = URLRequest(url: url)
 
         request.httpMethod = method.rawValue
+        
+        headers?.forEach {
+            request.addValue($0.value, forHTTPHeaderField: $0.key)
+        }
+        
+        // Create request body
+        if method == .post {
+            if let body = body {
+                switch body {
+                case .urlEncoded(let dictionary):
+                    var items = [URLQueryItem]()
+                    for (key, value) in dictionary {
+                        items.append(URLQueryItem(name: key, value: value))
+                    }
+                    var urlComponents = URLComponents(string: "")
+                    urlComponents?.queryItems = items
+                    var encodedString = urlComponents?.url?.absoluteString
+                    if let startIndex = encodedString?.startIndex {
+                        encodedString?.remove(at: startIndex) // Remove ? character
+                    }
+                    request.httpBody = encodedString?.data(using: .utf8)
+                case .rawData(let data):
+                    request.httpBody = data
+                }
+            }
+        }
+        
         let task = session.dataTask(with: request) { data, _, error in
             guard let data = data else {
                 completion(nil, error)
@@ -57,6 +96,8 @@ class Network {
                 completion(nil, e)
             }
         }
+        
+        let a = session.dataTask(with: request, completionHandler: <#T##(Data?, URLResponse?, Error?) -> Void#>)
         task.resume()
     }
 }

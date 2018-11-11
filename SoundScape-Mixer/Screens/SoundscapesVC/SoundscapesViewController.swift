@@ -10,12 +10,11 @@ import UIKit
 
 class SoundscapesViewController: UIViewController {
 
+    @IBOutlet weak var navBar: UINavigationBar!
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-//        navigationController?.navigationBar.shadowImage = UIImage()
-//        navigationController?.navigationBar.isTranslucent = true
+        navBar.shadowImage = UIImage()
         tabBarItem = UITabBarItem(title: "Soundscapes", image: nil, selectedImage: nil)
     }
     
