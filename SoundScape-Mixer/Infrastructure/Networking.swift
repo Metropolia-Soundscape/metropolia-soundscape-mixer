@@ -27,7 +27,7 @@ class Network {
 
     enum Server: String {
         case localhost = "http://localhost:3000/"
-        case test = "http://nsartem.github.io"
+        case tekniikanmuseo = "http://resourcespace.tekniikanmuseo.fi"
     }
 
     private var baseURL: URL {
@@ -35,10 +35,10 @@ class Network {
     }
 
     enum Endpoint: String {
-        case categoryInfo = "info"
+        case auth = "url/plugins/api_auth/auth.php"
     }
 
-    private typealias requestCompletion = (Decodable?, Error?) -> Void
+    typealias RequestCompletion = (Decodable?, Error?) -> Void
 
     func performRequest<T: Decodable>(method: HTTPMethod, endpoint: Endpoint, completion: @escaping (T?, Error?) -> Void) {
         guard let url = URL(string: endpoint.rawValue, relativeTo: baseURL) else { fatalError() }
