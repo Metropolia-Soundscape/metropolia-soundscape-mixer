@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		418349132187082C0048E24A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418349122187082C0048E24A /* AppDelegate.swift */; };
-		418349152187082C0048E24A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418349142187082C0048E24A /* ViewController.swift */; };
-		418349182187082C0048E24A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 418349162187082C0048E24A /* Main.storyboard */; };
 		4183491A2187082F0048E24A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 418349192187082F0048E24A /* Assets.xcassets */; };
 		4183491D2187082F0048E24A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4183491B2187082F0048E24A /* LaunchScreen.storyboard */; };
 		41834928218708300048E24A /* SoundScape_MixerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41834927218708300048E24A /* SoundScape_MixerTests.swift */; };
@@ -17,6 +15,15 @@
 		71D2531A4884E04FC068B761 /* Pods_SoundScape_Mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0423DB344547C32CDB1400B9 /* Pods_SoundScape_Mixer.framework */; };
 		ACEFDCFE218B5A2700CED22E /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEFDCFD218B5A2700CED22E /* Networking.swift */; };
 		ACEFDD00218C3D5200CED22E /* Mocking.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEFDCFF218C3D5200CED22E /* Mocking.swift */; };
+		FA7281BB219850F0009BF538 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7281BA219850F0009BF538 /* MainTabBarController.swift */; };
+		FA7281BF21985F8E009BF538 /* SoundscapesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA7281BE21985F8E009BF538 /* SoundscapesViewController.xib */; };
+		FA77D2FA21984A9400BA176D /* LibraryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA77D2F921984A9400BA176D /* LibraryViewController.xib */; };
+		FA7A5A722195A61400AF76BE /* SoundscapesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7A5A712195A61400AF76BE /* SoundscapesViewController.swift */; };
+		FA7A5A742195A85A00AF76BE /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7A5A732195A85A00AF76BE /* LibraryViewController.swift */; };
+		FA7A5A772195AAA400AF76BE /* SoundscapeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7A5A752195AAA400AF76BE /* SoundscapeCollectionViewCell.swift */; };
+		FA7A5A7C2195B04200AF76BE /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7A5A7B2195B04200AF76BE /* CategoryCollectionViewCell.swift */; };
+		FA7A5A7E2195B16900AF76BE /* AudioCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7A5A7D2195B16900AF76BE /* AudioCollectionViewCell.swift */; };
+		FADB39E22198449C00E7E3D1 /* CategoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FADB39E12198449C00E7E3D1 /* CategoryCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,8 +41,6 @@
 		0CC470480A5B775645565282 /* Pods-SoundScape-Mixer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoundScape-Mixer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SoundScape-Mixer/Pods-SoundScape-Mixer.debug.xcconfig"; sourceTree = "<group>"; };
 		4183490F2187082C0048E24A /* SoundScape-Mixer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SoundScape-Mixer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		418349122187082C0048E24A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		418349142187082C0048E24A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		418349172187082C0048E24A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		418349192187082F0048E24A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4183491C2187082F0048E24A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4183491E2187082F0048E24A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -48,6 +53,15 @@
 		ACEFDCFF218C3D5200CED22E /* Mocking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mocking.swift; sourceTree = "<group>"; };
 		B4C62AC0ED8903DF724C48E8 /* Pods_SoundScape_MixerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SoundScape_MixerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9DB8FA08641A27F02651A78 /* Pods-SoundScape-MixerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoundScape-MixerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SoundScape-MixerTests/Pods-SoundScape-MixerTests.release.xcconfig"; sourceTree = "<group>"; };
+		FA7281BA219850F0009BF538 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		FA7281BE21985F8E009BF538 /* SoundscapesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SoundscapesViewController.xib; sourceTree = "<group>"; };
+		FA77D2F921984A9400BA176D /* LibraryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LibraryViewController.xib; sourceTree = "<group>"; };
+		FA7A5A712195A61400AF76BE /* SoundscapesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundscapesViewController.swift; sourceTree = "<group>"; };
+		FA7A5A732195A85A00AF76BE /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
+		FA7A5A752195AAA400AF76BE /* SoundscapeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundscapeCollectionViewCell.swift; sourceTree = "<group>"; };
+		FA7A5A7B2195B04200AF76BE /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		FA7A5A7D2195B16900AF76BE /* AudioCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCollectionViewCell.swift; sourceTree = "<group>"; };
+		FADB39E12198449C00E7E3D1 /* CategoryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,13 +108,20 @@
 			isa = PBXGroup;
 			children = (
 				418349122187082C0048E24A /* AppDelegate.swift */,
-				418349142187082C0048E24A /* ViewController.swift */,
 				ACEFDCFD218B5A2700CED22E /* Networking.swift */,
 				ACEFDCFF218C3D5200CED22E /* Mocking.swift */,
-				418349162187082C0048E24A /* Main.storyboard */,
 				418349192187082F0048E24A /* Assets.xcassets */,
 				4183491B2187082F0048E24A /* LaunchScreen.storyboard */,
 				4183491E2187082F0048E24A /* Info.plist */,
+				FA7A5A712195A61400AF76BE /* SoundscapesViewController.swift */,
+				FA7281BE21985F8E009BF538 /* SoundscapesViewController.xib */,
+				FA7A5A732195A85A00AF76BE /* LibraryViewController.swift */,
+				FA77D2F921984A9400BA176D /* LibraryViewController.xib */,
+				FA7A5A752195AAA400AF76BE /* SoundscapeCollectionViewCell.swift */,
+				FA7A5A7B2195B04200AF76BE /* CategoryCollectionViewCell.swift */,
+				FADB39E12198449C00E7E3D1 /* CategoryCollectionViewCell.xib */,
+				FA7A5A7D2195B16900AF76BE /* AudioCollectionViewCell.swift */,
+				FA7281BA219850F0009BF538 /* MainTabBarController.swift */,
 			);
 			path = "SoundScape-Mixer";
 			sourceTree = "<group>";
@@ -217,9 +238,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FADB39E22198449C00E7E3D1 /* CategoryCollectionViewCell.xib in Resources */,
+				FA77D2FA21984A9400BA176D /* LibraryViewController.xib in Resources */,
 				4183491D2187082F0048E24A /* LaunchScreen.storyboard in Resources */,
 				4183491A2187082F0048E24A /* Assets.xcassets in Resources */,
-				418349182187082C0048E24A /* Main.storyboard in Resources */,
+				FA7281BF21985F8E009BF538 /* SoundscapesViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,9 +299,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA7A5A772195AAA400AF76BE /* SoundscapeCollectionViewCell.swift in Sources */,
 				ACEFDCFE218B5A2700CED22E /* Networking.swift in Sources */,
-				418349152187082C0048E24A /* ViewController.swift in Sources */,
+				FA7281BB219850F0009BF538 /* MainTabBarController.swift in Sources */,
+				FA7A5A7C2195B04200AF76BE /* CategoryCollectionViewCell.swift in Sources */,
+				FA7A5A722195A61400AF76BE /* SoundscapesViewController.swift in Sources */,
+				FA7A5A7E2195B16900AF76BE /* AudioCollectionViewCell.swift in Sources */,
 				418349132187082C0048E24A /* AppDelegate.swift in Sources */,
+				FA7A5A742195A85A00AF76BE /* LibraryViewController.swift in Sources */,
 				ACEFDD00218C3D5200CED22E /* Mocking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -302,14 +330,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		418349162187082C0048E24A /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				418349172187082C0048E24A /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		4183491B2187082F0048E24A /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -443,7 +463,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = E8F4PL5XYD;
+				DEVELOPMENT_TEAM = HYDC632CLE;
 				INFOPLIST_FILE = "SoundScape-Mixer/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -462,7 +482,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = E8F4PL5XYD;
+				DEVELOPMENT_TEAM = HYDC632CLE;
 				INFOPLIST_FILE = "SoundScape-Mixer/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
