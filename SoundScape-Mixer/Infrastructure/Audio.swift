@@ -12,8 +12,10 @@ struct Audio: Codable {
     enum CodingKeys: String, CodingKey {
         case title = "Title"
         case fileName = "Original filename"
+        case downloadLink = "Download link"
     }
 
     var title: String?
     var fileName: String?
+    var downloadLink: String?
 }

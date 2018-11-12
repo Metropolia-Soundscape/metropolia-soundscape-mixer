@@ -14,7 +14,9 @@ extension Network {
     
     func getCategoryAudio(completion: @escaping ([[Audio]]?, Error?) -> Void) {
         
-        let params = ["key": "jFBaDxPcNzYZGu-gNMZ2L9-TjP1JjWl8OHFhdJV54gL82_M0cZi8oGEg-fB7gw3EpYvN0IHrHFP-Ic5sULo-iAWTl0k_y0t3CwrCQPpbYJkVIjmCV1Zzo0NB52ZLanwN"]
+        let params = ["key": "jFBaDxPcNzYZGu-gNMZ2L9-TjP1JjWl8OHFhdJV54gL82_M0cZi8oGEg-fB7gw3EpYvN0IHrHFP-Ic5sULo-iAWTl0k_y0t3CwrCQPpbYJkVIjmCV1Zzo0NB52ZLanwN",
+                      "collection": "22",
+                      "link": "true"]
         
         performRequest(method: .get,
                        endpoint: .audio,

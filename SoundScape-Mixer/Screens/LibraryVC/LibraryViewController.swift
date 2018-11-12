@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LibraryViewController: UIViewController, UICollectionViewDataSource {
+class LibraryViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
     @IBOutlet weak var libraryLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -19,23 +19,14 @@ class LibraryViewController: UIViewController, UICollectionViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         collectionView.register(UINib(nibName: "CategoryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: reuseId)
         
         collectionView.dataSource = self
-        //libraryView.collectionView.delegate = self
+        collectionView.delegate = self
         
         tabBarItem = UITabBarItem(title: "Library", image: nil, selectedImage: nil)
         
-        
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        let network = AppDelegate.appDelegate.appController.networking
-        network.getCategoryAudio { (audio, error) in
-            print("")
-        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -49,5 +40,12 @@ class LibraryViewController: UIViewController, UICollectionViewDataSource {
         cell.backgroundColor = UIColor.red
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(items[indexPath.row])
+        let audioViewController = AudioViewController()
+        audioViewController.category = items[indexPath.row]
+        self.navigationController?.pushViewController(audioViewController, animated: true)
     }
 }

@@ -11,7 +11,11 @@ import UIKit
 class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         let libraryViewController = LibraryViewController(nibName: String(describing: LibraryViewController.self), bundle: nil)
+        let libraryNavController = UINavigationController(rootViewController: libraryViewController)
         let soundscapesViewController = SoundscapesViewController(nibName: String(describing: SoundscapesViewController.self), bundle: nil)
-        viewControllers = [soundscapesViewController, libraryViewController]
+        viewControllers = [soundscapesViewController, libraryNavController]
+        
+        libraryNavController.navigationBar.shadowImage = UIImage()
+        libraryNavController.navigationBar.setBackgroundImage(UIImage(), for: .default)
     }
 }

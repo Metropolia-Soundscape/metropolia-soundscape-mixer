@@ -31,6 +31,8 @@
 		FA7281D22198652D009BF538 /* AudioCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7281CA2198652D009BF538 /* AudioCollectionViewCell.swift */; };
 		FA7281D32198652D009BF538 /* CategoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA7281CB2198652D009BF538 /* CategoryCollectionViewCell.xib */; };
 		FA7281D82198FA95009BF538 /* Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7281D72198FA95009BF538 /* Audio.swift */; };
+		FA8DA9B921990FC80093CC05 /* AudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8DA9B721990FC80093CC05 /* AudioViewController.swift */; };
+		FA8DA9BA21990FC80093CC05 /* AudioViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA8DA9B821990FC80093CC05 /* AudioViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +78,8 @@
 		FA7281CA2198652D009BF538 /* AudioCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioCollectionViewCell.swift; path = "SoundScape-Mixer/Screens/SoundscapesVC/AudioCollectionViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		FA7281CB2198652D009BF538 /* CategoryCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CategoryCollectionViewCell.xib; path = "SoundScape-Mixer/Screens/LibraryVC/CategoryCollectionViewCell.xib"; sourceTree = SOURCE_ROOT; };
 		FA7281D72198FA95009BF538 /* Audio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio.swift; sourceTree = "<group>"; };
+		FA8DA9B721990FC80093CC05 /* AudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioViewController.swift; sourceTree = "<group>"; };
+		FA8DA9B821990FC80093CC05 /* AudioViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AudioViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +167,8 @@
 				FA7281D5219866C9009BF538 /* SoundscapesVC */,
 				FA7281D4219866BC009BF538 /* LoginVC */,
 				FA7281C2219864FE009BF538 /* MainTabBarController.swift */,
+				FA8DA9B721990FC80093CC05 /* AudioViewController.swift */,
+				FA8DA9B821990FC80093CC05 /* AudioViewController.xib */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -305,6 +311,7 @@
 				4183491A2187082F0048E24A /* Assets.xcassets in Resources */,
 				FA7281D32198652D009BF538 /* CategoryCollectionViewCell.xib in Resources */,
 				FA7281D12198652D009BF538 /* LibraryViewController.xib in Resources */,
+				FA8DA9BA21990FC80093CC05 /* AudioViewController.xib in Resources */,
 				413769592190CC8200A961E3 /* LoginViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -389,6 +396,7 @@
 				FA7281CF2198652D009BF538 /* CategoryCollectionViewCell.swift in Sources */,
 				AC14741B219539F600FF6D94 /* NetworkingRequests.swift in Sources */,
 				ACEFDCFE218B5A2700CED22E /* Networking.swift in Sources */,
+				FA8DA9B921990FC80093CC05 /* AudioViewController.swift in Sources */,
 				ACC8576221952CD400947BDB /* AppController.swift in Sources */,
 				FA7281D02198652D009BF538 /* SoundscapeCollectionViewCell.swift in Sources */,
 				418349152187082C0048E24A /* LoginViewController.swift in Sources */,
