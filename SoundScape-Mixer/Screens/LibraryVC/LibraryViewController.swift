@@ -25,6 +25,17 @@ class LibraryViewController: UIViewController, UICollectionViewDataSource {
         //libraryView.collectionView.delegate = self
         
         tabBarItem = UITabBarItem(title: "Library", image: nil, selectedImage: nil)
+        
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let network = AppDelegate.appDelegate.appController.networking
+        network.getCategoryAudio { (audio, error) in
+            print("")
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

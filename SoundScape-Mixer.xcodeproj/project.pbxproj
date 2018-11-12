@@ -30,6 +30,7 @@
 		FA7281D12198652D009BF538 /* LibraryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA7281C92198652D009BF538 /* LibraryViewController.xib */; };
 		FA7281D22198652D009BF538 /* AudioCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7281CA2198652D009BF538 /* AudioCollectionViewCell.swift */; };
 		FA7281D32198652D009BF538 /* CategoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA7281CB2198652D009BF538 /* CategoryCollectionViewCell.xib */; };
+		FA7281D82198FA95009BF538 /* Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7281D72198FA95009BF538 /* Audio.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,7 @@
 		FA7281C92198652D009BF538 /* LibraryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LibraryViewController.xib; path = "SoundScape-Mixer/Screens/LibraryVC/LibraryViewController.xib"; sourceTree = SOURCE_ROOT; };
 		FA7281CA2198652D009BF538 /* AudioCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioCollectionViewCell.swift; path = "SoundScape-Mixer/Screens/SoundscapesVC/AudioCollectionViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		FA7281CB2198652D009BF538 /* CategoryCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CategoryCollectionViewCell.xib; path = "SoundScape-Mixer/Screens/LibraryVC/CategoryCollectionViewCell.xib"; sourceTree = SOURCE_ROOT; };
+		FA7281D72198FA95009BF538 /* Audio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +170,7 @@
 		AC14741D21953A1200FF6D94 /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
+				FA7281D72198FA95009BF538 /* Audio.swift */,
 				ACC8576121952CD400947BDB /* AppController.swift */,
 				418349122187082C0048E24A /* AppDelegate.swift */,
 				418349192187082F0048E24A /* Assets.xcassets */,
@@ -390,6 +393,7 @@
 				FA7281D02198652D009BF538 /* SoundscapeCollectionViewCell.swift in Sources */,
 				418349152187082C0048E24A /* LoginViewController.swift in Sources */,
 				ACC8576421952F7900947BDB /* LoginStateService.swift in Sources */,
+				FA7281D82198FA95009BF538 /* Audio.swift in Sources */,
 				FA7281CD2198652D009BF538 /* LibraryViewController.swift in Sources */,
 				AC14741F21953AE500FF6D94 /* AuthJSON.swift in Sources */,
 				418349132187082C0048E24A /* AppDelegate.swift in Sources */,

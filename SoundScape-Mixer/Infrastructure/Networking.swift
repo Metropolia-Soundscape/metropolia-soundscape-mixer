@@ -36,9 +36,9 @@ class Network {
 
     enum Endpoint: String {
         case auth = "/plugins/api_auth/auth.php"
-        case audio = ""
+        case audio = "/plugins/api_audio_search/index.php/"
     }
-
+    
     typealias RequestCompletion = (Decodable?, Error?) -> Void
 
     enum Body {
@@ -51,10 +51,19 @@ class Network {
         var value: String
     }
     
-    func performRequest<T: Decodable>(method: HTTPMethod, headers: [HTTPHeader]? = nil, endpoint: Endpoint, body: Body? = nil, completion: @escaping (T?, Error?) -> Void) {
+    func performRequest<T: Decodable>(method: HTTPMethod,
+                                      headers: [HTTPHeader]? = nil,
+                                      endpoint: Endpoint,
+                                      body: Body? = nil,
+                                      queryParameters: [String: String]? = nil,
+                                      completion: @escaping (T?, Error?) -> Void) {
 
         guard let url = URL(string: endpoint.rawValue, relativeTo: baseURL) else { fatalError() }
-        var request = URLRequest(url: url)
+        var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)
+        let queryItems = queryParameters?.compactMap { URLQueryItem(name: $0.key, value: $0.value) }
+        urlComponents?.queryItems = queryItems
+        
+        var request = URLRequest(url: urlComponents?.url ?? url)
 
         request.httpMethod = method.rawValue
         
@@ -96,8 +105,6 @@ class Network {
                 completion(nil, e)
             }
         }
-        
-        let a = session.dataTask(with: request, completionHandler: <#T##(Data?, URLResponse?, Error?) -> Void#>)
         task.resume()
     }
 }

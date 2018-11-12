@@ -23,7 +23,9 @@ class LoginViewController: UIViewController {
         network.authenticate(username: "aanimaisema", password: "Laulukirja1") { (authjson, error) in
             if let authJSON = authjson {
                 print(authJSON)
-                
+                DispatchQueue.main.async {
+                    (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController = MainTabBarController()
+                }
             }
         }
     }
