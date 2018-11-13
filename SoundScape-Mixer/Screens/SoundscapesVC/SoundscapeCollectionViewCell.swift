@@ -9,9 +9,4 @@
 import UIKit
 
 class SoundscapeCollectionViewCell: UICollectionViewCell {
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
 }

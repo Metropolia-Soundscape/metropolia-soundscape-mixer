@@ -7,24 +7,28 @@
 //
 
 import UIKit
+import AVFoundation
 
 class AudioViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var audioCollectionView: UICollectionView!
     
+    var audioPlayer: AVAudioPlayer?
     var category: String = ""
     var items: [Audio] = []
     let screenSize: CGRect = UIScreen.main.bounds
     
-    private let reuseId = "categoryCollectionViewCell"
+    private let reuseId = "audioCollectionViewCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        audioCollectionView.register(UINib(nibName: "CategoryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: reuseId)
+        audioCollectionView.register(UINib(nibName: "AudioCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: reuseId)
         
         audioCollectionView.dataSource = self
         audioCollectionView.delegate = self
+        
+        navigationController?.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "iconSearch"), style: .plain, target: self, action: #selector(getter: UIDynamicBehavior.action))
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -49,11 +53,12 @@ class AudioViewController: UIViewController, UICollectionViewDataSource, UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseId, for: indexPath) as! CategoryCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseId, for: indexPath) as! AudioCollectionViewCell
         
         if let audioTitle = items[indexPath.row].title {
             cell.displayContent(name: audioTitle)
         }
+        cell.audioURL = items[indexPath.row].downloadLink
         
         return cell
     }

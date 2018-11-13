@@ -15,7 +15,6 @@ class MainTabBarController: UITabBarController {
         let soundscapesViewController = SoundscapesViewController(nibName: String(describing: SoundscapesViewController.self), bundle: nil)
         viewControllers = [soundscapesViewController, libraryNavController]
         
-        libraryNavController.navigationBar.shadowImage = UIImage()
-        libraryNavController.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        
     }
 }

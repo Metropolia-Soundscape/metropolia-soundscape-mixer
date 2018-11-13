@@ -27,6 +27,9 @@ class LibraryViewController: UIViewController, UICollectionViewDataSource, UICol
         
         tabBarItem = UITabBarItem(title: "Library", image: nil, selectedImage: nil)
         
+        
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

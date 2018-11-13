@@ -14,6 +14,4 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     func displayContent(name: String) {
         categoryNameLabel.text = name
     }
-    
-    
 }

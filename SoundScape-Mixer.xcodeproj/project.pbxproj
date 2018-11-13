@@ -21,6 +21,8 @@
 		ACC8576421952F7900947BDB /* LoginStateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC8576321952F7900947BDB /* LoginStateService.swift */; };
 		ACEFDCFE218B5A2700CED22E /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEFDCFD218B5A2700CED22E /* Networking.swift */; };
 		ACEFDD00218C3D5200CED22E /* Mocking.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEFDCFF218C3D5200CED22E /* Mocking.swift */; };
+		FA2E2230219AF4A0004B43A6 /* AudioCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2E222E219AF4A0004B43A6 /* AudioCollectionViewCell.swift */; };
+		FA2E2231219AF4A0004B43A6 /* AudioCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA2E222F219AF4A0004B43A6 /* AudioCollectionViewCell.xib */; };
 		FA7281C3219864FE009BF538 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7281C2219864FE009BF538 /* MainTabBarController.swift */; };
 		FA7281CC2198652D009BF538 /* SoundscapesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7281C42198652C009BF538 /* SoundscapesViewController.swift */; };
 		FA7281CD2198652D009BF538 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7281C52198652C009BF538 /* LibraryViewController.swift */; };
@@ -28,7 +30,6 @@
 		FA7281CF2198652D009BF538 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7281C72198652D009BF538 /* CategoryCollectionViewCell.swift */; };
 		FA7281D02198652D009BF538 /* SoundscapeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7281C82198652D009BF538 /* SoundscapeCollectionViewCell.swift */; };
 		FA7281D12198652D009BF538 /* LibraryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA7281C92198652D009BF538 /* LibraryViewController.xib */; };
-		FA7281D22198652D009BF538 /* AudioCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7281CA2198652D009BF538 /* AudioCollectionViewCell.swift */; };
 		FA7281D32198652D009BF538 /* CategoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA7281CB2198652D009BF538 /* CategoryCollectionViewCell.xib */; };
 		FA7281D82198FA95009BF538 /* Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7281D72198FA95009BF538 /* Audio.swift */; };
 		FA8DA9B921990FC80093CC05 /* AudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8DA9B721990FC80093CC05 /* AudioViewController.swift */; };
@@ -68,6 +69,8 @@
 		ACEFDCFF218C3D5200CED22E /* Mocking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mocking.swift; sourceTree = "<group>"; };
 		B4C62AC0ED8903DF724C48E8 /* Pods_SoundScape_MixerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SoundScape_MixerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9DB8FA08641A27F02651A78 /* Pods-SoundScape-MixerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoundScape-MixerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SoundScape-MixerTests/Pods-SoundScape-MixerTests.release.xcconfig"; sourceTree = "<group>"; };
+		FA2E222E219AF4A0004B43A6 /* AudioCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCollectionViewCell.swift; sourceTree = "<group>"; };
+		FA2E222F219AF4A0004B43A6 /* AudioCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AudioCollectionViewCell.xib; sourceTree = "<group>"; };
 		FA7281C2219864FE009BF538 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainTabBarController.swift; path = "SoundScape-Mixer/MainTabBarController.swift"; sourceTree = SOURCE_ROOT; };
 		FA7281C42198652C009BF538 /* SoundscapesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SoundscapesViewController.swift; path = "SoundScape-Mixer/Screens/SoundscapesVC/SoundscapesViewController.swift"; sourceTree = SOURCE_ROOT; };
 		FA7281C52198652C009BF538 /* LibraryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LibraryViewController.swift; path = "SoundScape-Mixer/Screens/LibraryVC/LibraryViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -75,7 +78,6 @@
 		FA7281C72198652D009BF538 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryCollectionViewCell.swift; path = "SoundScape-Mixer/Screens/LibraryVC/CategoryCollectionViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		FA7281C82198652D009BF538 /* SoundscapeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SoundscapeCollectionViewCell.swift; path = "SoundScape-Mixer/Screens/SoundscapesVC/SoundscapeCollectionViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		FA7281C92198652D009BF538 /* LibraryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LibraryViewController.xib; path = "SoundScape-Mixer/Screens/LibraryVC/LibraryViewController.xib"; sourceTree = SOURCE_ROOT; };
-		FA7281CA2198652D009BF538 /* AudioCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioCollectionViewCell.swift; path = "SoundScape-Mixer/Screens/SoundscapesVC/AudioCollectionViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		FA7281CB2198652D009BF538 /* CategoryCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CategoryCollectionViewCell.xib; path = "SoundScape-Mixer/Screens/LibraryVC/CategoryCollectionViewCell.xib"; sourceTree = SOURCE_ROOT; };
 		FA7281D72198FA95009BF538 /* Audio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio.swift; sourceTree = "<group>"; };
 		FA8DA9B721990FC80093CC05 /* AudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioViewController.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 		AC14741C219539FE00FF6D94 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				FA2E222D219AF472004B43A6 /* AudioVC */,
 				FA7281D6219866D1009BF538 /* LibraryVC */,
 				FA7281D5219866C9009BF538 /* SoundscapesVC */,
 				FA7281D4219866BC009BF538 /* LoginVC */,
@@ -197,6 +200,17 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		FA2E222D219AF472004B43A6 /* AudioVC */ = {
+			isa = PBXGroup;
+			children = (
+				FA8DA9B721990FC80093CC05 /* AudioViewController.swift */,
+				FA8DA9B821990FC80093CC05 /* AudioViewController.xib */,
+				FA2E222E219AF4A0004B43A6 /* AudioCollectionViewCell.swift */,
+				FA2E222F219AF4A0004B43A6 /* AudioCollectionViewCell.xib */,
+			);
+			path = AudioVC;
+			sourceTree = "<group>";
+		};
 		FA7281D4219866BC009BF538 /* LoginVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -209,7 +223,6 @@
 		FA7281D5219866C9009BF538 /* SoundscapesVC */ = {
 			isa = PBXGroup;
 			children = (
-				FA7281CA2198652D009BF538 /* AudioCollectionViewCell.swift */,
 				FA7281C82198652D009BF538 /* SoundscapeCollectionViewCell.swift */,
 				FA7281C42198652C009BF538 /* SoundscapesViewController.swift */,
 				FA7281C62198652C009BF538 /* SoundscapesViewController.xib */,
@@ -220,8 +233,6 @@
 		FA7281D6219866D1009BF538 /* LibraryVC */ = {
 			isa = PBXGroup;
 			children = (
-				FA8DA9B721990FC80093CC05 /* AudioViewController.swift */,
-				FA8DA9B821990FC80093CC05 /* AudioViewController.xib */,
 				FA7281C72198652D009BF538 /* CategoryCollectionViewCell.swift */,
 				FA7281CB2198652D009BF538 /* CategoryCollectionViewCell.xib */,
 				FA7281C52198652C009BF538 /* LibraryViewController.swift */,
@@ -319,6 +330,7 @@
 				4183491A2187082F0048E24A /* Assets.xcassets in Resources */,
 				FA7281D32198652D009BF538 /* CategoryCollectionViewCell.xib in Resources */,
 				FA7281D12198652D009BF538 /* LibraryViewController.xib in Resources */,
+				FA2E2231219AF4A0004B43A6 /* AudioCollectionViewCell.xib in Resources */,
 				FA8DA9BA21990FC80093CC05 /* AudioViewController.xib in Resources */,
 				413769592190CC8200A961E3 /* LoginViewController.xib in Resources */,
 			);
@@ -399,8 +411,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA7281D22198652D009BF538 /* AudioCollectionViewCell.swift in Sources */,
 				FA7281C3219864FE009BF538 /* MainTabBarController.swift in Sources */,
+				FA2E2230219AF4A0004B43A6 /* AudioCollectionViewCell.swift in Sources */,
 				FA7281CF2198652D009BF538 /* CategoryCollectionViewCell.swift in Sources */,
 				AC14741B219539F600FF6D94 /* NetworkingRequests.swift in Sources */,
 				ACEFDCFE218B5A2700CED22E /* Networking.swift in Sources */,
@@ -569,8 +581,9 @@
 			baseConfigurationReference = 0CC470480A5B775645565282 /* Pods-SoundScape-Mixer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HYDC632CLE;
 				INFOPLIST_FILE = "SoundScape-Mixer/Infrastructure/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -589,8 +602,9 @@
 			baseConfigurationReference = A9F1DB03294E5308C656727C /* Pods-SoundScape-Mixer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HYDC632CLE;
 				INFOPLIST_FILE = "SoundScape-Mixer/Infrastructure/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
