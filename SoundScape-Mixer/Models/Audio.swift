@@ -13,9 +13,11 @@ struct Audio: Codable {
         case title = "Title"
         case fileName = "Original filename"
         case downloadLink = "Download link"
+        case category = "Category"
     }
 
     var title: String?
     var fileName: String?
     var downloadLink: String?
+    var category: String?
 }

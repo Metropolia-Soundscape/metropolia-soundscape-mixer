@@ -8,17 +8,17 @@
 
 import UIKit
 
-class LibraryViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class LibraryViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
-    @IBOutlet weak var libraryLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
-
+    
+    let screenSize: CGRect = UIScreen.main.bounds
+    
     private let reuseId = "categoryCollectionViewCell"
     let items = ["Human", "Machine", "Nature"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         collectionView.register(UINib(nibName: "CategoryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: reuseId)
         
@@ -37,13 +37,16 @@ class LibraryViewController: UIViewController, UICollectionViewDataSource, UICol
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseId, for: indexPath) as! CategoryCollectionViewCell
         
         cell.displayContent(name: items[indexPath.row])
-        cell.backgroundColor = UIColor.red
         
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = (screenSize.width)
+        return CGSize(width: width, height: 50.0)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(items[indexPath.row])
         let audioViewController = AudioViewController()
         audioViewController.category = items[indexPath.row]
         self.navigationController?.pushViewController(audioViewController, animated: true)

@@ -10,17 +10,17 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CategoryCollectionViewCell" customModule="SoundScape_Mixer" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="5Cp-4q-JhK" customClass="CategoryCollectionViewCell" customModule="SoundScape_Mixer" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="categoryCollectionViewCell" id="5Cp-4q-JhK" customClass="CategoryCollectionViewCell" customModule="SoundScape_Mixer" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="469" height="152"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                 <rect key="frame" x="0.0" y="0.0" width="469" height="152"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fxA-bM-0Cs">
-                        <rect key="frame" x="20" y="66" width="42" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fxA-bM-0Cs">
+                        <rect key="frame" x="16" y="66" width="42" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -28,14 +28,13 @@
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="fxA-bM-0Cs" firstAttribute="top" secondItem="5Cp-4q-JhK" secondAttribute="top" constant="66" id="PNs-hK-m8X"/>
-                <constraint firstAttribute="bottom" secondItem="fxA-bM-0Cs" secondAttribute="bottom" constant="65" id="qPf-wT-f1M"/>
-                <constraint firstItem="fxA-bM-0Cs" firstAttribute="leading" secondItem="5Cp-4q-JhK" secondAttribute="leading" constant="20" id="z9v-Sg-D9a"/>
+                <constraint firstItem="fxA-bM-0Cs" firstAttribute="leading" secondItem="5Cp-4q-JhK" secondAttribute="leading" constant="16" id="1ai-Jh-nXb"/>
+                <constraint firstItem="fxA-bM-0Cs" firstAttribute="centerY" secondItem="5Cp-4q-JhK" secondAttribute="centerY" id="Ay1-o6-JwY"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="q7V-bX-KVa"/>
             <size key="customSize" width="469" height="152"/>
             <connections>
-                <outlet property="categoryNameLabel" destination="fxA-bM-0Cs" id="5YL-Gy-vva"/>
+                <outlet property="categoryNameLabel" destination="fxA-bM-0Cs" id="BBW-dQ-dkP"/>
             </connections>
             <point key="canvasLocation" x="-37.600000000000001" y="29.685157421289357"/>
         </collectionViewCell>

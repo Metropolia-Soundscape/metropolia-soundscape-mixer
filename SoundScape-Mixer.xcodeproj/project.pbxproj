@@ -125,8 +125,9 @@
 		418349112187082C0048E24A /* SoundScape-Mixer */ = {
 			isa = PBXGroup;
 			children = (
-				AC14741C219539FE00FF6D94 /* Screens */,
 				AC14741D21953A1200FF6D94 /* Infrastructure */,
+				FA2E222C2199AE64004B43A6 /* Models */,
+				AC14741C219539FE00FF6D94 /* Screens */,
 			);
 			path = "SoundScape-Mixer";
 			sourceTree = "<group>";
@@ -167,8 +168,6 @@
 				FA7281D5219866C9009BF538 /* SoundscapesVC */,
 				FA7281D4219866BC009BF538 /* LoginVC */,
 				FA7281C2219864FE009BF538 /* MainTabBarController.swift */,
-				FA8DA9B721990FC80093CC05 /* AudioViewController.swift */,
-				FA8DA9B821990FC80093CC05 /* AudioViewController.xib */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -176,7 +175,6 @@
 		AC14741D21953A1200FF6D94 /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
-				FA7281D72198FA95009BF538 /* Audio.swift */,
 				ACC8576121952CD400947BDB /* AppController.swift */,
 				418349122187082C0048E24A /* AppDelegate.swift */,
 				418349192187082F0048E24A /* Assets.xcassets */,
@@ -191,6 +189,14 @@
 			path = Infrastructure;
 			sourceTree = "<group>";
 		};
+		FA2E222C2199AE64004B43A6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FA7281D72198FA95009BF538 /* Audio.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		FA7281D4219866BC009BF538 /* LoginVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,10 +209,10 @@
 		FA7281D5219866C9009BF538 /* SoundscapesVC */ = {
 			isa = PBXGroup;
 			children = (
+				FA7281CA2198652D009BF538 /* AudioCollectionViewCell.swift */,
 				FA7281C82198652D009BF538 /* SoundscapeCollectionViewCell.swift */,
 				FA7281C42198652C009BF538 /* SoundscapesViewController.swift */,
 				FA7281C62198652C009BF538 /* SoundscapesViewController.xib */,
-				FA7281CA2198652D009BF538 /* AudioCollectionViewCell.swift */,
 			);
 			path = SoundscapesVC;
 			sourceTree = "<group>";
@@ -214,6 +220,8 @@
 		FA7281D6219866D1009BF538 /* LibraryVC */ = {
 			isa = PBXGroup;
 			children = (
+				FA8DA9B721990FC80093CC05 /* AudioViewController.swift */,
+				FA8DA9B821990FC80093CC05 /* AudioViewController.xib */,
 				FA7281C72198652D009BF538 /* CategoryCollectionViewCell.swift */,
 				FA7281CB2198652D009BF538 /* CategoryCollectionViewCell.xib */,
 				FA7281C52198652C009BF538 /* LibraryViewController.swift */,
