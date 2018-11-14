@@ -9,12 +9,35 @@
 import UIKit
 
 class SoundscapesViewController: UIViewController {
-
-    @IBOutlet weak var navBar: UINavigationBar!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        navBar.shadowImage = UIImage()
+        
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationItem.title = "Soundscapes"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
+        setUpAddButton()
         tabBarItem = UITabBarItem(title: "Soundscapes", image: nil, selectedImage: nil)
+    }
+    
+    @objc func addTapped() {
+        let soundscapeViewController = SoundscapeViewController()
+        self.navigationController?.pushViewController(soundscapeViewController, animated: true)
+    }
+    
+    func setUpAddButton() {
+        let addButton = UIButton(type: .custom)
+        addButton.frame = CGRect(x: 0.0, y: 0.0, width: 40, height: 40)
+        addButton.setImage(UIImage(named: "iconAdd"), for: .normal)
+        addButton.addTarget(self, action: #selector(addTapped), for: UIControl.Event.touchUpInside)
+        
+        let addButtonItem = UIBarButtonItem(customView: addButton)
+        let currWidth = addButtonItem.customView?.widthAnchor.constraint(equalToConstant: 40)
+        currWidth?.isActive = true
+        let currHeight = addButtonItem.customView?.heightAnchor.constraint(equalToConstant: 40)
+        currHeight?.isActive = true
+        self.navigationItem.rightBarButtonItem = addButtonItem
     }
 }

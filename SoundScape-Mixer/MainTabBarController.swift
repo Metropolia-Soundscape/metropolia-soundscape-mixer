@@ -11,10 +11,11 @@ import UIKit
 class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         let libraryViewController = LibraryViewController(nibName: String(describing: LibraryViewController.self), bundle: nil)
-        let libraryNavController = UINavigationController(rootViewController: libraryViewController)
+//        let libraryNavController = UINavigationController(rootViewController: libraryViewController)
         let soundscapesViewController = SoundscapesViewController(nibName: String(describing: SoundscapesViewController.self), bundle: nil)
-        viewControllers = [soundscapesViewController, libraryNavController]
+//        let soundscapesNavController = UINavigationController(rootViewController: soundscapesViewController)
+        let viewControllerList = [soundscapesViewController, libraryViewController]
         
-        
+        viewControllers = viewControllerList.map { UINavigationController(rootViewController: $0)}
     }
 }

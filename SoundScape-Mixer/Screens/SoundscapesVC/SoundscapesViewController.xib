@@ -12,7 +12,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SoundscapesViewController" customModule="SoundScape_Mixer" customModuleProvider="target">
             <connections>
-                <outlet property="navBar" destination="TQ1-kc-UYu" id="Nfv-St-SUD"/>
                 <outlet property="view" destination="iN0-l3-epB" id="HKt-uQ-vam"/>
             </connections>
         </placeholder>
@@ -20,45 +19,7 @@
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TQ1-kc-UYu">
-                    <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                    <items>
-                        <navigationItem id="Suj-LB-32W">
-                            <barButtonItem key="rightBarButtonItem" id="eYe-7C-MFK">
-                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="NS8-xa-z1T">
-                                    <rect key="frame" x="313" y="7" width="46" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal">
-                                        <attributedString key="attributedTitle">
-                                            <fragment content="Add">
-                                                <attributes>
-                                                    <font key="NSFont" metaFont="system" size="15"/>
-                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                </attributes>
-                                            </fragment>
-                                        </attributedString>
-                                    </state>
-                                </button>
-                            </barButtonItem>
-                        </navigationItem>
-                    </items>
-                </navigationBar>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Soundscapes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mqp-B5-5Fp">
-                    <rect key="frame" x="16" y="64" width="147" height="27.5"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-            </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-            <constraints>
-                <constraint firstItem="Mqp-B5-5Fp" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="8az-xg-a4j"/>
-                <constraint firstItem="TQ1-kc-UYu" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Iij-qj-1dH"/>
-                <constraint firstItem="Mqp-B5-5Fp" firstAttribute="top" secondItem="TQ1-kc-UYu" secondAttribute="bottom" id="fIj-h9-KCM"/>
-                <constraint firstItem="TQ1-kc-UYu" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="nFi-3z-HYJ"/>
-                <constraint firstItem="TQ1-kc-UYu" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="qJt-Vb-0dc"/>
-            </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="60" y="46.326836581709152"/>
         </view>

@@ -9,21 +9,28 @@
 import UIKit
 import AVFoundation
 
+protocol AudioCollectionViewCellDelegate: class {
+    func audioCollectionViewCellDidTapPlayButton(_ cell: AudioCollectionViewCell)
+}
+
 class AudioCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var audioNameLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
-    var audioURL: String?
-    var audioPlayer: AVPlayer?
     
-    func displayContent(name: String) {
-        audioNameLabel.text = name
-    }
+    weak var delegate: AudioCollectionViewCellDelegate?
     
-    @IBAction func playPressed(_ sender: Any) {
-        if let url = audioURL {
-            audioPlayer = AVPlayer.init(url: URL.init(string: url)!)
-            audioPlayer?.play()
+    var downloadLink: String?
+    
+    var playing = false {
+        didSet {
+            let imageName = playing ? "iconPause" : "iconPlay"
+            playButton.setImage(UIImage(named: imageName), for: UIControl.State.normal)
         }
     }
+
+    @IBAction func playPressed(_ sender: Any) {
+        delegate?.audioCollectionViewCellDidTapPlayButton(self)
+    }
 }
+
