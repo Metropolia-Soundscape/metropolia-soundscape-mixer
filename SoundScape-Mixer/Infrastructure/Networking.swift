@@ -35,26 +35,32 @@ class Network {
     }
 
     enum Endpoint: String {
-        case auth = "url/plugins/api_auth/auth.php"
+        case auth = "plugins/api_auth/auth.php"
     }
 
     typealias RequestCompletion = (Decodable?, Error?) -> Void
 
-    func performRequest<T: Decodable>(method: HTTPMethod, endpoint: Endpoint, completion: @escaping (T?, Error?) -> Void) {
+    func performRequest<T: Decodable>(method: HTTPMethod, endpoint: Endpoint, ofType: T.Type, completion: @escaping (T?, Error?) -> Void) {
         guard let url = URL(string: endpoint.rawValue, relativeTo: baseURL) else { fatalError() }
         var request = URLRequest(url: url)
 
         request.httpMethod = method.rawValue
-        let task = session.dataTask(with: request) { data, _, error in
+        let task = session.dataTask(with: request) { data, response, error in
             guard let data = data else {
-                completion(nil, error)
+                DispatchQueue.main.sync {
+                    completion(nil, error)
+                }
                 return
             }
             do {
                 let result = try JSONDecoder().decode(T.self, from: data)
-                completion(result, nil)
+                DispatchQueue.main.sync {
+                    completion(result, nil)
+                }
             } catch let e {
-                completion(nil, e)
+                DispatchQueue.main.sync {
+                    completion(nil, e)
+                }
             }
         }
         task.resume()
