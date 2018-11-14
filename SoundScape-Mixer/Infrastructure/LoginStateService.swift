@@ -1,14 +1,14 @@
 import Foundation
 import KeychainSwift
 
-enum LoginState {
+public enum LoginState {
     case loggedOut
     case loggedIn(token: String)
 }
 
 extension LoginState {
 
-    fileprivate init(token: String?) {
+    public init(token: String?) {
         if let token = token{
             self = .loggedIn(token: token)
         } else {
@@ -33,27 +33,24 @@ extension LoginState {
 
 let tokenAccessPath = "com.metropolia.soundscape.token"
 
-final class LoginStateService {
-    var state: LoginState
-    let keychain = KeychainSwift()
-
-    init() {
-        self.tokenStorage = keychain.get(tokenAccessPath)
-        self.state = LoginState(token: tokenStorage)
-    }
-
-    func clear() {
-        tokenStorage = nil
-    }
-
-    @objc var tokenStorage: String? {
+final public class LoginStateService {
+    public var state: LoginState {
         didSet {
-            if let token = tokenStorage {
-                keychain.set(token, forKey: tokenAccessPath)
-            } else {
+            switch state {
+            case let .loggedIn(token: value):
+                token = value
+                keychain.set(value, forKey: tokenAccessPath)
+            case .loggedOut:
+                token = nil
                 keychain.clear()
             }
-            state = LoginState(token: tokenStorage)
         }
+    }
+    private var token: String?
+    private let keychain = KeychainSwift()
+
+    init() {
+        self.token = keychain.get(tokenAccessPath)
+        self.state = LoginState(token: token)
     }
 }

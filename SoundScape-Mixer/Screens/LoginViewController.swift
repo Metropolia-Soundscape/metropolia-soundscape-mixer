@@ -4,7 +4,7 @@ class LoginViewController: UIViewController {
     @IBOutlet var usernameLbl: UITextField!
     @IBOutlet var passwordLbl: UITextField!
     @IBOutlet var signInBtn: UIButton!
-
+    let appController = AppDelegate.appDelegate.appController
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -12,17 +12,18 @@ class LoginViewController: UIViewController {
     }
 
     private func setupVC() {
-        signInBtn.backgroundColor = .red
         signInBtn.layer.cornerRadius = 10
         signInBtn.clipsToBounds = true
     }
 
     @IBAction func logInPressed(_: UIButton) {
-        let network = AppDelegate.appDelegate.appController.networking
+
         guard let username = usernameLbl.text, let password = passwordLbl.text else { return }
-        network.authenticate(username: username, password: password) { (authjson, error) in
-            if let authJSON = authjson {
-                print(authJSON)
+        appController?.networking.authenticate(username: username, password: password) { [weak self] (authJSON, error) in
+            if let authJSON = authJSON {
+                let loggedIn = LoginState(token: authJSON.apiKey)
+                self?.appController?.loginStateService.state = loggedIn
+                self?.appController?.showLoggedInState(loggedIn)
             }
         }
     }
