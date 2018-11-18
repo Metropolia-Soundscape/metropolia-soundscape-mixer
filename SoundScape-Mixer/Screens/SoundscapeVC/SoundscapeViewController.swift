@@ -6,9 +6,16 @@
 //  Copyright © 2018 Long Nguyen. All rights reserved.
 //
 
+// MARK: Dependencies
+
 import UIKit
 
+// MARK: SoundscapeViewController Implementation
 class SoundscapeViewController: UIViewController {
+    
+    
+    
+    // MARK: -Object lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
