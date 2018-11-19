@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		413769592190CC8200A961E3 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 413769582190CC8200A961E3 /* LoginViewController.xib */; };
 		4146038321A1AB6500D772AB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4146038221A1AB6500D772AB /* Extensions.swift */; };
+		4146038621A1B7EA00D772AB /* AudioRecorderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4146038521A1B7EA00D772AB /* AudioRecorderVC.swift */; };
+		4146038821A1B87200D772AB /* AudioRecorderVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4146038721A1B87200D772AB /* AudioRecorderVC.xib */; };
 		418349132187082C0048E24A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418349122187082C0048E24A /* AppDelegate.swift */; };
 		418349152187082C0048E24A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418349142187082C0048E24A /* LoginViewController.swift */; };
 		4183491A2187082F0048E24A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 418349192187082F0048E24A /* Assets.xcassets */; };
@@ -55,6 +57,8 @@
 		0CC470480A5B775645565282 /* Pods-SoundScape-Mixer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoundScape-Mixer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SoundScape-Mixer/Pods-SoundScape-Mixer.debug.xcconfig"; sourceTree = "<group>"; };
 		413769582190CC8200A961E3 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		4146038221A1AB6500D772AB /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		4146038521A1B7EA00D772AB /* AudioRecorderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorderVC.swift; sourceTree = "<group>"; };
+		4146038721A1B87200D772AB /* AudioRecorderVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AudioRecorderVC.xib; sourceTree = "<group>"; };
 		4183490F2187082C0048E24A /* SoundScape-Mixer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SoundScape-Mixer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		418349122187082C0048E24A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		418349142187082C0048E24A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -112,6 +116,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4146038421A1B7D700D772AB /* AudioRecorderVC */ = {
+			isa = PBXGroup;
+			children = (
+				4146038521A1B7EA00D772AB /* AudioRecorderVC.swift */,
+				4146038721A1B87200D772AB /* AudioRecorderVC.xib */,
+			);
+			path = AudioRecorderVC;
+			sourceTree = "<group>";
+		};
 		418349062187082C0048E24A = {
 			isa = PBXGroup;
 			children = (
@@ -174,6 +187,7 @@
 		AC14741C219539FE00FF6D94 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				4146038421A1B7D700D772AB /* AudioRecorderVC */,
 				FA7281C2219864FE009BF538 /* MainTabBarController.swift */,
 				FA2E222D219AF472004B43A6 /* AudioVC */,
 				FA7281D6219866D1009BF538 /* LibraryVC */,
@@ -352,6 +366,7 @@
 				FA9123ED219C388A00553B7E /* SoundscapeViewController.xib in Resources */,
 				FA7281D12198652D009BF538 /* LibraryViewController.xib in Resources */,
 				FA2E2231219AF4A0004B43A6 /* AudioCollectionViewCell.xib in Resources */,
+				4146038821A1B87200D772AB /* AudioRecorderVC.xib in Resources */,
 				FA8DA9BA21990FC80093CC05 /* AudioViewController.xib in Resources */,
 				413769592190CC8200A961E3 /* LoginViewController.xib in Resources */,
 			);
@@ -433,6 +448,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA7281C3219864FE009BF538 /* MainTabBarController.swift in Sources */,
+				4146038621A1B7EA00D772AB /* AudioRecorderVC.swift in Sources */,
 				FA2E2230219AF4A0004B43A6 /* AudioCollectionViewCell.swift in Sources */,
 				FA7281CF2198652D009BF538 /* CategoryCollectionViewCell.swift in Sources */,
 				AC14741B219539F600FF6D94 /* NetworkingRequests.swift in Sources */,
