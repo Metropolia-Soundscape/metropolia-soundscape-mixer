@@ -1,25 +1,14 @@
-//
-//  AudioRecorderVC.swift
-//  SoundScape-Mixer
-//
-//  Created by Long Nguyen on 18/11/2018.
-//  Copyright © 2018 Long Nguyen. All rights reserved.
-//
-
-// MARK: -Dependencies
-
-import Foundation
 import AVFoundation
+import Foundation
 import UIKit
 
-// MARK: AudioRecorderVC class Implementation
 class AudioRecorderVC: UIViewController {
-    
-    // MARK: Properties
-    
+    @IBOutlet var recordBtn: UIButton!
+    @IBOutlet var pauseBtn: UIButton!
     var recordingSession: AVAudioSession!
     var audioRecorder: AVAudioRecorder!
     var hasPermission: Bool = false
+
     private var isRecording = false {
         didSet {
             if isRecording {
@@ -35,7 +24,7 @@ class AudioRecorderVC: UIViewController {
             }
         }
     }
-    
+
     private var isPaused = false {
         didSet {
             if isPaused {
@@ -45,7 +34,7 @@ class AudioRecorderVC: UIViewController {
             }
         }
     }
-    
+
     private var isFinishedRecording = false {
         didSet {
             if isFinishedRecording {
@@ -55,89 +44,71 @@ class AudioRecorderVC: UIViewController {
             }
         }
     }
-    
-    // MARK: Subviews
-    
-    @IBOutlet weak var recordBtn: UIButton!
-    
-    @IBOutlet weak var pauseBtn: UIButton!
-    
+
     lazy var cancelBtn: UIBarButtonItem = {
         let btn = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelBtnPressed))
         return btn
     }()
-    
+
     lazy var saveBtn: UIBarButtonItem = {
         let btn = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveBtnPressed))
         btn.isEnabled = false
         return btn
     }()
-    
-    // MARK: Object lifecycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Setup recorder
-        
-        recordingSession = AVAudioSession.sharedInstance()
-        
-        AVAudioSession.sharedInstance().requestRecordPermission { (hasPermission) in
-            
-            self.hasPermission = hasPermission
 
+        recordingSession = AVAudioSession.sharedInstance()
+        AVAudioSession.sharedInstance().requestRecordPermission { hasPermission in
+            self.hasPermission = hasPermission
         }
-        
+
         setupView()
     }
-    
-    // MARK: Utils
-    
+
     private func setupView() {
-        self.navigationItem.title = "Recorder"
-        self.navigationItem.leftBarButtonItem = cancelBtn
-        self.navigationItem.rightBarButtonItem = saveBtn
+        navigationItem.title = "Recorder"
+        navigationItem.leftBarButtonItem = cancelBtn
+        navigationItem.rightBarButtonItem = saveBtn
     }
-    
+
     private func getDocumentDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        
+
         print(paths[0])
-        
+
         return paths[0]
     }
-    
+
     private func showAlert(text: String) {
         let alertVC = UIAlertController()
-        
+
         alertVC.title = "Infomation"
         alertVC.message = text
-        
-        alertVC.addAction(UIAlertAction(title: "Close", style: .default, handler: { (_) in
-            self.dismiss(animated: true, completion: nil)
-        }))
-        
-        self.present(alertVC, animated: true, completion: nil)
+
+        alertVC.addAction(
+            UIAlertAction(
+                title: "Close", style: .default, handler: { _ in
+                    self.dismiss(animated: true, completion: nil)
+                }
+            )
+        )
+
+        present(alertVC, animated: true, completion: nil)
     }
-    
-    // MARK: IBActions
-    
-    @IBAction func recordBtnPressed(_ sender: Any) {
-        
-        // Check if we already started audio and permission
-        
-        if audioRecorder == nil && self.hasPermission {
+
+    @IBAction func recordBtnPressed(_: Any) {
+        if audioRecorder == nil && hasPermission {
             let fileName = getDocumentDirectory().appendingPathComponent("\(UUID().uuidString).m4a")
-            
+
             let settings = [
                 AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
                 AVSampleRateKey: 44100,
                 AVNumberOfChannelsKey: 2,
-                AVEncoderAudioQualityKey:AVAudioQuality.high.rawValue
+                AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue,
             ]
-            
-            // Start audio recording
-            
+
             do {
                 try recordingSession.setCategory(.playAndRecord, mode: .default)
                 try recordingSession.setActive(true)
@@ -145,51 +116,42 @@ class AudioRecorderVC: UIViewController {
                 audioRecorder.delegate = self
                 audioRecorder.prepareToRecord()
                 audioRecorder.record()
-                
+
                 recordBtn.setTitle("Stop recording", for: .normal)
-                
+
                 isRecording = true
-                
             } catch let err {
                 print(err.localizedDescription)
             }
         } else {
             audioRecorder.stop()
             audioRecorder = nil
-            
+
             isRecording = false
         }
-        
     }
-    
+
     @objc private func cancelBtnPressed() {
-        self.dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
-    
+
     @objc private func saveBtnPressed() {
         print("Save btn pressed")
     }
-    
-    @IBAction func pauseBtnPressed(_ sender: Any) {
-        
+
+    @IBAction func pauseBtnPressed(_: Any) {
         if audioRecorder != nil {
             if isRecording {
-                self.isPaused = true
-                self.isRecording = false
-                self.audioRecorder.pause()
+                isPaused = true
+                isRecording = false
+                audioRecorder.pause()
             } else {
-                self.audioRecorder.record()
-                self.isPaused = false
-                self.isRecording = true
+                audioRecorder.record()
+                isPaused = false
+                isRecording = true
             }
         }
-        
     }
-    
 }
 
-// MARK: AVAudioRecorderDelegate
-
-extension AudioRecorderVC: AVAudioRecorderDelegate {
-    
-}
+extension AudioRecorderVC: AVAudioRecorderDelegate {}

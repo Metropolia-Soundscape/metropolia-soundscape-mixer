@@ -1,11 +1,3 @@
-//
-//  DownloadService.swift
-//  SoundScape-Mixer
-//
-//  Created by Hồng Ngọc Doãn on 11/19/18.
-//  Copyright © 2018 Long Nguyen. All rights reserved.
-//
-
 import Foundation
 
 protocol Downloadable {
@@ -14,11 +6,11 @@ protocol Downloadable {
 
 class DownloadOperation: NSObject {
     var task: URLSessionDownloadTask?
-    
+
     var downloading: Bool = false
     var url: URL
     var progress: Float = 0.0
-    
+
     init(url: URL) {
         self.url = url
         super.init()
@@ -28,14 +20,14 @@ class DownloadOperation: NSObject {
 class DownloadService {
     var session: URLSession!
     var activeDownloads: [DownloadOperation] = []
-    
+
     func download(_ file: Downloadable) {
         let operation = DownloadOperation(url: file.downloadURL)
         operation.downloading = true
         operation.progress = 0.0
         operation.task = session.downloadTask(with: operation.url)
         operation.task?.resume()
-        
+
         activeDownloads.append(operation)
     }
 }

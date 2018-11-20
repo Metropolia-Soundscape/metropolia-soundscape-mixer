@@ -6,9 +6,9 @@ class ProfileViewController: BaseViewController {
         title = "Profile"
     }
 
-    required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+    required init?(coder _: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
-    @IBAction func logoutButtonPressed(_ sender: UIButton) {
+    @IBAction func logoutButtonPressed(_: UIButton) {
         appController.logout()
     }
 }

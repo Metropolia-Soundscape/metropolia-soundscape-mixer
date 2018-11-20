@@ -17,9 +17,8 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func logInPressed(_: UIButton) {
-
         guard let username = usernameLbl.text, let password = passwordLbl.text else { return }
-        appController?.networking.authenticate(username: username, password: password) { [weak self] (authJSON, error) in
+        appController?.networking.authenticate(username: username, password: password) { [weak self] authJSON, _ in
             if let authJSON = authJSON {
                 let loggedIn = LoginState(token: authJSON.apiKey)
                 self?.appController?.loginStateService.state = loggedIn

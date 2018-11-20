@@ -25,15 +25,14 @@ class AppController {
 
     func showLoggedInState(_ state: LoginState) {
         switch state {
-        case .loggedIn(token: _):
-            rootViewController = RootViewController(appController: self)
-            window.rootViewController = rootViewController
-        case .loggedOut:
-            loginViewController = LoginViewController()
-            window.rootViewController = loginViewController
-            break
+            case .loggedIn(token: _):
+                rootViewController = RootViewController(appController: self)
+                window.rootViewController = rootViewController
+            case .loggedOut:
+                loginViewController = LoginViewController()
+                window.rootViewController = loginViewController
+                break
         }
         window.makeKeyAndVisible()
     }
-    
 }
