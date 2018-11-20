@@ -6,6 +6,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     class var appDelegate: AppDelegate { return UIApplication.shared.delegate as! AppDelegate }
     class var appController: AppController! { return appDelegate.appController }
     public var appController: AppController!
+    public var audioManager: AudioManager!
 
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
@@ -14,7 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window?.makeKeyAndVisible()
         appController = AppController()
-
+        audioManager = AudioManager()
+        
         return true
     }
 }

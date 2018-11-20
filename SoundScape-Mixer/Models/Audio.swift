@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import RealmSwift
 
-struct Audio: Codable {
+class Audio: Object, Codable {
     enum CodingKeys: String, CodingKey {
         case title = "Title"
         case fileName = "Original filename"
@@ -16,8 +17,8 @@ struct Audio: Codable {
         case category = "Category"
     }
 
-    var title: String?
-    var fileName: String?
-    var downloadLink: String?
-    var category: String?
+    @objc dynamic var title: String?
+    @objc dynamic var fileName: String?
+    @objc dynamic var downloadLink: String?
+    @objc dynamic var category: String?
 }

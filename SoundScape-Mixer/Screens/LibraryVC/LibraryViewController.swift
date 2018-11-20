@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class LibraryViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
@@ -15,7 +16,10 @@ class LibraryViewController: UIViewController, UICollectionViewDataSource, UICol
     let screenSize: CGRect = UIScreen.main.bounds
     
     private let reuseId = "categoryCollectionViewCell"
-    let items = ["Human", "Machine", "Nature"]
+//    let items = ["Human", "Machine", "Nature"]
+    let realm = try! Realm()
+    
+    lazy var categories: Results<Category> = { self.realm.objects(Category.self) }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,15 +36,16 @@ class LibraryViewController: UIViewController, UICollectionViewDataSource, UICol
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "Library"
+        populateDefaultCategories()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return items.count
+        return categories.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseId, for: indexPath) as! CategoryCollectionViewCell
-        cell.displayContent(name: items[indexPath.row])
+        cell.displayContent(name: categories[indexPath.row].name)
         
         return cell
     }
@@ -52,7 +57,21 @@ class LibraryViewController: UIViewController, UICollectionViewDataSource, UICol
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let audioViewController = AudioViewController()
-        audioViewController.category = items[indexPath.row]
+        audioViewController.category = categories[indexPath.row].name
         self.navigationController?.pushViewController(audioViewController, animated: true)
+    }
+    
+    func populateDefaultCategories() {
+        if categories.count == 0 {
+            try! realm.write() {
+                let defaultCategories = ["Human", "Machine", "Nature"]
+                for category in defaultCategories {
+                    let newCategory = Category()
+                    newCategory.name = category
+                    self.realm.add(newCategory)
+                }
+            }
+            categories = realm.objects(Category.self)
+        }
     }
 }
