@@ -8,8 +8,6 @@ class ProfileViewController: BaseViewController {
 
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
-
-
     @IBAction func logoutButtonPressed(_ sender: UIButton) {
         appController.logout()
     }
