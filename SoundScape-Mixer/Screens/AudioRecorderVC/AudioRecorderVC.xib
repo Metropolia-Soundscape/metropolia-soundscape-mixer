@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AudioRecorderVC" customModule="SoundScape_Mixer" customModuleProvider="target">
             <connections>
+                <outlet property="pauseBtn" destination="MxU-Bc-2MU" id="UUf-MZ-pi6"/>
                 <outlet property="recordBtn" destination="NCu-ds-wJZ" id="j1S-UB-uak"/>
                 <outlet property="view" destination="W7m-hi-V0r" id="2mi-GI-xZB"/>
             </connections>
@@ -28,11 +29,20 @@
                         <action selector="recordBtnPressed:" destination="-1" eventType="touchUpInside" id="Caf-Lr-wFH"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MxU-Bc-2MU">
+                    <rect key="frame" x="166.5" y="368.5" width="42" height="30"/>
+                    <state key="normal" title="Pause"/>
+                    <connections>
+                        <action selector="pauseBtnPressed:" destination="-1" eventType="touchUpInside" id="JHS-BN-ovd"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="NCu-ds-wJZ" firstAttribute="centerX" secondItem="W7m-hi-V0r" secondAttribute="centerX" id="9ML-WL-fPf"/>
                 <constraint firstItem="NCu-ds-wJZ" firstAttribute="centerY" secondItem="W7m-hi-V0r" secondAttribute="centerY" id="HKh-ra-zFC"/>
+                <constraint firstItem="MxU-Bc-2MU" firstAttribute="top" secondItem="NCu-ds-wJZ" secondAttribute="bottom" constant="20" id="hWI-yV-K69"/>
+                <constraint firstItem="MxU-Bc-2MU" firstAttribute="centerX" secondItem="W7m-hi-V0r" secondAttribute="centerX" id="pqX-yA-slW"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="UwD-nm-rWo"/>
             <point key="canvasLocation" x="-198" y="183"/>
