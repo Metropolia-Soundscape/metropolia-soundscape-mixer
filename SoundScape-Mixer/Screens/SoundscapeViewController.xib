@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.15" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.9"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SoundscapeViewController" customModule="SoundScape_Mixer" customModuleProvider="target">
+            <connections>
+                <outlet property="musicLibraryBtn" destination="9lH-3z-jXb" id="3Qk-ni-MYW"/>
+                <outlet property="recorderBtn" destination="GuP-Sh-RBG" id="Aci-Cz-feI"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" spacing="106" translatesAutoresizingMaskIntoConstraints="NO" id="2T9-Tv-gor">
+                    <rect key="frame" x="84.5" y="80" width="206" height="50"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9lH-3z-jXb">
+                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="MFh-pl-eni"/>
+                                <constraint firstAttribute="height" constant="50" id="mFt-du-aBO"/>
+                            </constraints>
+                            <state key="normal" title="Button" image="iconLibrary"/>
+                            <connections>
+                                <action selector="musicLibraryPressed:" destination="-1" eventType="touchUpInside" id="sDX-v5-0MW"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GuP-Sh-RBG">
+                            <rect key="frame" x="156" y="0.0" width="50" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="Bj6-vU-YGZ"/>
+                                <constraint firstAttribute="height" constant="50" id="o1m-Iq-bZ3"/>
+                            </constraints>
+                            <state key="normal" title="Button" image="iconMicrophone"/>
+                            <connections>
+                                <action selector="audioBtnPressed:" destination="-1" eventType="touchUpInside" id="F1i-zC-O7O"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="2T9-Tv-gor" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="60" id="HmU-nP-9e3"/>
+                <constraint firstItem="2T9-Tv-gor" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="atf-hy-6Qa"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="iconLibrary" width="51.200000762939453" height="51.200000762939453"/>
+        <image name="iconMicrophone" width="51.200000762939453" height="51.200000762939453"/>
+    </resources>
+</document>

@@ -40,8 +40,8 @@
 		AC3F5DFB21A4D65500EAA7ED /* SoundscapesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3F5DF821A4D65500EAA7ED /* SoundscapesCollectionViewCell.swift */; };
 		AC3F5DFC21A4D65500EAA7ED /* SoundscapesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3F5DF921A4D65500EAA7ED /* SoundscapesViewController.swift */; };
 		AC3F5DFD21A4D65500EAA7ED /* SoundscapesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC3F5DFA21A4D65500EAA7ED /* SoundscapesViewController.xib */; };
-		AC52556821A53B5000B71EBC /* SoundscapeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC52556621A53B5000B71EBC /* SoundscapeViewController.swift */; };
-		AC52556921A53B5000B71EBC /* SoundscapeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC52556721A53B5000B71EBC /* SoundscapeViewController.xib */; };
+		AC52556C21A5423A00B71EBC /* SoundscapeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC52556A21A5423A00B71EBC /* SoundscapeViewController.swift */; };
+		AC52556D21A5423A00B71EBC /* SoundscapeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC52556B21A5423A00B71EBC /* SoundscapeViewController.xib */; };
 		ACC8576221952CD400947BDB /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC8576121952CD400947BDB /* AppController.swift */; };
 		ACC8576421952F7900947BDB /* LoginStateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC8576321952F7900947BDB /* LoginStateService.swift */; };
 		ACEFDCFE218B5A2700CED22E /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEFDCFD218B5A2700CED22E /* Networking.swift */; };
@@ -91,15 +91,15 @@
 		AC3F5DDF21A4D5BF00EAA7ED /* AudioViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioViewController.swift; sourceTree = "<group>"; };
 		AC3F5DE021A4D5BF00EAA7ED /* AudioCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioCollectionViewCell.swift; sourceTree = "<group>"; };
 		AC3F5DE121A4D5BF00EAA7ED /* AudioViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioViewController.xib; sourceTree = "<group>"; };
-		AC3F5DEA21A4D62700EAA7ED /* LibraryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LibraryViewController.swift; path = "SoundScape-Mixer/Screens/LibraryVC/LibraryViewController.swift"; sourceTree = SOURCE_ROOT; };
-		AC3F5DEB21A4D62700EAA7ED /* CategoryCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CategoryCollectionViewCell.xib; path = "SoundScape-Mixer/Screens/LibraryVC/CategoryCollectionViewCell.xib"; sourceTree = SOURCE_ROOT; };
-		AC3F5DEC21A4D62700EAA7ED /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryCollectionViewCell.swift; path = "SoundScape-Mixer/Screens/LibraryVC/CategoryCollectionViewCell.swift"; sourceTree = SOURCE_ROOT; };
-		AC3F5DED21A4D62700EAA7ED /* LibraryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LibraryViewController.xib; path = "SoundScape-Mixer/Screens/LibraryVC/LibraryViewController.xib"; sourceTree = SOURCE_ROOT; };
-		AC3F5DF821A4D65500EAA7ED /* SoundscapesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SoundscapesCollectionViewCell.swift; path = "SoundScape-Mixer/Screens/SoundscapesVC/SoundscapesCollectionViewCell.swift"; sourceTree = SOURCE_ROOT; };
-		AC3F5DF921A4D65500EAA7ED /* SoundscapesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SoundscapesViewController.swift; path = "SoundScape-Mixer/Screens/SoundscapesVC/SoundscapesViewController.swift"; sourceTree = SOURCE_ROOT; };
-		AC3F5DFA21A4D65500EAA7ED /* SoundscapesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SoundscapesViewController.xib; path = "SoundScape-Mixer/Screens/SoundscapesVC/SoundscapesViewController.xib"; sourceTree = SOURCE_ROOT; };
-		AC52556621A53B5000B71EBC /* SoundscapeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SoundscapeViewController.swift; path = ../../../../temp/SoundscapeViewController.swift; sourceTree = "<group>"; };
-		AC52556721A53B5000B71EBC /* SoundscapeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SoundscapeViewController.xib; path = ../../../../temp/SoundscapeViewController.xib; sourceTree = "<group>"; };
+		AC3F5DEA21A4D62700EAA7ED /* LibraryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LibraryViewController.swift; path = ../LibraryVC/LibraryViewController.swift; sourceTree = "<group>"; };
+		AC3F5DEB21A4D62700EAA7ED /* CategoryCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CategoryCollectionViewCell.xib; path = ../LibraryVC/CategoryCollectionViewCell.xib; sourceTree = "<group>"; };
+		AC3F5DEC21A4D62700EAA7ED /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryCollectionViewCell.swift; path = ../LibraryVC/CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		AC3F5DED21A4D62700EAA7ED /* LibraryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LibraryViewController.xib; path = ../LibraryVC/LibraryViewController.xib; sourceTree = "<group>"; };
+		AC3F5DF821A4D65500EAA7ED /* SoundscapesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SoundscapesCollectionViewCell.swift; path = ../SoundscapesVC/SoundscapesCollectionViewCell.swift; sourceTree = "<group>"; };
+		AC3F5DF921A4D65500EAA7ED /* SoundscapesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SoundscapesViewController.swift; path = ../SoundscapesVC/SoundscapesViewController.swift; sourceTree = "<group>"; };
+		AC3F5DFA21A4D65500EAA7ED /* SoundscapesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SoundscapesViewController.xib; path = ../SoundscapesVC/SoundscapesViewController.xib; sourceTree = "<group>"; };
+		AC52556A21A5423A00B71EBC /* SoundscapeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundscapeViewController.swift; sourceTree = "<group>"; };
+		AC52556B21A5423A00B71EBC /* SoundscapeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SoundscapeViewController.xib; sourceTree = "<group>"; };
 		ACC8576121952CD400947BDB /* AppController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
 		ACC8576321952F7900947BDB /* LoginStateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStateService.swift; sourceTree = "<group>"; };
 		ACEFDCFD218B5A2700CED22E /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
@@ -200,8 +200,8 @@
 				AC1761E3219BD7D400895E9F /* ProfileViewController.swift */,
 				AC1761E5219BD7DE00895E9F /* ProfileViewController.xib */,
 				AC1761DD219BD61300895E9F /* RootViewController.swift */,
-				AC52556621A53B5000B71EBC /* SoundscapeViewController.swift */,
-				AC52556721A53B5000B71EBC /* SoundscapeViewController.xib */,
+				AC52556A21A5423A00B71EBC /* SoundscapeViewController.swift */,
+				AC52556B21A5423A00B71EBC /* SoundscapeViewController.xib */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -349,7 +349,7 @@
 				AC3F5DF121A4D62700EAA7ED /* LibraryViewController.xib in Resources */,
 				AC3F5DFD21A4D65500EAA7ED /* SoundscapesViewController.xib in Resources */,
 				4183491D2187082F0048E24A /* LaunchScreen.storyboard in Resources */,
-				AC52556921A53B5000B71EBC /* SoundscapeViewController.xib in Resources */,
+				AC52556D21A5423A00B71EBC /* SoundscapeViewController.xib in Resources */,
 				AC3F5DE521A4D5BF00EAA7ED /* AudioViewController.xib in Resources */,
 				4183491A2187082F0048E24A /* Assets.xcassets in Resources */,
 				AC3F5DE221A4D5BF00EAA7ED /* AudioCollectionViewCell.xib in Resources */,
@@ -460,7 +460,7 @@
 				ACC8576421952F7900947BDB /* LoginStateService.swift in Sources */,
 				AC3F5DD321A4D57800EAA7ED /* Extensions.swift in Sources */,
 				AC14741F21953AE500FF6D94 /* AuthJSON.swift in Sources */,
-				AC52556821A53B5000B71EBC /* SoundscapeViewController.swift in Sources */,
+				AC52556C21A5423A00B71EBC /* SoundscapeViewController.swift in Sources */,
 				418349132187082C0048E24A /* AppDelegate.swift in Sources */,
 				ACEFDD00218C3D5200CED22E /* Mocking.swift in Sources */,
 				AC3F5DCF21A4D55700EAA7ED /* AudioManager.swift in Sources */,
