@@ -12,7 +12,6 @@
 !default.perspectivev3
 xcuserdata/
 DerivedData/
-Pods/
 
 ## Appcode
 .idea/
