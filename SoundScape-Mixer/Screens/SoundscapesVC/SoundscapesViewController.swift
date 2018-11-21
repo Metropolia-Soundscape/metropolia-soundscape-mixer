@@ -31,8 +31,8 @@ class SoundscapesViewController: BaseViewController {
     }
 
     @objc func addTapped() {
-//        let soundscapeViewController = SoundscapeViewController(appController: appController)
-//        navigationController?.pushViewController(soundscapeViewController, animated: true)
+        let soundscapeViewController = SoundscapeViewController(appController: appController)
+        navigationController?.pushViewController(soundscapeViewController, animated: true)
     }
 
     func setUpAddButton() {
