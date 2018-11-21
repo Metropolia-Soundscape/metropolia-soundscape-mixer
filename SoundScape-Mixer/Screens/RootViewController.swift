@@ -7,12 +7,16 @@ class RootViewController: UITabBarController {
         self.appController = appController
         super.init(nibName: nil, bundle: nil)
 
-        let soundscapesViewController = RootViewController.templateViewController(unselectedImage: UIImage(named: "star")!,
-                                                                                  title: "Soundscapes",
-                                                                                  viewController: SoundscapesViewController(appController: appController))
-        let libraryVC = RootViewController.templateViewController(unselectedImage: UIImage(named: "circle")!,
-                                                                  title: "Library",
-                                                                  viewController: LibraryViewController(appController: appController))
+        let soundscapesViewController = RootViewController.templateViewController(
+            unselectedImage: UIImage(named: "star")!,
+            title: "Soundscapes",
+            viewController: SoundscapesViewController(appController: appController)
+        )
+        let libraryVC = RootViewController.templateViewController(
+            unselectedImage: UIImage(named: "circle")!,
+            title: "Library",
+            viewController: LibraryViewController(appController: appController)
+        )
 
         let profileViewController = ProfileViewController(appController: appController)
         viewControllers = [soundscapesViewController, libraryVC, profileViewController]
