@@ -91,13 +91,13 @@
 		AC3F5DDF21A4D5BF00EAA7ED /* AudioViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioViewController.swift; sourceTree = "<group>"; };
 		AC3F5DE021A4D5BF00EAA7ED /* AudioCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioCollectionViewCell.swift; sourceTree = "<group>"; };
 		AC3F5DE121A4D5BF00EAA7ED /* AudioViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioViewController.xib; sourceTree = "<group>"; };
-		AC3F5DEA21A4D62700EAA7ED /* LibraryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LibraryViewController.swift; path = ../LibraryVC/LibraryViewController.swift; sourceTree = "<group>"; };
-		AC3F5DEB21A4D62700EAA7ED /* CategoryCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CategoryCollectionViewCell.xib; path = ../LibraryVC/CategoryCollectionViewCell.xib; sourceTree = "<group>"; };
-		AC3F5DEC21A4D62700EAA7ED /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryCollectionViewCell.swift; path = ../LibraryVC/CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
-		AC3F5DED21A4D62700EAA7ED /* LibraryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LibraryViewController.xib; path = ../LibraryVC/LibraryViewController.xib; sourceTree = "<group>"; };
-		AC3F5DF821A4D65500EAA7ED /* SoundscapesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SoundscapesCollectionViewCell.swift; path = ../SoundscapesVC/SoundscapesCollectionViewCell.swift; sourceTree = "<group>"; };
-		AC3F5DF921A4D65500EAA7ED /* SoundscapesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SoundscapesViewController.swift; path = ../SoundscapesVC/SoundscapesViewController.swift; sourceTree = "<group>"; };
-		AC3F5DFA21A4D65500EAA7ED /* SoundscapesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SoundscapesViewController.xib; path = ../SoundscapesVC/SoundscapesViewController.xib; sourceTree = "<group>"; };
+		AC3F5DEA21A4D62700EAA7ED /* LibraryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
+		AC3F5DEB21A4D62700EAA7ED /* CategoryCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryCollectionViewCell.xib; sourceTree = "<group>"; };
+		AC3F5DEC21A4D62700EAA7ED /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		AC3F5DED21A4D62700EAA7ED /* LibraryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LibraryViewController.xib; sourceTree = "<group>"; };
+		AC3F5DF821A4D65500EAA7ED /* SoundscapesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundscapesCollectionViewCell.swift; sourceTree = "<group>"; };
+		AC3F5DF921A4D65500EAA7ED /* SoundscapesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundscapesViewController.swift; sourceTree = "<group>"; };
+		AC3F5DFA21A4D65500EAA7ED /* SoundscapesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SoundscapesViewController.xib; sourceTree = "<group>"; };
 		AC52556A21A5423A00B71EBC /* SoundscapeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundscapeViewController.swift; sourceTree = "<group>"; };
 		AC52556B21A5423A00B71EBC /* SoundscapeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SoundscapeViewController.xib; sourceTree = "<group>"; };
 		ACC8576121952CD400947BDB /* AppController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
@@ -189,8 +189,13 @@
 		AC14741C219539FE00FF6D94 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				AC3F5DF721A4D64B00EAA7ED /* Soundscapes */,
-				AC3F5DE921A4D62000EAA7ED /* Library */,
+				AC3F5DF821A4D65500EAA7ED /* SoundscapesCollectionViewCell.swift */,
+				AC3F5DF921A4D65500EAA7ED /* SoundscapesViewController.swift */,
+				AC3F5DFA21A4D65500EAA7ED /* SoundscapesViewController.xib */,
+				AC3F5DEC21A4D62700EAA7ED /* CategoryCollectionViewCell.swift */,
+				AC3F5DEB21A4D62700EAA7ED /* CategoryCollectionViewCell.xib */,
+				AC3F5DEA21A4D62700EAA7ED /* LibraryViewController.swift */,
+				AC3F5DED21A4D62700EAA7ED /* LibraryViewController.xib */,
 				AC3F5DDB21A4D5B100EAA7ED /* AudioRecorderVC.swift */,
 				AC3F5DDA21A4D5B100EAA7ED /* AudioRecorderVC.xib */,
 				AC3F5DE621A4D5D900EAA7ED /* Audio */,
@@ -239,27 +244,6 @@
 			);
 			name = Audio;
 			path = AudioLibrary;
-			sourceTree = "<group>";
-		};
-		AC3F5DE921A4D62000EAA7ED /* Library */ = {
-			isa = PBXGroup;
-			children = (
-				AC3F5DEC21A4D62700EAA7ED /* CategoryCollectionViewCell.swift */,
-				AC3F5DEB21A4D62700EAA7ED /* CategoryCollectionViewCell.xib */,
-				AC3F5DEA21A4D62700EAA7ED /* LibraryViewController.swift */,
-				AC3F5DED21A4D62700EAA7ED /* LibraryViewController.xib */,
-			);
-			path = Library;
-			sourceTree = "<group>";
-		};
-		AC3F5DF721A4D64B00EAA7ED /* Soundscapes */ = {
-			isa = PBXGroup;
-			children = (
-				AC3F5DF821A4D65500EAA7ED /* SoundscapesCollectionViewCell.swift */,
-				AC3F5DF921A4D65500EAA7ED /* SoundscapesViewController.swift */,
-				AC3F5DFA21A4D65500EAA7ED /* SoundscapesViewController.xib */,
-			);
-			path = Soundscapes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
