@@ -5,7 +5,7 @@ class AppController {
     let loginStateService = LoginStateService()
     var rootViewController: RootViewController?
     var loginViewController: LoginViewController?
-    var soundscapeViewController: SoundscapeViewController?
+    var soundscapesViewController: SoundscapesViewController?
     var profileViewController: ProfileViewController?
 
     let window: UIWindow

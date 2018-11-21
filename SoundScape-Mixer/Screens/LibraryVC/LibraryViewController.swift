@@ -1,7 +1,7 @@
 import RealmSwift
 import UIKit
 
-class LibraryViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class LibraryViewController: BaseViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     @IBOutlet var collectionView: UICollectionView!
 
     let screenSize: CGRect = UIScreen.main.bounds

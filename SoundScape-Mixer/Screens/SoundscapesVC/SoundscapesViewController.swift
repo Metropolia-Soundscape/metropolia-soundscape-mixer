@@ -1,6 +1,6 @@
 import UIKit
 
-class SoundscapesViewController: UIViewController {
+class SoundscapesViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,8 +31,8 @@ class SoundscapesViewController: UIViewController {
     }
 
     @objc func addTapped() {
-        let soundscapeViewController = SoundscapeViewController()
-        navigationController?.pushViewController(soundscapeViewController, animated: true)
+//        let soundscapeViewController = SoundscapeViewController(appController: appController)
+//        navigationController?.pushViewController(soundscapeViewController, animated: true)
     }
 
     func setUpAddButton() {
