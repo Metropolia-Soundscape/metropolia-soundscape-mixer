@@ -22,27 +22,28 @@ class SoundscapesViewController: UIViewController {
         tabBarItem = UITabBarItem(title: "Soundscapes", image: nil, selectedImage: nil)
         
         
-        if let url = URL(string: "http://resourcespace.tekniikanmuseo.fi/filestore/2/8/2_9759fa45847ae7a/282_f1a7c8f3ba0fd75.wav?v=2015-11-23+13%3A42%3A18") {
-            let docDirURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-            let desURL = docDirURL.appendingPathComponent(url.lastPathComponent)
-            print(desURL)
-            
-            URLSession.shared.downloadTask(with: url, completionHandler: { (location, response, error) -> Void in
-                guard let location = location, error == nil else { return }
-                do {
-                    try FileManager.default.moveItem(at: location, to: desURL)
-                } catch let error as NSError {
-                    print(error.localizedDescription)
-                }
-            }).resume()
-        }
+//        if let url = URL(string: "http://resourcespace.tekniikanmuseo.fi/filestore/2/8/2_9759fa45847ae7a/282_f1a7c8f3ba0fd75.wav?v=2015-11-23+13%3A42%3A18") {
+//            let docDirURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+//            let desURL = docDirURL.appendingPathComponent(url.lastPathComponent)
+//            print(desURL)
+//
+//            URLSession.shared.downloadTask(with: url, completionHandler: { (location, response, error) -> Void in
+//                guard let location = location, error == nil else { return }
+//                do {
+//                    try FileManager.default.moveItem(at: location, to: desURL)
+//                } catch let error as NSError {
+//                    print(error.localizedDescription)
+//                }
+//            }).resume()
+//        }
     }
-    
-//    func temp(url: URL, )
     
     @objc func addTapped() {
         let soundscapeViewController = SoundscapeViewController()
-        self.navigationController?.pushViewController(soundscapeViewController, animated: true)
+        
+        let navVC = UINavigationController(rootViewController: soundscapeViewController)
+        
+        self.present(navVC, animated: true, completion: nil)
     }
     
     func setUpAddButton() {

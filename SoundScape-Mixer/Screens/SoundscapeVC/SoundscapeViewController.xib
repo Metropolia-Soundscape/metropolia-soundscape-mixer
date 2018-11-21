@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.15" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.9"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="musicLibraryBtn" destination="9lH-3z-jXb" id="3Qk-ni-MYW"/>
                 <outlet property="recorderBtn" destination="GuP-Sh-RBG" id="Aci-Cz-feI"/>
+                <outlet property="soundscapeCollectionView" destination="q3l-wE-awq" id="Ipg-9w-0uV"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -49,13 +50,28 @@
                         </button>
                     </subviews>
                 </stackView>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="q3l-wE-awq">
+                    <rect key="frame" x="16" y="170" width="343" height="497"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="UIS-RR-O57">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="q3l-wE-awq" secondAttribute="trailing" constant="16" id="6yn-4x-VUA"/>
                 <constraint firstItem="2T9-Tv-gor" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="60" id="HmU-nP-9e3"/>
+                <constraint firstItem="q3l-wE-awq" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="Ozm-Vr-txF"/>
+                <constraint firstItem="q3l-wE-awq" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="PIn-Oq-C97"/>
                 <constraint firstItem="2T9-Tv-gor" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="atf-hy-6Qa"/>
+                <constraint firstItem="q3l-wE-awq" firstAttribute="top" secondItem="2T9-Tv-gor" secondAttribute="bottom" constant="40" id="bC1-co-ppb"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="138.40000000000001" y="151.57421289355324"/>
         </view>
     </objects>
     <resources>
