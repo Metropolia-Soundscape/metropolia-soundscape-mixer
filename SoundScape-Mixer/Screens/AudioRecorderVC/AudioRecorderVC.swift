@@ -20,10 +20,58 @@ class AudioRecorderVC: UIViewController {
     var recordingSession: AVAudioSession!
     var audioRecorder: AVAudioRecorder!
     var hasPermission: Bool = false
+    private var isRecording = false {
+        didSet {
+            if isRecording {
+                pauseBtn.isEnabled = true
+            } else {
+                if audioRecorder == nil {
+                    recordBtn.setTitle("Start recording", for: .normal)
+                    pauseBtn.isEnabled = false
+                    pauseBtn.setTitle("Pause", for: .normal)
+                } else {
+                    pauseBtn.setTitle("Resume", for: .normal)
+                }
+            }
+        }
+    }
+    
+    private var isPaused = false {
+        didSet {
+            if isPaused {
+                pauseBtn.setTitle("Resume", for: .normal)
+            } else {
+                pauseBtn.setTitle("Pause", for: .normal)
+            }
+        }
+    }
+    
+    private var isFinishedRecording = false {
+        didSet {
+            if isFinishedRecording {
+                saveBtn.isEnabled = true
+            } else {
+                saveBtn.isEnabled = false
+            }
+        }
+    }
     
     // MARK: Subviews
     
     @IBOutlet weak var recordBtn: UIButton!
+    
+    @IBOutlet weak var pauseBtn: UIButton!
+    
+    lazy var cancelBtn: UIBarButtonItem = {
+        let btn = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelBtnPressed))
+        return btn
+    }()
+    
+    lazy var saveBtn: UIBarButtonItem = {
+        let btn = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveBtnPressed))
+        btn.isEnabled = false
+        return btn
+    }()
     
     // MARK: Object lifecycle
     
@@ -37,12 +85,7 @@ class AudioRecorderVC: UIViewController {
         AVAudioSession.sharedInstance().requestRecordPermission { (hasPermission) in
             
             self.hasPermission = hasPermission
-            
-            if hasPermission {
-                
-            } else {
-                
-            }
+
         }
         
         setupView()
@@ -51,7 +94,9 @@ class AudioRecorderVC: UIViewController {
     // MARK: Utils
     
     private func setupView() {
-        
+        self.navigationItem.title = "Recorder"
+        self.navigationItem.leftBarButtonItem = cancelBtn
+        self.navigationItem.rightBarButtonItem = saveBtn
     }
     
     private func getDocumentDirectory() -> URL {
@@ -103,6 +148,8 @@ class AudioRecorderVC: UIViewController {
                 
                 recordBtn.setTitle("Stop recording", for: .normal)
                 
+                isRecording = true
+                
             } catch let err {
                 print(err.localizedDescription)
             }
@@ -110,7 +157,31 @@ class AudioRecorderVC: UIViewController {
             audioRecorder.stop()
             audioRecorder = nil
             
-            recordBtn.setTitle("Start recording", for: .normal)
+            isRecording = false
+        }
+        
+    }
+    
+    @objc private func cancelBtnPressed() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc private func saveBtnPressed() {
+        print("Save btn pressed")
+    }
+    
+    @IBAction func pauseBtnPressed(_ sender: Any) {
+        
+        if audioRecorder != nil {
+            if isRecording {
+                self.isPaused = true
+                self.isRecording = false
+                self.audioRecorder.pause()
+            } else {
+                self.audioRecorder.record()
+                self.isPaused = false
+                self.isRecording = true
+            }
         }
         
     }
