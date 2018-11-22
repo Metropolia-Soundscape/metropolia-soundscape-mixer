@@ -8,7 +8,9 @@ class AudioRecorderVC: UIViewController {
     var recordingSession: AVAudioSession!
     var audioRecorder: AVAudioRecorder!
     var hasPermission: Bool = false
-
+    @IBOutlet weak var timerLbl: UILabel!
+    var meterTimer:Timer!
+    
     private var isRecording = false {
         didSet {
             if isRecording {
@@ -114,8 +116,12 @@ class AudioRecorderVC: UIViewController {
                 try recordingSession.setActive(true)
                 audioRecorder = try AVAudioRecorder(url: fileName, settings: settings)
                 audioRecorder.delegate = self
+                audioRecorder.isMeteringEnabled = true
                 audioRecorder.prepareToRecord()
                 audioRecorder.record()
+                
+                
+                meterTimer = Timer.scheduledTimer(timeInterval: 0.1, target:self, selector:#selector(self.updateAudioMeter(timer:)), userInfo:nil, repeats:true)
 
                 recordBtn.setTitle("Stop recording", for: .normal)
 
@@ -138,6 +144,21 @@ class AudioRecorderVC: UIViewController {
     @objc private func saveBtnPressed() {
         print("Save btn pressed")
     }
+    
+    @objc private func updateAudioMeter(timer: Timer) {
+        if let audioRecorder = self.audioRecorder {
+            
+            if audioRecorder.isRecording {
+                let hr = Int((audioRecorder.currentTime / 60) / 60)
+                let min = Int(audioRecorder.currentTime / 60)
+                let sec = Int(audioRecorder.currentTime.truncatingRemainder(dividingBy: 60))
+                let totalTimeString = String(format: "%02d:%02d:%02d", hr, min, sec)
+                timerLbl.text = totalTimeString
+                audioRecorder.updateMeters()
+            }
+        
+        }
+    }
 
     @IBAction func pauseBtnPressed(_: Any) {
         if audioRecorder != nil {
@@ -154,4 +175,6 @@ class AudioRecorderVC: UIViewController {
     }
 }
 
-extension AudioRecorderVC: AVAudioRecorderDelegate {}
+extension AudioRecorderVC: AVAudioRecorderDelegate {
+    
+}

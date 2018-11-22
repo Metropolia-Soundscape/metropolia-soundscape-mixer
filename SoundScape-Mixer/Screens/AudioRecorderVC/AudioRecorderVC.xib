@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="pauseBtn" destination="MxU-Bc-2MU" id="UUf-MZ-pi6"/>
                 <outlet property="recordBtn" destination="NCu-ds-wJZ" id="j1S-UB-uak"/>
+                <outlet property="timerLbl" destination="Dnx-Jx-1vM" id="YYE-HW-0Ok"/>
                 <outlet property="view" destination="W7m-hi-V0r" id="2mi-GI-xZB"/>
             </connections>
         </placeholder>
@@ -36,16 +37,28 @@
                         <action selector="pauseBtnPressed:" destination="-1" eventType="touchUpInside" id="JHS-BN-ovd"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dnx-Jx-1vM">
+                    <rect key="frame" x="122.5" y="180" width="130" height="130"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="130" id="WuZ-Hm-mIa"/>
+                        <constraint firstAttribute="height" constant="130" id="ZEZ-xZ-ZW8"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="NCu-ds-wJZ" firstAttribute="centerX" secondItem="W7m-hi-V0r" secondAttribute="centerX" id="9ML-WL-fPf"/>
                 <constraint firstItem="NCu-ds-wJZ" firstAttribute="centerY" secondItem="W7m-hi-V0r" secondAttribute="centerY" id="HKh-ra-zFC"/>
+                <constraint firstItem="NCu-ds-wJZ" firstAttribute="top" secondItem="Dnx-Jx-1vM" secondAttribute="bottom" constant="8.5" id="SB8-aa-nnP"/>
                 <constraint firstItem="MxU-Bc-2MU" firstAttribute="top" secondItem="NCu-ds-wJZ" secondAttribute="bottom" constant="20" id="hWI-yV-K69"/>
                 <constraint firstItem="MxU-Bc-2MU" firstAttribute="centerX" secondItem="W7m-hi-V0r" secondAttribute="centerX" id="pqX-yA-slW"/>
+                <constraint firstItem="Dnx-Jx-1vM" firstAttribute="centerX" secondItem="W7m-hi-V0r" secondAttribute="centerX" id="wE3-wN-UYR"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="UwD-nm-rWo"/>
-            <point key="canvasLocation" x="-198" y="183"/>
+            <point key="canvasLocation" x="-199.19999999999999" y="182.15892053973016"/>
         </view>
     </objects>
 </document>
