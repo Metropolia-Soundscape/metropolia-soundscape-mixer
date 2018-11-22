@@ -9,7 +9,16 @@
 import Foundation
 import RealmSwift
 
+enum AudioCategory: String {
+    case human
+    case machine
+    case nature
+    
+    static var allCategories: [AudioCategory] = [.human, .machine, .nature]
+}
+
 class Audio: Object, Downloadable, Codable {
+    
     enum CodingKeys: String, CodingKey {
         case title = "Title"
         case fileName = "Original filename"
@@ -21,6 +30,14 @@ class Audio: Object, Downloadable, Codable {
     @objc dynamic var fileName: String?
     @objc dynamic var downloadLink: String?
     @objc dynamic var category: String?
+    
+    var categoryType: AudioCategory? {
+        if let categoryName = category {
+            return AudioCategory(rawValue: categoryName)
+        }
+        
+        return nil
+    }
     
     var downloadURL: URL {
         return URL(string: downloadLink!)!

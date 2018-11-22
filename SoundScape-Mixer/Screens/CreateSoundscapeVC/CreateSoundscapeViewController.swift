@@ -1,0 +1,113 @@
+//
+//  SoundscapeViewController.swift
+//  SoundScape-Mixer
+//
+//  Created by Hồng Ngọc Doãn on 11/14/18.
+//  Copyright © 2018 Long Nguyen. All rights reserved.
+//
+
+// MARK: Dependencies
+
+import UIKit
+
+// MARK: SoundscapeViewController Implementation
+class CreateSoundscapeViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    
+    let screenSize: CGRect = UIScreen.main.bounds
+    
+    // MARK: - IBOutlets
+    
+    @IBOutlet weak var soundscapeCollectionView: UICollectionView!
+    @IBOutlet weak var recorderBtn: UIButton!
+    
+    @IBOutlet weak var musicLibraryBtn: UIButton!
+    
+    private let reuseId = "createSoundscapeCollectionViewCell"
+    
+    @objc private func cancelBtnPressed() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    var items: [Audio] = [] {
+        didSet {
+            soundscapeCollectionView.reloadData()
+        }
+    }
+    
+    // MARK: -Object lifecycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelBtnPressed))
+        soundscapeCollectionView.register(UINib(nibName: "CreateSoundscapeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: reuseId)
+        soundscapeCollectionView.dataSource = self
+        soundscapeCollectionView.delegate = self
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return items.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseId, for: indexPath) as! CreateSoundscapeCollectionViewCell
+        
+        let audio = items[indexPath.row]
+        cell.audioNameLabel.text = audio.title
+        
+        var color1: String {
+            switch audio.categoryType! {
+            case .human:
+                return "#EA384D"
+            case .machine:
+                return "#414345"
+            case .nature:
+                return "#AAFFA9"
+            }
+        }
+        
+        var color2: String {
+            switch audio.categoryType! {
+            case .human:
+                return "#D31027"
+            case .machine:
+                return "#232526"
+            case .nature:
+                return "#11FFBD"
+            }
+        }
+        
+        cell.audioImageView.updateGradientColor(color1, color2)
+        cell.audioImageView.layer.cornerRadius = 5.0
+        cell.audioImageView.clipsToBounds = true
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = (screenSize.width - 32.0)
+        return CGSize(width: width, height: 85.0)
+    }
+    
+    // MARK: IBActions
+    
+    @IBAction func audioBtnPressed(_ sender: Any) {
+        let audioVC = AudioRecorderVC()
+        let navVC = UINavigationController(rootViewController: audioVC)
+        self.present(navVC, animated: true, completion: nil)
+    }
+    
+    @IBAction func musicLibraryPressed(_ sender: UIButton) {
+        let libraryViewController = LibraryViewController()
+        libraryViewController.delegate = self
+        let libNavVC = UINavigationController(rootViewController: libraryViewController)
+        self.present(libNavVC, animated: true, completion: nil)
+    }
+}
+
+extension CreateSoundscapeViewController: LibraryViewControllerDelegate {
+    func libraryViewController(_ viewController: UIViewController, didSelectAudio audio: Audio) {
+        self.items.append(audio)
+    }
+}

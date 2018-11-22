@@ -44,7 +44,7 @@
                         </connections>
                     </button>
                     <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="4u5-cG-8Yw">
-                        <rect key="frame" x="20" y="184" width="543" height="2"/>
+                        <rect key="frame" x="30" y="192" width="537" height="2"/>
                     </progressView>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Yly-Aw-xUy">
                         <rect key="frame" x="461" y="82" width="106" height="30"/>
@@ -63,12 +63,12 @@
             </view>
             <constraints>
                 <constraint firstItem="bCI-Aw-Izy" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="0AW-ez-f6E"/>
-                <constraint firstItem="4u5-cG-8Yw" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="8gc-Io-W7X"/>
+                <constraint firstItem="4u5-cG-8Yw" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="30" id="8gc-Io-W7X"/>
                 <constraint firstAttribute="trailing" secondItem="Yly-Aw-xUy" secondAttribute="trailing" constant="16" id="J49-VY-KhL"/>
-                <constraint firstAttribute="bottom" secondItem="4u5-cG-8Yw" secondAttribute="bottom" constant="8" id="QLS-GN-Jtz"/>
+                <constraint firstAttribute="bottom" secondItem="4u5-cG-8Yw" secondAttribute="bottom" id="QLS-GN-Jtz"/>
                 <constraint firstAttribute="trailing" secondItem="bCI-Aw-Izy" secondAttribute="trailing" constant="16" id="S0l-Ab-kTb"/>
                 <constraint firstItem="U0b-gj-WLd" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="T8X-RB-k3s"/>
-                <constraint firstAttribute="trailing" secondItem="4u5-cG-8Yw" secondAttribute="trailing" constant="20" id="Zkv-2W-oGF"/>
+                <constraint firstAttribute="trailing" secondItem="4u5-cG-8Yw" secondAttribute="trailing" constant="16" id="Zkv-2W-oGF"/>
                 <constraint firstItem="U0b-gj-WLd" firstAttribute="leading" secondItem="JVC-tw-Ku3" secondAttribute="trailing" constant="25" id="q13-YN-agj"/>
                 <constraint firstItem="Yly-Aw-xUy" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="qRq-cG-zNQ"/>
                 <constraint firstItem="JVC-tw-Ku3" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="t0e-D3-Zlc"/>

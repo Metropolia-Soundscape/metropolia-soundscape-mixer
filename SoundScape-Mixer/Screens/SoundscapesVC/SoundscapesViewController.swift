@@ -12,10 +12,10 @@ class SoundscapesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationItem.title = "Soundscapes"
+        title = "Soundscapes"
         navigationController?.navigationBar.prefersLargeTitles = true
         
         setUpAddButton()
@@ -39,10 +39,8 @@ class SoundscapesViewController: UIViewController {
     }
     
     @objc func addTapped() {
-        let soundscapeViewController = SoundscapeViewController()
-        
+        let soundscapeViewController = CreateSoundscapeViewController()
         let navVC = UINavigationController(rootViewController: soundscapeViewController)
-        
         self.present(navVC, animated: true, completion: nil)
     }
     

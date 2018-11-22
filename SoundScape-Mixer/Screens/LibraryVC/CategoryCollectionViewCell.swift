@@ -10,8 +10,4 @@ import UIKit
 
 class CategoryCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var categoryNameLabel: UILabel!
-    
-    func displayContent(name: String) {
-        categoryNameLabel.text = name
-    }
 }

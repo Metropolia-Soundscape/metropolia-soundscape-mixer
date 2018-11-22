@@ -8,8 +8,11 @@
 
 import UIKit
 
-class SoundscapeCollectionViewCell: UICollectionViewCell {
-
+class CreateSoundscapeCollectionViewCell: UICollectionViewCell {
+    
+    @IBOutlet weak var audioNameLabel: UILabel!
+    @IBOutlet weak var audioImageView: ImageViewWithGradient!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -9,9 +9,17 @@
 import UIKit
 import AVFoundation
 
+protocol AudioViewControllerDelegate: class {
+    func audioViewControllerDidSelectAudio(_ controller: AudioViewController, didSelectAudio audio: Audio)
+}
+
 class AudioViewController: UIViewController, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var audioCollectionView: UICollectionView!
+    
+    var soundscapeViewController: CreateSoundscapeViewController?
+    
+    weak var delegate: AudioViewControllerDelegate?
     
     private lazy var downloadsSession: URLSession = {
         let configuration = URLSessionConfiguration.background(withIdentifier: "dafadfadf")
@@ -25,7 +33,7 @@ class AudioViewController: UIViewController, UICollectionViewDelegateFlowLayout 
     }()
     
     var audioPlayer: AVPlayer?
-    var category: String = ""
+    var category: AudioCategory?
     var cellViewModels: [AudioCollectionViewCellModel] = []
     let screenSize: CGRect = UIScreen.main.bounds
     var playingCellIndex: IndexPath?
@@ -70,7 +78,8 @@ class AudioViewController: UIViewController, UICollectionViewDelegateFlowLayout 
         super.viewDidAppear(animated)
         
         let network = AppDelegate.appDelegate.appController.networking
-        network.getCategoryAudio(category: category) { [weak self] (audioArray, error) in
+        guard let category = category else { return }
+        network.getCategoryAudio(category: category.rawValue) { [weak self] (audioArray, error) in
             if let audio = audioArray {
                 DispatchQueue.main.async {
                     self?.items = audio.compactMap { $0.first }
@@ -83,7 +92,7 @@ class AudioViewController: UIViewController, UICollectionViewDelegateFlowLayout 
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = (screenSize.width)
-        return CGSize(width: width, height: 50.0)
+        return CGSize(width: width, height: 55.0)
     }
 }
 
@@ -105,6 +114,14 @@ extension AudioViewController: UICollectionViewDataSource {
         cell.progressView.setProgress(cellViewModel.progress, animated: true)
         
         return cell
+    }
+}
+
+extension AudioViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let audio = items[indexPath.row]
+        delegate?.audioViewControllerDidSelectAudio(self, didSelectAudio: audio)
+        navigationController?.popToRootViewController(animated: true)
     }
 }
 
