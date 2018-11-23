@@ -30,7 +30,7 @@ class LibraryViewController: UIViewController, UICollectionViewDataSource, UICol
         if (self.presentingViewController != nil) {
             navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelBtnPressed))
         } else {
-//            navigationController?.navigationBar.shadowImage = UIImage()
+            navigationController?.navigationBar.shadowImage = UIImage()
             navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
             navigationController?.navigationBar.prefersLargeTitles = true
         }

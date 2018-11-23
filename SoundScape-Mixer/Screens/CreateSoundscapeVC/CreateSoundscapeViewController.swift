@@ -39,6 +39,7 @@ class CreateSoundscapeViewController: UIViewController, UICollectionViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelBtnPressed))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(cancelBtnPressed))
         soundscapeCollectionView.register(UINib(nibName: "CreateSoundscapeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: reuseId)
         soundscapeCollectionView.dataSource = self
         soundscapeCollectionView.delegate = self
@@ -78,7 +79,6 @@ class CreateSoundscapeViewController: UIViewController, UICollectionViewDataSour
         
         cell.audioImageView.updateGradientColor(color1, color2)
         cell.audioImageView.layer.cornerRadius = 5.0
-        cell.audioImageView.clipsToBounds = true
         
         return cell
     }
@@ -87,7 +87,7 @@ class CreateSoundscapeViewController: UIViewController, UICollectionViewDataSour
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = (screenSize.width - 32.0)
-        return CGSize(width: width, height: 85.0)
+        return CGSize(width: width, height: 120.0)
     }
     
     // MARK: IBActions
