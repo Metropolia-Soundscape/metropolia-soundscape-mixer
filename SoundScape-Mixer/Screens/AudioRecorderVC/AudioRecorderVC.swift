@@ -80,7 +80,7 @@ class AudioRecorderVC: UIViewController {
 
         print(paths[0])
 
-        return paths[0]
+        return paths[0].appendingPathComponent("Resources/Records/")
     }
 
     private func showAlert(text: String) {
