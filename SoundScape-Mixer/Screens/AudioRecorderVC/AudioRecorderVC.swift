@@ -2,6 +2,8 @@ import AVFoundation
 import Foundation
 import UIKit
 
+public let kRecordingNumberCountKey = "kRecordingNumberCountKey"
+
 class AudioRecorderVC: UIViewController {
     @IBOutlet var recordBtn: UIButton!
     @IBOutlet var pauseBtn: UIButton!
@@ -10,6 +12,7 @@ class AudioRecorderVC: UIViewController {
     var hasPermission: Bool = false
     @IBOutlet weak var timerLbl: UILabel!
     var meterTimer:Timer!
+    var currentRecordingCount: Int?
     
     private var isRecording = false {
         didSet {
@@ -60,6 +63,13 @@ class AudioRecorderVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let count = UserDefaults.standard.value(forKey: kRecordingNumberCountKey) as? Int {
+            self.currentRecordingCount = count 
+        } else {
+            UserDefaults.standard.set(1, forKey: kRecordingNumberCountKey)
+            self.currentRecordingCount = 1
+        }
 
         recordingSession = AVAudioSession.sharedInstance()
         AVAudioSession.sharedInstance().requestRecordPermission { hasPermission in
@@ -102,8 +112,12 @@ class AudioRecorderVC: UIViewController {
 
     @IBAction func recordBtnPressed(_: Any) {
         if audioRecorder == nil && hasPermission {
-            let fileName = getDocumentDirectory().appendingPathComponent("\(UUID().uuidString).m4a")
-
+            let fileName = getDocumentDirectory().appendingPathComponent("New recording \(self.currentRecordingCount!).m4a")
+            
+            self.currentRecordingCount! += 1
+            
+            UserDefaults.standard.set(self.currentRecordingCount, forKey: kRecordingNumberCountKey)
+            
             let settings = [
                 AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
                 AVSampleRateKey: 44100,
