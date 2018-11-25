@@ -13,10 +13,9 @@ protocol AudioViewControllerDelegate: class {
     func audioViewControllerDidSelectAudio(_ controller: AudioViewController, didSelectAudio audio: Audio)
 }
 
-class AudioViewController: UIViewController, UICollectionViewDelegateFlowLayout {
-    
+class AudioViewController: UIViewController {
     @IBOutlet weak var audioCollectionView: UICollectionView!
-    
+    let player = AudioPlayer.sharedInstance
     var soundscapeViewController: CreateSoundscapeViewController?
     
     weak var delegate: AudioViewControllerDelegate?
@@ -87,13 +86,6 @@ class AudioViewController: UIViewController, UICollectionViewDelegateFlowLayout 
             }
         }
     }
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (screenSize.width)
-        return CGSize(width: width, height: 55.0)
-    }
 }
 
 extension AudioViewController: UICollectionViewDataSource {
@@ -117,6 +109,15 @@ extension AudioViewController: UICollectionViewDataSource {
     }
 }
 
+extension AudioViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = (screenSize.width)
+        return CGSize(width: width, height: 55.0)
+    }
+}
+
 extension AudioViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let audio = items[indexPath.row]
@@ -126,7 +127,6 @@ extension AudioViewController: UICollectionViewDelegate {
 }
 
 extension AudioViewController: AudioCollectionViewCellDelegate {
-    
     func audioCollectionViewCellDidTapStartDownloadButton(_ cell: AudioCollectionViewCell) {
         guard let indexPath = audioCollectionView.indexPath(for: cell) else {
             return
@@ -182,6 +182,22 @@ extension AudioViewController: URLSessionDownloadDelegate {
     func urlSession(_ session: URLSession,
                     downloadTask: URLSessionDownloadTask,
                     didFinishDownloadingTo location: URL) {
+        
+//        if let url = URL(string: "http://resourcespace.tekniikanmuseo.fi/filestore/2/8/2_9759fa45847ae7a/282_f1a7c8f3ba0fd75.wav?v=2015-11-23+13%3A42%3A18") {
+//            let docDirURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+//            let desURL = docDirURL.appendingPathComponent(url.lastPathComponent)
+//            print(desURL)
+//
+//            URLSession.shared.downloadTask(with: url, completionHandler: { (location, response, error) -> Void in
+//                guard let location = location, error == nil else { return }
+//                do {
+//                    try FileManager.default.moveItem(at: location, to: desURL)
+//                } catch let error as NSError {
+//                    print(error.localizedDescription)
+//                }
+//            }).resume()
+//        }
+        
         DispatchQueue.main.async {
             guard let downloadURL = downloadTask.originalRequest?.url,
                 let downloadOperation = self.downloadService.activeDownloads.operation(for: downloadURL) else {

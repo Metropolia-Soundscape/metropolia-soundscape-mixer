@@ -35,7 +35,6 @@ class Audio: Object, Downloadable, Codable {
         if let categoryName = category {
             return AudioCategory(rawValue: categoryName)
         }
-        
         return nil
     }
     

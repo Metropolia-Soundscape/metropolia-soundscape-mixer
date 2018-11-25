@@ -41,8 +41,10 @@ class AudioManager: FileManager {
         self.createDirectory(at: recordsURL!)
         
         categoriesURL = categories.map { libraryURL!.appendingPathComponent($0) }
-        categoriesURL.map { self.createDirectory(at: $0!) }
         
+        categoriesURL.forEach {
+            self.createDirectory(at: $0!)
+        }
         print(listFiles(at: resourcesURL!).map { $0 })
     }
     

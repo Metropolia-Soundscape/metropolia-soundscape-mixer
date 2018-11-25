@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateSoundscapeViewController" customModule="SoundScape_Mixer" customModuleProvider="target">
             <connections>
                 <outlet property="musicLibraryBtn" destination="9lH-3z-jXb" id="3Qk-ni-MYW"/>
+                <outlet property="playSoundscapeBtn" destination="ppo-fm-al6" id="5zP-Qy-diV"/>
                 <outlet property="recorderBtn" destination="GuP-Sh-RBG" id="Aci-Cz-feI"/>
                 <outlet property="soundscapeCollectionView" destination="q3l-wE-awq" id="Ipg-9w-0uV"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -70,6 +71,9 @@
                                 <constraint firstAttribute="width" constant="40" id="dPW-ja-MBl"/>
                             </constraints>
                             <state key="normal" title="Button" image="iconPlay"/>
+                            <connections>
+                                <action selector="playSoundscapePressed:" destination="-1" eventType="touchUpInside" id="Xla-z1-TyJ"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -93,7 +97,7 @@
                 <constraint firstItem="q3l-wE-awq" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="iyx-Xx-7YC"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="138.40000000000001" y="151.57421289355324"/>
+            <point key="canvasLocation" x="198" y="234"/>
         </view>
     </objects>
     <resources>

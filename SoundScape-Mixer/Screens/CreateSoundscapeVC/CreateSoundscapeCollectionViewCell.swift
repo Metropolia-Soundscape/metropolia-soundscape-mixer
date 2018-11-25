@@ -12,10 +12,9 @@ class CreateSoundscapeCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var audioNameLabel: UILabel!
     @IBOutlet weak var audioImageView: ImageViewWithGradient!
+    @IBOutlet weak var volumeSlider: UISlider!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
-
 }

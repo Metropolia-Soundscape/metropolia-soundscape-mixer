@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		413769592190CC8200A961E3 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 413769582190CC8200A961E3 /* LoginViewController.xib */; };
-		4146038321A1AB6500D772AB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4146038221A1AB6500D772AB /* Extensions.swift */; };
+		4146038321A1AB6500D772AB /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4146038221A1AB6500D772AB /* UIColor.swift */; };
 		4146038621A1B7EA00D772AB /* AudioRecorderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4146038521A1B7EA00D772AB /* AudioRecorderVC.swift */; };
 		4146038821A1B87200D772AB /* AudioRecorderVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4146038721A1B87200D772AB /* AudioRecorderVC.xib */; };
 		418349132187082C0048E24A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418349122187082C0048E24A /* AppDelegate.swift */; };
@@ -38,13 +38,14 @@
 		FA8DA9B921990FC80093CC05 /* AudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8DA9B721990FC80093CC05 /* AudioViewController.swift */; };
 		FA8DA9BA21990FC80093CC05 /* AudioViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA8DA9B821990FC80093CC05 /* AudioViewController.xib */; };
 		FA9123ED219C388A00553B7E /* CreateSoundscapeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA9123EB219C388A00553B7E /* CreateSoundscapeViewController.xib */; };
-		FAB98F4C219D85F90046F59F /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB98F4B219D85F90046F59F /* Category.swift */; };
 		FAB98F50219ED7910046F59F /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB98F4F219ED7910046F59F /* AudioManager.swift */; };
 		FAB98F5221A30CD60046F59F /* DownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB98F5121A30CD60046F59F /* DownloadService.swift */; };
 		FAB98F5521A4AF410046F59F /* CreateSoundscapeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB98F5321A4AF410046F59F /* CreateSoundscapeCollectionViewCell.swift */; };
 		FAB98F5621A4AF410046F59F /* CreateSoundscapeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAB98F5421A4AF410046F59F /* CreateSoundscapeCollectionViewCell.xib */; };
 		FABB6B8021A5EC950030639E /* ImageViewWithGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB6B7F21A5EC950030639E /* ImageViewWithGradient.swift */; };
 		FAC5ECDE21A736E900B16359 /* CreateSoundscapeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC5ECDD21A736E900B16359 /* CreateSoundscapeViewController.swift */; };
+		FAE0EAB021AAC30600B0E79D /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE0EAAF21AAC30600B0E79D /* AudioPlayer.swift */; };
+		FAE0EAB521AAFD9500B0E79D /* Soundscape.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE0EAB421AAFD9500B0E79D /* Soundscape.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,7 +62,7 @@
 		0423DB344547C32CDB1400B9 /* Pods_SoundScape_Mixer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SoundScape_Mixer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CC470480A5B775645565282 /* Pods-SoundScape-Mixer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoundScape-Mixer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SoundScape-Mixer/Pods-SoundScape-Mixer.debug.xcconfig"; sourceTree = "<group>"; };
 		413769582190CC8200A961E3 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
-		4146038221A1AB6500D772AB /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		4146038221A1AB6500D772AB /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		4146038521A1B7EA00D772AB /* AudioRecorderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorderVC.swift; sourceTree = "<group>"; };
 		4146038721A1B87200D772AB /* AudioRecorderVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AudioRecorderVC.xib; sourceTree = "<group>"; };
 		4183490F2187082C0048E24A /* SoundScape-Mixer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SoundScape-Mixer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,13 +98,14 @@
 		FA8DA9B721990FC80093CC05 /* AudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioViewController.swift; sourceTree = "<group>"; };
 		FA8DA9B821990FC80093CC05 /* AudioViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AudioViewController.xib; sourceTree = "<group>"; };
 		FA9123EB219C388A00553B7E /* CreateSoundscapeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateSoundscapeViewController.xib; sourceTree = "<group>"; };
-		FAB98F4B219D85F90046F59F /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		FAB98F4F219ED7910046F59F /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		FAB98F5121A30CD60046F59F /* DownloadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadService.swift; sourceTree = "<group>"; };
 		FAB98F5321A4AF410046F59F /* CreateSoundscapeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSoundscapeCollectionViewCell.swift; sourceTree = "<group>"; };
 		FAB98F5421A4AF410046F59F /* CreateSoundscapeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateSoundscapeCollectionViewCell.xib; sourceTree = "<group>"; };
 		FABB6B7F21A5EC950030639E /* ImageViewWithGradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewWithGradient.swift; sourceTree = "<group>"; };
 		FAC5ECDD21A736E900B16359 /* CreateSoundscapeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateSoundscapeViewController.swift; sourceTree = "<group>"; };
+		FAE0EAAF21AAC30600B0E79D /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
+		FAE0EAB421AAFD9500B0E79D /* Soundscape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Soundscape.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +160,7 @@
 		418349112187082C0048E24A /* SoundScape-Mixer */ = {
 			isa = PBXGroup;
 			children = (
+				FAE0EAB121AAD16600B0E79D /* Extensions */,
 				AC14741D21953A1200FF6D94 /* Infrastructure */,
 				FA2E222C2199AE64004B43A6 /* Models */,
 				AC14741C219539FE00FF6D94 /* Screens */,
@@ -224,7 +227,7 @@
 				AC14741A219539F600FF6D94 /* NetworkingRequests.swift */,
 				FAB98F4F219ED7910046F59F /* AudioManager.swift */,
 				FAB98F5121A30CD60046F59F /* DownloadService.swift */,
-				4146038221A1AB6500D772AB /* Extensions.swift */,
+				FAE0EAAF21AAC30600B0E79D /* AudioPlayer.swift */,
 			);
 			path = Infrastructure;
 			sourceTree = "<group>";
@@ -234,7 +237,7 @@
 			children = (
 				FA7281D72198FA95009BF538 /* Audio.swift */,
 				FA2E2232219B76E2004B43A6 /* AudioCollectionViewCellViewModel.swift */,
-				FAB98F4B219D85F90046F59F /* Category.swift */,
+				FAE0EAB421AAFD9500B0E79D /* Soundscape.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -288,6 +291,14 @@
 				FAB98F5421A4AF410046F59F /* CreateSoundscapeCollectionViewCell.xib */,
 			);
 			path = CreateSoundscapeVC;
+			sourceTree = "<group>";
+		};
+		FAE0EAB121AAD16600B0E79D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4146038221A1AB6500D772AB /* UIColor.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -466,7 +477,6 @@
 				FA7281C3219864FE009BF538 /* MainTabBarController.swift in Sources */,
 				4146038621A1B7EA00D772AB /* AudioRecorderVC.swift in Sources */,
 				FA2E2230219AF4A0004B43A6 /* AudioCollectionViewCell.swift in Sources */,
-				FAB98F4C219D85F90046F59F /* Category.swift in Sources */,
 				FA7281CF2198652D009BF538 /* CategoryCollectionViewCell.swift in Sources */,
 				FAC5ECDE21A736E900B16359 /* CreateSoundscapeViewController.swift in Sources */,
 				AC14741B219539F600FF6D94 /* NetworkingRequests.swift in Sources */,
@@ -474,8 +484,10 @@
 				FA8DA9B921990FC80093CC05 /* AudioViewController.swift in Sources */,
 				ACC8576221952CD400947BDB /* AppController.swift in Sources */,
 				FAB98F5221A30CD60046F59F /* DownloadService.swift in Sources */,
-				4146038321A1AB6500D772AB /* Extensions.swift in Sources */,
+				4146038321A1AB6500D772AB /* UIColor.swift in Sources */,
+				FAE0EAB021AAC30600B0E79D /* AudioPlayer.swift in Sources */,
 				418349152187082C0048E24A /* LoginViewController.swift in Sources */,
+				FAE0EAB521AAFD9500B0E79D /* Soundscape.swift in Sources */,
 				FA2E2233219B76E2004B43A6 /* AudioCollectionViewCellViewModel.swift in Sources */,
 				ACC8576421952F7900947BDB /* LoginStateService.swift in Sources */,
 				FABB6B8021A5EC950030639E /* ImageViewWithGradient.swift in Sources */,

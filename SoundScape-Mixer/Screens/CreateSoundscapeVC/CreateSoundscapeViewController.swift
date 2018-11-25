@@ -11,26 +11,30 @@
 import UIKit
 
 // MARK: SoundscapeViewController Implementation
-class CreateSoundscapeViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class CreateSoundscapeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     let screenSize: CGRect = UIScreen.main.bounds
+    let player = AudioPlayer.sharedInstance
     
     // MARK: - IBOutlets
     
     @IBOutlet weak var soundscapeCollectionView: UICollectionView!
     @IBOutlet weak var recorderBtn: UIButton!
-    
     @IBOutlet weak var musicLibraryBtn: UIButton!
+    @IBOutlet weak var playSoundscapeBtn: UIButton!
     
     private let reuseId = "createSoundscapeCollectionViewCell"
-    
-    @objc private func cancelBtnPressed() {
-        self.dismiss(animated: true, completion: nil)
-    }
     
     var items: [Audio] = [] {
         didSet {
             soundscapeCollectionView.reloadData()
+        }
+    }
+    
+    var playing = false {
+        didSet {
+            let imageName = playing ? "iconPause" : "iconPlay"
+            playSoundscapeBtn.setImage(UIImage(named: imageName), for: .normal)
         }
     }
     
@@ -45,6 +49,57 @@ class CreateSoundscapeViewController: UIViewController, UICollectionViewDataSour
         soundscapeCollectionView.delegate = self
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        player.stopSoundscape()
+    }
+    
+    
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = (screenSize.width - 32.0)
+        return CGSize(width: width, height: 120.0)
+    }
+    
+    // MARK: IBActions
+    
+    @objc private func cancelBtnPressed() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func audioBtnPressed(_ sender: Any) {
+        let audioVC = AudioRecorderVC()
+        let navVC = UINavigationController(rootViewController: audioVC)
+        self.present(navVC, animated: true, completion: nil)
+    }
+    
+    @IBAction func musicLibraryPressed(_ sender: UIButton) {
+        let libraryViewController = LibraryViewController()
+        libraryViewController.delegate = self
+        let libNavVC = UINavigationController(rootViewController: libraryViewController)
+        self.present(libNavVC, animated: true, completion: nil)
+    }
+    
+    @IBAction func playSoundscapePressed(_ sender: UIButton) {
+        if (player.soundscapePlaying) {
+            playing = false
+            player.stopSoundscape()
+        } else {
+            playing = true
+            player.playSoundscape(urls: items.map { $0.downloadURL })
+        }
+    }
+}
+
+extension CreateSoundscapeViewController: LibraryViewControllerDelegate {
+    func libraryViewController(_ viewController: UIViewController, didSelectAudio audio: Audio) {
+        self.items.append(audio)
+    }
+}
+
+extension CreateSoundscapeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return items.count
     }
@@ -81,33 +136,5 @@ class CreateSoundscapeViewController: UIViewController, UICollectionViewDataSour
         cell.audioImageView.layer.cornerRadius = 5.0
         
         return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (screenSize.width - 32.0)
-        return CGSize(width: width, height: 120.0)
-    }
-    
-    // MARK: IBActions
-    
-    @IBAction func audioBtnPressed(_ sender: Any) {
-        let audioVC = AudioRecorderVC()
-        let navVC = UINavigationController(rootViewController: audioVC)
-        self.present(navVC, animated: true, completion: nil)
-    }
-    
-    @IBAction func musicLibraryPressed(_ sender: UIButton) {
-        let libraryViewController = LibraryViewController()
-        libraryViewController.delegate = self
-        let libNavVC = UINavigationController(rootViewController: libraryViewController)
-        self.present(libNavVC, animated: true, completion: nil)
-    }
-}
-
-extension CreateSoundscapeViewController: LibraryViewControllerDelegate {
-    func libraryViewController(_ viewController: UIViewController, didSelectAudio audio: Audio) {
-        self.items.append(audio)
     }
 }
