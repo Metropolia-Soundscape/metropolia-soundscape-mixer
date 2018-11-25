@@ -155,6 +155,15 @@ class AudioRecorderVC: UIViewController {
                 let totalTimeString = String(format: "%02d:%02d:%02d", hr, min, sec)
                 timerLbl.text = totalTimeString
                 audioRecorder.updateMeters()
+                
+                if sec >= 30 {
+                    // Stop the recorder
+
+                    self.audioRecorder.stop()
+                    self.audioRecorder = nil
+
+                    isRecording = false
+                }
             }
         
         }
