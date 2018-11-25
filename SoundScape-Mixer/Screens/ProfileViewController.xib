@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileViewController" customModule="SoundScape_Mixer" customModuleProvider="target">
             <connections>
+                <outlet property="tableView" destination="jwM-AF-D53" id="M8N-xp-im6"/>
                 <outlet property="view" destination="iN0-l3-epB" id="4eU-Qz-pdV"/>
             </connections>
         </placeholder>
@@ -30,13 +31,31 @@
                         <action selector="logoutButtonPressed:" destination="-1" eventType="touchUpInside" id="9tI-wg-oJJ"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recorded audio:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VBo-2G-o0y">
+                    <rect key="frame" x="16" y="41" width="343" height="25.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jwM-AF-D53">
+                    <rect key="frame" x="0.0" y="66.5" width="375" height="548.5"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </tableView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="VBo-2G-o0y" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="21" id="4Bw-nY-mfW"/>
+                <constraint firstItem="jwM-AF-D53" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="5Tz-KV-2Ld"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="byN-bd-lj0" secondAttribute="bottom" constant="16" id="D4d-dO-qP7"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="VBo-2G-o0y" secondAttribute="trailing" constant="16" id="E12-u5-WTh"/>
+                <constraint firstItem="jwM-AF-D53" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="GQO-nl-7qO"/>
+                <constraint firstItem="jwM-AF-D53" firstAttribute="top" secondItem="VBo-2G-o0y" secondAttribute="bottom" id="V4X-go-cOk"/>
+                <constraint firstItem="VBo-2G-o0y" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="Via-Jy-RtO"/>
+                <constraint firstItem="byN-bd-lj0" firstAttribute="top" secondItem="jwM-AF-D53" secondAttribute="bottom" id="gUT-6E-F8R"/>
                 <constraint firstItem="byN-bd-lj0" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="pDq-Wj-QUL"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="53.600000000000001" y="112.89355322338831"/>
         </view>
     </objects>
 </document>
