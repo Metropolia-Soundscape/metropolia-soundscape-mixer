@@ -11,7 +11,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = LoginViewController()
+        window?.rootViewController = MainTabBarController()
         
         window?.makeKeyAndVisible()
         appController = AppController()
@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //
 //        LibraryFileManger.shared.save(data: Data(), toFileName: "Filename", inSubDirectory: .human)
 
-        let url = FileManager.default.libraryDirectory.appendingPathComponent("Resources").appendingPathComponent("Hello").appendingPathComponent("Cocu")
+        let url = FileManager.default.documentDirectory.appendingPathComponent("Resources").appendingPathComponent("Hello").appendingPathComponent("Cocu")
         try! FileManager.default.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
 
         return true

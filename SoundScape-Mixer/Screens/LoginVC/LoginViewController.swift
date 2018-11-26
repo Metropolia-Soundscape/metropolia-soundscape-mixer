@@ -19,8 +19,8 @@ class LoginViewController: UIViewController {
 
     @IBAction func logInPressed(_: UIButton) {
         let network = AppDelegate.appDelegate.appController.networking
-//        guard let username = usernameLbl.text, let password = passwordLbl.text else { return }
-        network.authenticate(username: "aanimaisema", password: "Laulukirja1") { (authjson, error) in
+        guard let username = usernameLbl.text, let password = passwordLbl.text else { return }
+        network.authenticate(username: username, password: password) { (authjson, error) in
             if let authJSON = authjson {
                 print(authJSON)
                 DispatchQueue.main.async {
