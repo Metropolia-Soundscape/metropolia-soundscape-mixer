@@ -109,20 +109,20 @@ extension AudioViewController: UICollectionViewDataSource {
     }
 }
 
+extension AudioViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let audio = items[indexPath.row]
+        delegate?.audioViewControllerDidSelectAudio(self, didSelectAudio: audio)
+        navigationController?.popToRootViewController(animated: true)
+    }
+}
+
 extension AudioViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = (screenSize.width)
         return CGSize(width: width, height: 55.0)
-    }
-}
-
-extension AudioViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let audio = items[indexPath.row]
-        delegate?.audioViewControllerDidSelectAudio(self, didSelectAudio: audio)
-        navigationController?.popToRootViewController(animated: true)
     }
 }
 

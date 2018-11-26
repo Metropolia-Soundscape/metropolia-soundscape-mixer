@@ -13,7 +13,7 @@ protocol LibraryViewControllerDelegate: class {
     func libraryViewController(_ viewController: UIViewController, didSelectAudio audio: Audio)
 }
 
-class LibraryViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class LibraryViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -41,36 +41,40 @@ class LibraryViewController: UIViewController, UICollectionViewDataSource, UICol
         collectionView.delegate = self
         
         title = "Library"
-//        tabBarItem = UITabBarItem(title: "Library", image: nil, selectedImage: nil)
         navigationItem.title = "Library"
     }
     
     @objc private func cancelBtnPressed() {
         self.dismiss(animated: true, completion: nil)
     }
+}
+
+extension LibraryViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return AudioCategory.allCategories.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseId, for: indexPath) as! CategoryCollectionViewCell
-//        cell.displayContent(name: categories[indexPath.row].name)
         cell.categoryNameLabel.text = AudioCategory.allCategories[indexPath.row].rawValue.capitalized
         return cell
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (screenSize.width)
-        return CGSize(width: width, height: 50.0)
-    }
-    
+}
+
+extension LibraryViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let audioViewController = AudioViewController()
         audioViewController.category = AudioCategory.allCategories[indexPath.row]
         audioViewController.delegate = self
         self.navigationController?.pushViewController(audioViewController, animated: true)
     }
+}
 
+extension LibraryViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = (screenSize.width)
+        return CGSize(width: width, height: 50.0)
+    }
 }
 
 extension LibraryViewController: AudioViewControllerDelegate {

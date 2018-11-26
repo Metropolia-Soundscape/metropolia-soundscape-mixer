@@ -15,8 +15,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window?.makeKeyAndVisible()
         appController = AppController()
-        audioManager = AudioManager()
+//        audioManager = AudioManager()
         
+//        let documentFileManager = AppFileManager<DocumentSubDirectory>(baseURL: FileManager.default.documentDirectory)
+//
+//        let resourcesURL = FileManager.default.documentDirectory.appendingPathComponent("Resources")
+//        let resourcesDirectoryFileManager = AppFileManager<ResourcesSubDirectory>(baseURL: resourcesURL)
+//
+//        resourcesDirectoryFileManager.copy(file: URL(string: "")!, to: .record)
+//        resourcesDirectoryFileManager.save(data: Data(), toFileName: "", inSubDirectory: ResourcesSubDirectory.library)
+//
+//        LibraryFileManger.shared.save(data: Data(), toFileName: "Filename", inSubDirectory: .human)
+
+        let url = FileManager.default.libraryDirectory.appendingPathComponent("Resources").appendingPathComponent("Hello").appendingPathComponent("Cocu")
+        try! FileManager.default.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
+
         return true
+    }
+}
+
+class LibraryFileManger: AppFileManager<LibrarySubDirectory> {
+    static let shared = LibraryFileManger(baseURL: FileManager.default.libraryDirectory)
+    
+    private override init(baseURL: URL) {
+        super.init(baseURL: baseURL)
     }
 }

@@ -11,10 +11,7 @@
 import UIKit
 
 // MARK: SoundscapeViewController Implementation
-class CreateSoundscapeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    
-    let screenSize: CGRect = UIScreen.main.bounds
-    let player = AudioPlayer.sharedInstance
+class CreateSoundscapeViewController: UIViewController {
     
     // MARK: - IBOutlets
     
@@ -22,6 +19,9 @@ class CreateSoundscapeViewController: UIViewController, UICollectionViewDelegate
     @IBOutlet weak var recorderBtn: UIButton!
     @IBOutlet weak var musicLibraryBtn: UIButton!
     @IBOutlet weak var playSoundscapeBtn: UIButton!
+    
+    let screenSize: CGRect = UIScreen.main.bounds
+    let player = AudioPlayer.sharedInstance
     
     private let reuseId = "createSoundscapeCollectionViewCell"
     
@@ -54,15 +54,6 @@ class CreateSoundscapeViewController: UIViewController, UICollectionViewDelegate
         player.stopSoundscape()
     }
     
-    
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (screenSize.width - 32.0)
-        return CGSize(width: width, height: 120.0)
-    }
-    
     // MARK: IBActions
     
     @objc private func cancelBtnPressed() {
@@ -88,14 +79,8 @@ class CreateSoundscapeViewController: UIViewController, UICollectionViewDelegate
             player.stopSoundscape()
         } else {
             playing = true
-            player.playSoundscape(urls: items.map { $0.downloadURL })
+            player.playSoundscape(audio: items.map { $0 })
         }
-    }
-}
-
-extension CreateSoundscapeViewController: LibraryViewControllerDelegate {
-    func libraryViewController(_ viewController: UIViewController, didSelectAudio audio: Audio) {
-        self.items.append(audio)
     }
 }
 
@@ -106,7 +91,7 @@ extension CreateSoundscapeViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseId, for: indexPath) as! CreateSoundscapeCollectionViewCell
-        
+        cell.delegate = self
         let audio = items[indexPath.row]
         cell.audioNameLabel.text = audio.title
         
@@ -136,5 +121,30 @@ extension CreateSoundscapeViewController: UICollectionViewDataSource {
         cell.audioImageView.layer.cornerRadius = 5.0
         
         return cell
+    }
+}
+
+extension CreateSoundscapeViewController: LibraryViewControllerDelegate {
+    func libraryViewController(_ viewController: UIViewController, didSelectAudio audio: Audio) {
+        self.items.append(audio)
+    }
+}
+
+extension CreateSoundscapeViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = (screenSize.width - 32.0)
+        return CGSize(width: width, height: 120.0)
+    }
+}
+
+extension CreateSoundscapeViewController: CreateSoundscapeCollectionViewCellDelegate {
+    func changeAudioVolume(_ cell: CreateSoundscapeCollectionViewCell, audioVolume: Float) {
+        guard let indexPath = soundscapeCollectionView.indexPath(for: cell) else {
+            return
+        }
+        let audio = items[indexPath.row]
+        audio.volume = audioVolume
     }
 }

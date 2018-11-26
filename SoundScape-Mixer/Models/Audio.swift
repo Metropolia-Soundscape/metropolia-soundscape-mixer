@@ -30,6 +30,7 @@ class Audio: Object, Downloadable, Codable {
     @objc dynamic var fileName: String?
     @objc dynamic var downloadLink: String?
     @objc dynamic var category: String?
+    var volume: Float = 1.0
     
     var categoryType: AudioCategory? {
         if let categoryName = category {
