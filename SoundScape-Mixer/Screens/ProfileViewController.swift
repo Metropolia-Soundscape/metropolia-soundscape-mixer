@@ -1,8 +1,11 @@
 import UIKit
+import AVFoundation
 
 public let kRecordingCell: String = "kRecordingCell"
 
 class ProfileViewController: BaseViewController {
+    
+    private var audioPlayer: AVAudioPlayer!
     
     private var recordings: [String] = [String]() {
         didSet {
@@ -42,6 +45,8 @@ class ProfileViewController: BaseViewController {
         do {
             let contentOfRecordsFolder = try FileManager.default.contentsOfDirectory(atPath: getDocumentDirectory().relativePath)
             
+            print(getDocumentDirectory().relativePath)
+            
             self.recordings = contentOfRecordsFolder
         } catch let err {
             print(err.localizedDescription)
@@ -69,5 +74,14 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         cell.textLabel?.text = recordings[indexPath.row]
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        do {
+            try audioPlayer = AVAudioPlayer(contentsOf: self.getDocumentDirectory().appendingPathComponent(recordings[indexPath.row]))
+            audioPlayer.play()
+        } catch let err {
+            print(err.localizedDescription)
+        }
     }
 }
