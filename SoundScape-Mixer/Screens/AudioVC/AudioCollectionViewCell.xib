@@ -20,7 +20,7 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JVC-tw-Ku3">
-                        <rect key="frame" x="25" y="84.5" width="25" height="25"/>
+                        <rect key="frame" x="16" y="84.5" width="25" height="25"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="aF9-MQ-z4M"/>
                             <constraint firstAttribute="width" constant="25" id="dUH-8X-FgY"/>
@@ -31,24 +31,58 @@
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U0b-gj-WLd">
-                        <rect key="frame" x="75" y="86.5" width="42" height="21"/>
+                        <rect key="frame" x="66" y="87" width="42" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bCI-Aw-Izy">
+                        <rect key="frame" x="498" y="82" width="69" height="30"/>
+                        <state key="normal" title="Download"/>
+                        <connections>
+                            <action selector="startDownloadPressed:" destination="gTV-IL-0wX" eventType="touchUpInside" id="zyV-0p-7r1"/>
+                        </connections>
+                    </button>
+                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="4u5-cG-8Yw">
+                        <rect key="frame" x="30" y="192" width="537" height="2"/>
+                    </progressView>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Yly-Aw-xUy">
+                        <rect key="frame" x="461" y="82" width="106" height="30"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oD6-y0-hYo">
+                                <rect key="frame" x="0.0" y="0.0" width="42" height="30"/>
+                                <state key="normal" title="Pause"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eW7-Oa-nql">
+                                <rect key="frame" x="58" y="0.0" width="48" height="30"/>
+                                <state key="normal" title="Cancel"/>
+                            </button>
+                        </subviews>
+                    </stackView>
                 </subviews>
             </view>
             <constraints>
+                <constraint firstItem="bCI-Aw-Izy" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="0AW-ez-f6E"/>
+                <constraint firstItem="4u5-cG-8Yw" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="30" id="8gc-Io-W7X"/>
+                <constraint firstAttribute="trailing" secondItem="Yly-Aw-xUy" secondAttribute="trailing" constant="16" id="J49-VY-KhL"/>
+                <constraint firstAttribute="bottom" secondItem="4u5-cG-8Yw" secondAttribute="bottom" id="QLS-GN-Jtz"/>
+                <constraint firstAttribute="trailing" secondItem="bCI-Aw-Izy" secondAttribute="trailing" constant="16" id="S0l-Ab-kTb"/>
                 <constraint firstItem="U0b-gj-WLd" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="T8X-RB-k3s"/>
+                <constraint firstAttribute="trailing" secondItem="4u5-cG-8Yw" secondAttribute="trailing" constant="16" id="Zkv-2W-oGF"/>
                 <constraint firstItem="U0b-gj-WLd" firstAttribute="leading" secondItem="JVC-tw-Ku3" secondAttribute="trailing" constant="25" id="q13-YN-agj"/>
+                <constraint firstItem="Yly-Aw-xUy" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="qRq-cG-zNQ"/>
                 <constraint firstItem="JVC-tw-Ku3" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="t0e-D3-Zlc"/>
-                <constraint firstItem="JVC-tw-Ku3" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="25" id="xco-V8-Hj8"/>
+                <constraint firstItem="JVC-tw-Ku3" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="xco-V8-Hj8"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="583" height="194"/>
             <connections>
                 <outlet property="audioNameLabel" destination="U0b-gj-WLd" id="4Cx-zn-RNO"/>
+                <outlet property="cancelButton" destination="eW7-Oa-nql" id="4AF-kO-b1e"/>
+                <outlet property="downloadButton" destination="bCI-Aw-Izy" id="MQJ-eI-0Wp"/>
+                <outlet property="pauseButton" destination="oD6-y0-hYo" id="ITV-3z-ufm"/>
                 <outlet property="playButton" destination="JVC-tw-Ku3" id="Tpt-yF-Fdz"/>
+                <outlet property="progressView" destination="4u5-cG-8Yw" id="hnL-SN-3Wa"/>
             </connections>
             <point key="canvasLocation" x="501.60000000000002" y="124.13793103448276"/>
         </collectionViewCell>

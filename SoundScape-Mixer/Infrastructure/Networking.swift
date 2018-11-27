@@ -36,7 +36,7 @@ class Network {
 
     enum Endpoint: String {
         case auth = "plugins/api_auth/auth.php"
-        case audio = "/plugins/api_audio_search/index.php"
+        case audio = "/plugins/api_audio_search/index.php/" // Do not remove the ending '/'
     }
 
     typealias RequestCompletion = (Decodable?, Error?) -> Void

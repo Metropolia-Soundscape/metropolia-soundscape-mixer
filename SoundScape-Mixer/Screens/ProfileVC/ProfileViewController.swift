@@ -20,6 +20,8 @@ class ProfileViewController: BaseViewController {
         title = "Profile"
     }
     
+    required init?(coder _: NSCoder) { fatalError("init(coder:) has not been implemented") }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,8 +35,6 @@ class ProfileViewController: BaseViewController {
         
         getAllRecordings()
     }
-
-    required init?(coder _: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
     @IBAction func logoutButtonPressed(_: UIButton) {
         appController.logout()

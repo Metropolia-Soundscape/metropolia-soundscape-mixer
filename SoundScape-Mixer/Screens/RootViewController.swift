@@ -17,10 +17,12 @@ class RootViewController: UITabBarController {
             title: "Library",
             viewController: LibraryViewController(appController: appController)
         )
-
-//        let profileViewController = ProfileViewController(appController: appController)
         
-        let profileViewController = RootViewController.templateViewController(unselectedImage: UIImage(named: "user")!, title: "Profile", viewController: ProfileViewController(appController: appController))
+        let profileViewController = RootViewController.templateViewController(
+            unselectedImage: UIImage(named: "user")!,
+            title: "Profile",
+            viewController: ProfileViewController(appController: appController))
+        
         viewControllers = [soundscapesViewController, libraryVC, profileViewController]
     }
 

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="createSoundscapeCollectionViewCell" id="gTV-IL-0wX" customClass="CreateSoundscapeCollectionViewCell" customModule="SoundScape_Mixer" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="682" height="164"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="682" height="164"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n32-Gw-4aZ">
+                        <rect key="frame" x="0.0" y="0.0" width="682" height="80"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cBE-gf-xak" customClass="ImageViewWithGradient" customModule="SoundScape_Mixer" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="682" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="WvC-fF-8ky"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6fV-NO-lSj">
+                                <rect key="frame" x="20" y="30" width="42" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="cBE-gf-xak" firstAttribute="leading" secondItem="n32-Gw-4aZ" secondAttribute="leading" id="7WL-pq-edg"/>
+                            <constraint firstAttribute="trailing" secondItem="cBE-gf-xak" secondAttribute="trailing" id="HOS-gZ-GIX"/>
+                            <constraint firstItem="cBE-gf-xak" firstAttribute="top" secondItem="n32-Gw-4aZ" secondAttribute="top" id="TDN-rY-Rjf"/>
+                            <constraint firstItem="6fV-NO-lSj" firstAttribute="centerY" secondItem="n32-Gw-4aZ" secondAttribute="centerY" id="bzH-cq-hLT"/>
+                            <constraint firstItem="6fV-NO-lSj" firstAttribute="leading" secondItem="n32-Gw-4aZ" secondAttribute="leading" constant="20" id="jgh-Xh-2SF"/>
+                            <constraint firstAttribute="height" constant="80" id="muc-Dd-cvH"/>
+                            <constraint firstAttribute="bottom" secondItem="cBE-gf-xak" secondAttribute="bottom" id="nEx-gY-5ww"/>
+                        </constraints>
+                    </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconSound" translatesAutoresizingMaskIntoConstraints="NO" id="Nvz-Gg-vAc">
+                        <rect key="frame" x="0.0" y="95" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="cfq-F8-aDn"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="20" id="dU7-HQ-6zI"/>
+                            <constraint firstAttribute="width" constant="20" id="pZC-RY-4S9"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="s8X-kY-48B"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconShuffle" translatesAutoresizingMaskIntoConstraints="NO" id="thJ-qx-NBx">
+                        <rect key="frame" x="662" y="95" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="9dC-WI-T85"/>
+                            <constraint firstAttribute="width" constant="20" id="JZM-PK-vru"/>
+                        </constraints>
+                    </imageView>
+                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="EQb-5M-eZi">
+                        <rect key="frame" x="28" y="90" width="204" height="31"/>
+                        <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="0tj-yu-1t6"/>
+                            <constraint firstAttribute="width" constant="200" id="5lf-R8-4jl"/>
+                            <constraint firstAttribute="height" constant="30" id="Qmp-XU-ZqI"/>
+                        </constraints>
+                        <color key="thumbTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <connections>
+                            <action selector="volumeSliderValueChanged:" destination="gTV-IL-0wX" eventType="valueChanged" id="MH8-GP-tNf"/>
+                        </connections>
+                    </slider>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="n32-Gw-4aZ" secondAttribute="trailing" id="0GW-f5-6Ga"/>
+                <constraint firstItem="thJ-qx-NBx" firstAttribute="top" secondItem="n32-Gw-4aZ" secondAttribute="bottom" constant="15" id="43m-up-Xsi"/>
+                <constraint firstItem="EQb-5M-eZi" firstAttribute="top" secondItem="n32-Gw-4aZ" secondAttribute="bottom" constant="10" id="4bX-Dh-7we"/>
+                <constraint firstItem="Nvz-Gg-vAc" firstAttribute="top" secondItem="n32-Gw-4aZ" secondAttribute="bottom" constant="15" id="Hah-fn-ucq"/>
+                <constraint firstItem="EQb-5M-eZi" firstAttribute="leading" secondItem="Nvz-Gg-vAc" secondAttribute="trailing" constant="10" id="Qs9-JG-CA9"/>
+                <constraint firstItem="Nvz-Gg-vAc" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="SA2-Z9-gbI"/>
+                <constraint firstItem="n32-Gw-4aZ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="jiW-D1-WfM"/>
+                <constraint firstItem="n32-Gw-4aZ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="zBD-wc-Um4"/>
+                <constraint firstAttribute="trailing" secondItem="thJ-qx-NBx" secondAttribute="trailing" id="zjd-TC-BcQ"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="682" height="164"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="image" keyPath="thumbImage" value="iconDownload"/>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="audioImageView" destination="cBE-gf-xak" id="xKP-c0-Lau"/>
+                <outlet property="audioNameLabel" destination="6fV-NO-lSj" id="z5c-J4-FRk"/>
+                <outlet property="volumeSlider" destination="EQb-5M-eZi" id="4tl-Cp-K03"/>
+            </connections>
+            <point key="canvasLocation" x="155.19999999999999" y="85.457271364317847"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="iconDownload" width="200" height="200"/>
+        <image name="iconShuffle" width="211" height="200"/>
+        <image name="iconSound" width="250" height="200"/>
+    </resources>
+</document>

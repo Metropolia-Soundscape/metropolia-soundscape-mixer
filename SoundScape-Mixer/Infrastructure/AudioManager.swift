@@ -33,7 +33,10 @@ class AudioManager: FileManager {
         createDirectory(at: recordsURL!)
 
         categoriesURL = categories.map { libraryURL!.appendingPathComponent($0) }
-        categoriesURL.map { self.createDirectory(at: $0!) }
+
+        categoriesURL.forEach {
+            self.createDirectory(at: $0!)
+        }
 
         print(listFiles(at: resourcesURL!).map { $0 })
     }
@@ -75,8 +78,37 @@ class AudioManager: FileManager {
 }
 
 extension FileManager {
-    var documentDirectory: URL {
+    var documentDirectory: URL  {
         return urls(for: .documentDirectory, in: .userDomainMask).first!
+    }
+    
+    var resourcesDirectory: URL {
+        return documentDirectory.appendingPathComponent("Resources")
+    }
+    
+    var libraryDirectory: URL {
+        return resourcesDirectory.appendingPathComponent("Library")
+    }
+    
+    
+    var recordsDirectory: URL {
+        return resourcesDirectory.appendingPathComponent("Records")
+    }
+    
+    var soundscapesDirectory: URL {
+        return resourcesDirectory.appendingPathComponent("Soundscapes")
+    }
+    
+    var humanDirectory: URL {
+        return libraryDirectory.appendingPathComponent("Human")
+    }
+    
+    var machineDirectory: URL {
+        return libraryDirectory.appendingPathComponent("Machine")
+    }
+    
+    var natureDirectory: URL {
+        return libraryDirectory.appendingPathComponent("Nature")
     }
 
     func localFileURL(for file: Downloadable) -> URL {
