@@ -27,19 +27,15 @@ class AudioViewController: UIViewController {
     
     var audioPlayer: AVPlayer?
     var category: AudioCategory?
-    var cellViewModels: [AudioCollectionViewCellModel] = [] {
-        didSet {
-            if fetchedItems.count == 0 {
-                fetchedItems = cellViewModels
-            }
-            
-            self.audioCollectionView.reloadData()
-        }
-    }
+    var cellViewModels: [AudioCollectionViewCellModel] = []
     let screenSize: CGRect = UIScreen.main.bounds
     var playingCellIndex: IndexPath?
     
-    var fetchedItems = [AudioCollectionViewCellModel]()
+    var fetchedItems = [Audio]() {
+        didSet {
+            print(fetchedItems.count)
+        }
+    }
     
     var items: [Audio] = [] {
         didSet {
@@ -52,6 +48,13 @@ class AudioViewController: UIViewController {
                                                               downloaded: downloaded,
                                                               progress: progress)
             }
+            
+            if fetchedItems.count == 0 {
+                fetchedItems = items
+            }
+            
+            playingCellIndex = nil
+            
             audioCollectionView.reloadData()
         }
     }
@@ -91,9 +94,9 @@ class AudioViewController: UIViewController {
     
     private func searchForAudio(with text: String) {
         if text == "" {
-            cellViewModels = fetchedItems
+            items = fetchedItems
         } else {
-            cellViewModels = fetchedItems.filter { $0.title!.contains(text) }
+            items = fetchedItems.filter { $0.title!.contains(text) }
         }
     }
 }
