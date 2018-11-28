@@ -15,7 +15,7 @@ class AudioPlayer: NSObject, AVAudioPlayerDelegate {
     static let sharedInstance = AudioPlayer()
     
     var player: AVPlayer?
-    var players: [AVPlayer]?
+    var players: [AVPlayer?]?
     
     func playAudio(url: URL) {
         audioPlaying = true
@@ -35,9 +35,9 @@ class AudioPlayer: NSObject, AVAudioPlayerDelegate {
             player.volume = $0.volume
             return player
         }
-        players?.forEach { $0.play() }
+        players?.forEach { $0?.play() }
     }
-
+    
     func stopSoundscape() {
         soundscapePlaying = false
         players = nil

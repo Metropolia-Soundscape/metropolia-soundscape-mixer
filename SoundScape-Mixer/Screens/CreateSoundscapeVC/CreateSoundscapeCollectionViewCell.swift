@@ -10,6 +10,7 @@ import UIKit
 
 protocol CreateSoundscapeCollectionViewCellDelegate: class {
     func changeAudioVolume(_ cell: CreateSoundscapeCollectionViewCell, audioVolume: Float)
+    func deleteAudio(_ cell: CreateSoundscapeCollectionViewCell)
 }
 
 class CreateSoundscapeCollectionViewCell: UICollectionViewCell {
@@ -17,6 +18,8 @@ class CreateSoundscapeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var audioNameLabel: UILabel!
     @IBOutlet weak var audioImageView: ImageViewWithGradient!
     @IBOutlet weak var volumeSlider: UISlider!
+    @IBOutlet weak var shuffleButton: UIButton!
+    @IBOutlet weak var deleteAudioButton: UIButton!
     
     weak var delegate: CreateSoundscapeCollectionViewCellDelegate?
     
@@ -25,5 +28,9 @@ class CreateSoundscapeCollectionViewCell: UICollectionViewCell {
     }
     @IBAction func volumeSliderValueChanged(_ sender: Any) {
         delegate?.changeAudioVolume(self, audioVolume: volumeSlider.value)
+    }
+    
+    @IBAction func deleteAudioButtonTapped(_ sender: Any) {
+        delegate?.deleteAudio(self)
     }
 }

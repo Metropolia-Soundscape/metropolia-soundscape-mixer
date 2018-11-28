@@ -27,8 +27,13 @@ class CreateSoundscapeViewController: UIViewController {
     
     var items: [Audio] = [] {
         didSet {
-            navigationItem.rightBarButtonItem?.isEnabled = true
-            playSoundscapeBtn.isHidden = false
+            if (items.isEmpty) {
+                navigationItem.rightBarButtonItem?.isEnabled = false
+                playSoundscapeBtn.isHidden = true
+            } else {
+                navigationItem.rightBarButtonItem?.isEnabled = true
+                playSoundscapeBtn.isHidden = false
+            }
             soundscapeCollectionView.reloadData()
         }
     }
@@ -148,7 +153,14 @@ extension CreateSoundscapeViewController: CreateSoundscapeCollectionViewCellDele
         guard let indexPath = soundscapeCollectionView.indexPath(for: cell) else {
             return
         }
-        let audio = items[indexPath.row]
-        audio.volume = audioVolume
+        player.players?[indexPath.row]?.volume = audioVolume
+    }
+    
+    func deleteAudio(_ cell: CreateSoundscapeCollectionViewCell) {
+        guard let indexPath = soundscapeCollectionView.indexPath(for: cell) else {
+            return
+        }
+        items.remove(at: indexPath.row)
+        player.players?.remove(at: indexPath.row)
     }
 }

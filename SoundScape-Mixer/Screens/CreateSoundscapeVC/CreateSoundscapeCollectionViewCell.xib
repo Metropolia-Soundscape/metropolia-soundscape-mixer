@@ -56,7 +56,6 @@
                         <rect key="frame" x="44" y="100" width="204" height="31"/>
                         <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="0tj-yu-1t6"/>
                             <constraint firstAttribute="width" constant="200" id="5lf-R8-4jl"/>
                             <constraint firstAttribute="height" constant="30" id="Qmp-XU-ZqI"/>
                         </constraints>
@@ -74,12 +73,15 @@
                         <state key="normal" title="Button" image="iconShuffle"/>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bYY-dv-cPE">
-                        <rect key="frame" x="656" y="0.0" width="20" height="20"/>
+                        <rect key="frame" x="650" y="0.0" width="26" height="26"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="20" id="Dry-2n-jVb"/>
-                            <constraint firstAttribute="width" constant="20" id="Lop-zW-Fdz"/>
+                            <constraint firstAttribute="height" constant="26" id="Dry-2n-jVb"/>
+                            <constraint firstAttribute="width" constant="26" id="Lop-zW-Fdz"/>
                         </constraints>
                         <state key="normal" title="Button" image="iconDelete"/>
+                        <connections>
+                            <action selector="deleteAudioButtonTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="gRh-J4-JnK"/>
+                        </connections>
                     </button>
                 </subviews>
             </view>
@@ -104,6 +106,8 @@
             <connections>
                 <outlet property="audioImageView" destination="cBE-gf-xak" id="xKP-c0-Lau"/>
                 <outlet property="audioNameLabel" destination="6fV-NO-lSj" id="z5c-J4-FRk"/>
+                <outlet property="deleteAudioButton" destination="bYY-dv-cPE" id="WZe-v0-0yy"/>
+                <outlet property="shuffleButton" destination="RmG-wH-hNW" id="EbC-PA-Yfk"/>
                 <outlet property="volumeSlider" destination="EQb-5M-eZi" id="4tl-Cp-K03"/>
             </connections>
             <point key="canvasLocation" x="155.19999999999999" y="85.457271364317847"/>
