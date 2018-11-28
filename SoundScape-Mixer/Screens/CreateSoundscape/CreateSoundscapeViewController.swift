@@ -22,6 +22,7 @@ class CreateSoundscapeViewController: UIViewController {
     
     let screenSize: CGRect = UIScreen.main.bounds
     let player = AudioPlayer.sharedInstance
+    var soundscape: Soundscape = Soundscape()
     
     private let reuseId = "createSoundscapeCollectionViewCell"
     
@@ -50,7 +51,7 @@ class CreateSoundscapeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelBtnPressed))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(cancelBtnPressed))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveBtnPressed))
         navigationItem.rightBarButtonItem?.isEnabled = false
         soundscapeCollectionView.register(UINib(nibName: "CreateSoundscapeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: reuseId)
         soundscapeCollectionView.dataSource = self
@@ -66,6 +67,11 @@ class CreateSoundscapeViewController: UIViewController {
     // MARK: IBActions
     
     @objc private func cancelBtnPressed() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc private func saveBtnPressed() {
+        
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -136,6 +142,15 @@ extension CreateSoundscapeViewController: UICollectionViewDataSource {
 extension CreateSoundscapeViewController: LibraryViewControllerDelegate {
     func libraryViewController(_ viewController: UIViewController, didSelectAudio audio: Audio) {
         self.items.append(audio)
+
+        guard let title = audio.title else { return }
+        
+        let logMessage = "Added \(title).\n"
+        if (soundscape.log != nil) {
+            self.soundscape.log?.append(logMessage)
+        } else {
+            soundscape.log = logMessage
+        }
     }
 }
 

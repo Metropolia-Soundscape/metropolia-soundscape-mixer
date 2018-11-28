@@ -7,8 +7,12 @@
 //
 
 import Foundation
+import RealmSwift
+import Realm
 
-struct Soundscape {
-    var name: String
-    var audio: [Audio]
+class Soundscape: Object {
+    @objc dynamic var name: String?
+    @objc dynamic var log: String?
+    
+    var audioDownloadLinks: List<String>?
 }

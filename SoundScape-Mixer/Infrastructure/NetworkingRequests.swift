@@ -13,8 +13,9 @@ extension Network {
     }
 
     func getCategoryAudio(category: String, completion: @escaping ([[Audio]]?, Error?) -> Void) {
-        let params = ["key": "jFBaDxPcNzYZGu-gNMZ2L9-TjP1JjWl8OHFhdJV54gL82_M0cZi8oGEg-fB7gw3EpYvN0IHrHFP-Ic5sULo-iAWTl0k_y0t3CwrCQPpbYJkVIjmCV1Zzo0NB52ZLanwN",
-                      "collection": "22",
+        guard let token = LoginStateService.init().state.token else { return }
+        let params = ["key": token,
+                      "collection": "29",
                       "link": "true",
                       "category": category]
 
