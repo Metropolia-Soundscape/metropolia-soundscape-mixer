@@ -7,12 +7,18 @@ public let kRecordingNumberCountKey = "kRecordingNumberCountKey"
 class AudioRecorderVC: UIViewController {
     @IBOutlet var recordBtn: UIButton!
     @IBOutlet var pauseBtn: UIButton!
+    @IBOutlet weak var timerLbl: UILabel!
+
     var recordingSession: AVAudioSession!
     var audioRecorder: AVAudioRecorder!
     var hasPermission: Bool = false
-    @IBOutlet weak var timerLbl: UILabel!
     var meterTimer:Timer!
     var currentRecordingCount: Int?
+
+    // TODO: Refactor this. Remove this property if neccessary
+    private var tempRecordingFileURL: URL?
+
+    private let audioFileExtension = "m4a"
     
     private var isRecording = false {
         didSet {
@@ -79,6 +85,7 @@ class AudioRecorderVC: UIViewController {
         setupView()
     }
 
+    // MARK: - Helper methods
     private func setupView() {
         navigationItem.title = "Recorder"
         navigationItem.leftBarButtonItem = cancelBtn
@@ -86,11 +93,11 @@ class AudioRecorderVC: UIViewController {
     }
 
     private func getDocumentDirectory() -> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-
-        print(paths[0])
-
-        return paths[0].appendingPathComponent("Resources/Records/")
+        // TODO: Hanlde exceptions
+        let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+            .appendingPathComponent("Resources/Records/")
+        try! FileManager.default.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
+        return url
     }
 
     private func showAlert(text: String) {
@@ -110,14 +117,54 @@ class AudioRecorderVC: UIViewController {
         present(alertVC, animated: true, completion: nil)
     }
 
+    private func handleSavingRecordingFile(tempURL: URL) {
+
+        guard FileManager.default.fileExists(atPath: tempURL.path) else { return }
+
+        let alertController = UIAlertController(title: "Saving audio file",
+                                                message: "Please input your file name", preferredStyle: .alert)
+        alertController.addTextField { (textField) in
+            textField.placeholder = "New recording"
+        }
+
+        let confirmAction = UIAlertAction(
+            title: "Save",
+            style: UIAlertAction.Style.default) { (_) in
+                // Check if filename already exists
+                if let textField = alertController.textFields?.first {
+                    if let fileName = textField.text,
+                        fileName.trimmingCharacters(in: .whitespacesAndNewlines) != ""
+                    {
+                        let url = self.getDocumentDirectory().appendingPathComponent("\(fileName).\(self.audioFileExtension)")
+                        if (!FileManager.default.fileExists(atPath: url.path)) {
+                            // Replace filename
+                            try! FileManager.default.moveItem(at: tempURL, to: url)
+                            alertController.dismiss(animated: true, completion: nil)
+                        } else {
+                            self.displayWarningAlert(withTitle: "Error", errorMessage: "\(fileName) already existed", cancelHandler: {
+                                self.handleSavingRecordingFile(tempURL: tempURL)
+                            })
+                        }
+                    } else {
+                        self.displayWarningAlert(withTitle: "Error", errorMessage: "Please type a valid name", cancelHandler: {
+                            self.handleSavingRecordingFile(tempURL: tempURL)
+                        })
+                    }
+                }
+        }
+
+        alertController.addAction(confirmAction)
+
+        present(alertController, animated: true, completion: nil)
+    }
+
     @IBAction func recordBtnPressed(_: Any) {
         if audioRecorder == nil && hasPermission {
-            let fileName = getDocumentDirectory().appendingPathComponent("New recording \(self.currentRecordingCount!).m4a")
-            
             self.currentRecordingCount! += 1
-            
+            let tempURL = getDocumentDirectory().appendingPathComponent("NewRecording\(self.currentRecordingCount!).\(audioFileExtension)")
             UserDefaults.standard.set(self.currentRecordingCount, forKey: kRecordingNumberCountKey)
-            
+            tempRecordingFileURL = tempURL
+
             let settings = [
                 AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
                 AVSampleRateKey: 44100,
@@ -128,7 +175,7 @@ class AudioRecorderVC: UIViewController {
             do {
                 try recordingSession.setCategory(.playAndRecord, mode: .default)
                 try recordingSession.setActive(true)
-                audioRecorder = try AVAudioRecorder(url: fileName, settings: settings)
+                audioRecorder = try AVAudioRecorder(url: tempURL, settings: settings)
                 audioRecorder.delegate = self
                 audioRecorder.isMeteringEnabled = true
                 audioRecorder.prepareToRecord()
@@ -146,8 +193,24 @@ class AudioRecorderVC: UIViewController {
         } else {
             audioRecorder.stop()
             audioRecorder = nil
-
             isRecording = false
+            if let temp = tempRecordingFileURL {
+                handleSavingRecordingFile(tempURL: temp)
+            }
+        }
+    }
+
+    @IBAction func pauseBtnPressed(_: Any) {
+        if audioRecorder != nil {
+            if isRecording {
+                isPaused = true
+                isRecording = false
+                audioRecorder.pause()
+            } else {
+                audioRecorder.record()
+                isPaused = false
+                isRecording = true
+            }
         }
     }
 
@@ -182,22 +245,17 @@ class AudioRecorderVC: UIViewController {
         
         }
     }
-
-    @IBAction func pauseBtnPressed(_: Any) {
-        if audioRecorder != nil {
-            if isRecording {
-                isPaused = true
-                isRecording = false
-                audioRecorder.pause()
-            } else {
-                audioRecorder.record()
-                isPaused = false
-                isRecording = true
-            }
-        }
-    }
 }
 
-extension AudioRecorderVC: AVAudioRecorderDelegate {
-    
+extension AudioRecorderVC: AVAudioRecorderDelegate {}
+
+extension UIViewController {
+    func displayWarningAlert(withTitle title: String?, errorMessage message: String?, cancelHandler handler: (() -> Void)? = nil) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "Ok", style: .cancel, handler: { _ in
+            handler?()
+        })
+        alertController.addAction(action)
+        present(alertController, animated: true, completion: nil)
+    }
 }
