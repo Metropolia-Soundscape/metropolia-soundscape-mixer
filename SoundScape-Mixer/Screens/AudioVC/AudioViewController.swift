@@ -87,6 +87,11 @@ class AudioViewController: UIViewController {
         }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        audioPlayer = nil
+    }
+    
     // MARK: Utils
     
     private func searchForAudio(with text: String) {

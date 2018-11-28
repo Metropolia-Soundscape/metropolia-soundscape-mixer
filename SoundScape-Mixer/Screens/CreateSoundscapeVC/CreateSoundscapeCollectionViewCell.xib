@@ -20,10 +20,10 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n32-Gw-4aZ">
-                        <rect key="frame" x="0.0" y="0.0" width="682" height="80"/>
+                        <rect key="frame" x="16" y="10" width="650" height="80"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cBE-gf-xak" customClass="ImageViewWithGradient" customModule="SoundScape_Mixer" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="682" height="80"/>
+                                <rect key="frame" x="0.0" y="0.0" width="650" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="WvC-fF-8ky"/>
                                 </constraints>
@@ -46,23 +46,14 @@
                         </constraints>
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconSound" translatesAutoresizingMaskIntoConstraints="NO" id="Nvz-Gg-vAc">
-                        <rect key="frame" x="0.0" y="95" width="20" height="20"/>
+                        <rect key="frame" x="16" y="105" width="20" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="cfq-F8-aDn"/>
-                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="20" id="dU7-HQ-6zI"/>
                             <constraint firstAttribute="width" constant="20" id="pZC-RY-4S9"/>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="s8X-kY-48B"/>
-                        </constraints>
-                    </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconShuffle" translatesAutoresizingMaskIntoConstraints="NO" id="thJ-qx-NBx">
-                        <rect key="frame" x="662" y="95" width="20" height="20"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="20" id="9dC-WI-T85"/>
-                            <constraint firstAttribute="width" constant="20" id="JZM-PK-vru"/>
                         </constraints>
                     </imageView>
                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="EQb-5M-eZi">
-                        <rect key="frame" x="28" y="90" width="204" height="31"/>
+                        <rect key="frame" x="44" y="100" width="204" height="31"/>
                         <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="0tj-yu-1t6"/>
@@ -74,18 +65,36 @@
                             <action selector="volumeSliderValueChanged:" destination="gTV-IL-0wX" eventType="valueChanged" id="MH8-GP-tNf"/>
                         </connections>
                     </slider>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RmG-wH-hNW">
+                        <rect key="frame" x="646" y="105" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="S7m-JU-teo"/>
+                            <constraint firstAttribute="width" constant="20" id="rX0-pg-xUb"/>
+                        </constraints>
+                        <state key="normal" title="Button" image="iconShuffle"/>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bYY-dv-cPE">
+                        <rect key="frame" x="656" y="0.0" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="Dry-2n-jVb"/>
+                            <constraint firstAttribute="width" constant="20" id="Lop-zW-Fdz"/>
+                        </constraints>
+                        <state key="normal" title="Button" image="iconDelete"/>
+                    </button>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="n32-Gw-4aZ" secondAttribute="trailing" id="0GW-f5-6Ga"/>
-                <constraint firstItem="thJ-qx-NBx" firstAttribute="top" secondItem="n32-Gw-4aZ" secondAttribute="bottom" constant="15" id="43m-up-Xsi"/>
+                <constraint firstAttribute="trailing" secondItem="n32-Gw-4aZ" secondAttribute="trailing" constant="16" id="0GW-f5-6Ga"/>
                 <constraint firstItem="EQb-5M-eZi" firstAttribute="top" secondItem="n32-Gw-4aZ" secondAttribute="bottom" constant="10" id="4bX-Dh-7we"/>
+                <constraint firstItem="bYY-dv-cPE" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="GN3-h3-nkz"/>
+                <constraint firstAttribute="trailing" secondItem="bYY-dv-cPE" secondAttribute="trailing" constant="6" id="HKo-DZ-LzO"/>
                 <constraint firstItem="Nvz-Gg-vAc" firstAttribute="top" secondItem="n32-Gw-4aZ" secondAttribute="bottom" constant="15" id="Hah-fn-ucq"/>
+                <constraint firstItem="RmG-wH-hNW" firstAttribute="top" secondItem="n32-Gw-4aZ" secondAttribute="bottom" constant="15" id="Hmz-zY-2Wt"/>
                 <constraint firstItem="EQb-5M-eZi" firstAttribute="leading" secondItem="Nvz-Gg-vAc" secondAttribute="trailing" constant="10" id="Qs9-JG-CA9"/>
-                <constraint firstItem="Nvz-Gg-vAc" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="SA2-Z9-gbI"/>
-                <constraint firstItem="n32-Gw-4aZ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="jiW-D1-WfM"/>
-                <constraint firstItem="n32-Gw-4aZ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="zBD-wc-Um4"/>
-                <constraint firstAttribute="trailing" secondItem="thJ-qx-NBx" secondAttribute="trailing" id="zjd-TC-BcQ"/>
+                <constraint firstItem="Nvz-Gg-vAc" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="SA2-Z9-gbI"/>
+                <constraint firstAttribute="trailing" secondItem="RmG-wH-hNW" secondAttribute="trailing" constant="16" id="gu1-Wb-3J0"/>
+                <constraint firstItem="n32-Gw-4aZ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="jiW-D1-WfM"/>
+                <constraint firstItem="n32-Gw-4aZ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="zBD-wc-Um4"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="682" height="164"/>
@@ -101,6 +110,7 @@
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="iconDelete" width="40.069564819335938" height="40.069564819335938"/>
         <image name="iconDownload" width="200" height="200"/>
         <image name="iconShuffle" width="211" height="200"/>
         <image name="iconSound" width="250" height="200"/>

@@ -83,7 +83,7 @@ class CreateSoundscapeViewController: UIViewController {
             player.stopSoundscape()
         } else {
             playing = true
-            player.playSoundscape(audio: items.map { $0 })
+            player.playSoundscape(audio: items)
         }
     }
 }
@@ -138,8 +138,8 @@ extension CreateSoundscapeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (screenSize.width - 32.0)
-        return CGSize(width: width, height: 120.0)
+        let width = (screenSize.width)
+        return CGSize(width: width, height: 130.0)
     }
 }
 
