@@ -75,9 +75,12 @@ class AudioViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        let network = AppDelegate.appDelegate.appController.networking
-        if let category = category {
-            network.getCategoryAudio(category: category.rawValue) { [weak self] audioArray, _ in
+        let appController = AppDelegate.appDelegate.appController
+        let network = appController?.networking
+        let collection = appController?.collection
+        
+        if let category = category, let collection = collection {
+            network?.getCategoryAudio(collection: collection, category: category.rawValue) { [weak self] audioArray, _ in
                 if let audio = audioArray {
                     DispatchQueue.main.async {
                         self?.items = audio.compactMap { $0.first }

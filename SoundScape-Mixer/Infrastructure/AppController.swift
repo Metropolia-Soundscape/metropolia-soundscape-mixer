@@ -7,6 +7,7 @@ class AppController {
     var loginViewController: LoginViewController?
     var soundscapesViewController: SoundscapesViewController?
     var profileViewController: ProfileViewController?
+    var collection: String?
 
     let window: UIWindow
 

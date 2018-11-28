@@ -12,10 +12,10 @@ extension Network {
         }
     }
 
-    func getCategoryAudio(category: String, completion: @escaping ([[Audio]]?, Error?) -> Void) {
+    func getCategoryAudio(collection: String, category: String, completion: @escaping ([[Audio]]?, Error?) -> Void) {
         guard let token = LoginStateService.init().state.token else { return }
         let params = ["key": token,
-                      "collection": "29",
+                      "collection": collection,
                       "link": "true",
                       "category": category]
 
