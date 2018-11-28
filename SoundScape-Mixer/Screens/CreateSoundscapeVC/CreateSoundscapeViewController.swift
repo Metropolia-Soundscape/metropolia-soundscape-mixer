@@ -27,6 +27,8 @@ class CreateSoundscapeViewController: UIViewController {
     
     var items: [Audio] = [] {
         didSet {
+            navigationItem.rightBarButtonItem?.isEnabled = true
+            playSoundscapeBtn.isHidden = false
             soundscapeCollectionView.reloadData()
         }
     }
@@ -44,9 +46,11 @@ class CreateSoundscapeViewController: UIViewController {
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelBtnPressed))
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(cancelBtnPressed))
+        navigationItem.rightBarButtonItem?.isEnabled = false
         soundscapeCollectionView.register(UINib(nibName: "CreateSoundscapeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: reuseId)
         soundscapeCollectionView.dataSource = self
         soundscapeCollectionView.delegate = self
+        playSoundscapeBtn.isHidden = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
