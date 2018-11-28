@@ -705,8 +705,9 @@
 			baseConfigurationReference = 0CC470480A5B775645565282 /* Pods-SoundScape-Mixer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = E8F4PL5XYD;
 				INFOPLIST_FILE = "SoundScape-Mixer/Infrastructure/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -725,8 +726,9 @@
 			baseConfigurationReference = A9F1DB03294E5308C656727C /* Pods-SoundScape-Mixer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = E8F4PL5XYD;
 				INFOPLIST_FILE = "SoundScape-Mixer/Infrastructure/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -6,6 +6,8 @@ protocol AudioViewControllerDelegate: class {
 }
 
 class AudioViewController: UIViewController {
+    
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var audioCollectionView: UICollectionView!
     let player = AudioPlayer.sharedInstance
     var soundscapeViewController: CreateSoundscapeViewController?
@@ -25,9 +27,19 @@ class AudioViewController: UIViewController {
     
     var audioPlayer: AVPlayer?
     var category: AudioCategory?
-    var cellViewModels: [AudioCollectionViewCellModel] = []
+    var cellViewModels: [AudioCollectionViewCellModel] = [] {
+        didSet {
+            if fetchedItems.count == 0 {
+                fetchedItems = cellViewModels
+            }
+            
+            self.audioCollectionView.reloadData()
+        }
+    }
     let screenSize: CGRect = UIScreen.main.bounds
     var playingCellIndex: IndexPath?
+    
+    var fetchedItems = [AudioCollectionViewCellModel]()
     
     var items: [Audio] = [] {
         didSet {
@@ -52,19 +64,14 @@ class AudioViewController: UIViewController {
         audioCollectionView.register(UINib(nibName: "AudioCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: reuseId)
         audioCollectionView.dataSource = self
         audioCollectionView.delegate = self
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(doSth))
-        navigationItem.rightBarButtonItem?.tintColor = UIColor.black
+        navigationItem.largeTitleDisplayMode = .never
+        searchBar.delegate = self
     }
     
     deinit {
         downloadsSession.invalidateAndCancel()
     }
-    
-    @objc func doSth() {
-        print("tap")
-    }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -77,6 +84,16 @@ class AudioViewController: UIViewController {
                     }
                 }
             }
+        }
+    }
+    
+    // MARK: Utils
+    
+    private func searchForAudio(with text: String) {
+        if text == "" {
+            cellViewModels = fetchedItems
+        } else {
+            cellViewModels = fetchedItems.filter { $0.title!.contains(text) }
         }
     }
 }
@@ -252,6 +269,20 @@ extension AudioViewController: URLSessionDownloadDelegate {
                 self.audioCollectionView.reloadItems(at: [IndexPath(row: index, section: 0)])
             }
         }
+    }
+}
+
+extension AudioViewController: UISearchBarDelegate {
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        print("Did end editing")
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        print("Did begin editing")
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        self.searchForAudio(with: searchText)
     }
 }
 

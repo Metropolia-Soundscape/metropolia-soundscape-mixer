@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.15" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.9"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AudioViewController" customModule="SoundScape_Mixer" customModuleProvider="target">
             <connections>
                 <outlet property="audioCollectionView" destination="fLp-18-TIY" id="Gzm-YK-3TH"/>
+                <outlet property="searchBar" destination="osX-1K-67K" id="g26-vL-HMl"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -22,7 +23,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="fLp-18-TIY">
-                    <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                    <rect key="frame" x="0.0" y="76" width="375" height="591"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Mcd-dc-u8J">
                         <size key="itemSize" width="50" height="50"/>
@@ -31,13 +32,27 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
+                <searchBar contentMode="redraw" placeholder="Search a audio" translatesAutoresizingMaskIntoConstraints="NO" id="osX-1K-67K">
+                    <rect key="frame" x="0.0" y="20" width="375" height="56"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="56" id="7wC-vm-BHA"/>
+                    </constraints>
+                    <textInputTraits key="textInputTraits"/>
+                    <scopeButtonTitles>
+                        <string>Title</string>
+                        <string>Title</string>
+                    </scopeButtonTitles>
+                </searchBar>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="fLp-18-TIY" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="Aok-A3-J2l"/>
-                <constraint firstItem="fLp-18-TIY" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="BTH-9C-3lQ"/>
-                <constraint firstItem="fLp-18-TIY" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="WZh-zR-Sju"/>
-                <constraint firstAttribute="trailing" secondItem="fLp-18-TIY" secondAttribute="trailing" id="yjl-zj-ima"/>
+                <constraint firstItem="fLp-18-TIY" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="HJO-cE-6vo"/>
+                <constraint firstItem="osX-1K-67K" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="LfT-sm-S5C"/>
+                <constraint firstItem="fLp-18-TIY" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="XzN-JB-ixq"/>
+                <constraint firstItem="fLp-18-TIY" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="ZeJ-XG-5Kp"/>
+                <constraint firstItem="fLp-18-TIY" firstAttribute="top" secondItem="osX-1K-67K" secondAttribute="bottom" id="srb-x9-iN2"/>
+                <constraint firstItem="osX-1K-67K" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="x6z-9H-8EV"/>
+                <constraint firstItem="osX-1K-67K" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="xiG-Ge-ZwL"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="138.40000000000001" y="152.47376311844079"/>
