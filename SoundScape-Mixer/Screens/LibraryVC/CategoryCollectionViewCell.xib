@@ -25,11 +25,21 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CcA-y0-OaW">
+                        <rect key="frame" x="20" y="151.5" width="449" height="0.5"/>
+                        <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="vzh-xf-tiu"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
             </view>
             <constraints>
                 <constraint firstItem="fxA-bM-0Cs" firstAttribute="leading" secondItem="5Cp-4q-JhK" secondAttribute="leading" constant="20" id="1ai-Jh-nXb"/>
                 <constraint firstItem="fxA-bM-0Cs" firstAttribute="centerY" secondItem="5Cp-4q-JhK" secondAttribute="centerY" id="Ay1-o6-JwY"/>
+                <constraint firstAttribute="trailing" secondItem="CcA-y0-OaW" secondAttribute="trailing" id="Rje-cL-YgT"/>
+                <constraint firstAttribute="bottom" secondItem="CcA-y0-OaW" secondAttribute="bottom" id="mGd-7a-cZR"/>
+                <constraint firstItem="CcA-y0-OaW" firstAttribute="leading" secondItem="5Cp-4q-JhK" secondAttribute="leading" constant="20" id="q8u-pK-f4l"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="q7V-bX-KVa"/>
             <size key="customSize" width="469" height="152"/>

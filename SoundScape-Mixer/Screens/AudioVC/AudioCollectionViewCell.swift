@@ -30,7 +30,6 @@ class AudioCollectionViewCell: UICollectionViewCell {
 
     
     @IBAction func playPressed(_ sender: Any) {
-
         delegate?.audioCollectionViewCellDidTapPlayButton(self)
     }
     

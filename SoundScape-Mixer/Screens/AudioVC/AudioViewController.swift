@@ -122,7 +122,9 @@ extension AudioViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let audio = items[indexPath.row]
         delegate?.audioViewControllerDidSelectAudio(self, didSelectAudio: audio)
-        navigationController?.popToRootViewController(animated: true)
+        if (self.presentingViewController?.presentingViewController != nil) {
+            navigationController?.popToRootViewController(animated: true)
+        }
     }
 }
 
