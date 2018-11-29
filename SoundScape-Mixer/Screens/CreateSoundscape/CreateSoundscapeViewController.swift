@@ -31,6 +31,8 @@ class CreateSoundscapeViewController: UIViewController {
             if (items.isEmpty) {
                 navigationItem.rightBarButtonItem?.isEnabled = false
                 playSoundscapeBtn.isHidden = true
+                player.stopSoundscape()
+                playing = false
             } else {
                 navigationItem.rightBarButtonItem?.isEnabled = true
                 playSoundscapeBtn.isHidden = false
