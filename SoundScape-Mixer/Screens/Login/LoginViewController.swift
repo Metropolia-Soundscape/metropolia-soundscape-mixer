@@ -44,7 +44,7 @@ class LoginViewController: UIViewController {
                     let loggedIn = LoginState(token: authJSON.apiKey)
                     self?.appController?.loginStateService.state = loggedIn
                     self?.appController?.showLoggedInState(loggedIn)
-                    self?.appController?.collection = collection
+                    AudioLibraryCollectionManager.shared.save(collectionName: collection)
                 } else {
                     self?.usernameLbl.text = nil
                     self?.passwordLbl.text = nil

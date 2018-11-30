@@ -12,7 +12,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         appController = AppController(window!)
         appController.authorize()
-        window?.rootViewController = RootViewController(appController: appController)
+//        window?.rootViewController = LoginViewController()
         window?.makeKeyAndVisible()
         
 //        let documentFileManager = AppFileManager<DocumentSubDirectory>(baseURL: FileManager.default.documentDirectory)

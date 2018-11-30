@@ -11,8 +11,8 @@ import RealmSwift
 import Realm
 
 class Soundscape: Object {
-    @objc dynamic var name: String?
-    @objc dynamic var log: String?
+    @objc dynamic var name: String = ""
+    @objc dynamic var log: String = ""
     
-    var audioDownloadLinks: List<String>?
+    var audio: List<Audio> = List<Audio>()
 }

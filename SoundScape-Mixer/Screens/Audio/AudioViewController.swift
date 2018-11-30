@@ -72,7 +72,7 @@ class AudioViewController: UIViewController {
     }
     
     deinit {
-        downloadsSession.invalidateAndCancel()
+        // downloadsSession.invalidateAndCancel()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -80,7 +80,7 @@ class AudioViewController: UIViewController {
         
         let appController = AppDelegate.appDelegate.appController
         let network = appController?.networking
-        let collection = appController?.collection
+        let collection = AudioLibraryCollectionManager.shared.collectionName
         
         if let category = category, let collection = collection {
             network?.getCategoryAudio(collection: collection, category: category.rawValue) { [weak self] audioArray, _ in

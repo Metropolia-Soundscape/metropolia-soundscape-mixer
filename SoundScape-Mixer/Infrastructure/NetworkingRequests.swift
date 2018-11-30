@@ -1,4 +1,4 @@
-import Foundation
+import UIKit
 
 extension Network {
     func authenticate(username: String, password: String, completion: @escaping (AuthJSON?, Error?) -> Void) {
@@ -13,7 +13,9 @@ extension Network {
     }
 
     func getCategoryAudio(collection: String, category: String, completion: @escaping ([[Audio]]?, Error?) -> Void) {
-        guard let token = LoginStateService.init().state.token else { return }
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+            let token = appDelegate.appController.loginStateService.state.token else { return }
         let params = ["key": token,
                       "collection": collection,
                       "link": "true",
