@@ -13,7 +13,7 @@ class LoginViewController: UIViewController {
     
     var activeField: UITextField?
     var lastOffset: CGPoint!
-    var keyboardHeight: CGFloat!
+    var keyboardHeight: CGFloat = 0
     
     let appController = AppDelegate.appDelegate.appController
 
@@ -117,6 +117,6 @@ extension LoginViewController {
             self.scrollView.contentOffset = self.lastOffset
         }
         
-        keyboardHeight = nil
+        keyboardHeight = 0.0
     }
 }
