@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -9,9 +13,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateSoundscapeViewController" customModule="SoundScape_Mixer" customModuleProvider="target">
             <connections>
                 <outlet property="audioCollectionView" destination="q3l-wE-awq" id="Ipg-9w-0uV"/>
-                <outlet property="musicLibraryBtn" destination="9lH-3z-jXb" id="3Qk-ni-MYW"/>
+                <outlet property="libraryBtn" destination="9lH-3z-jXb" id="Xu5-Mm-sNL"/>
                 <outlet property="playSoundscapeBtn" destination="ppo-fm-al6" id="5zP-Qy-diV"/>
-                <outlet property="recorderBtn" destination="GuP-Sh-RBG" id="Aci-Cz-feI"/>
+                <outlet property="recorderBtn" destination="GuP-Sh-RBG" id="mTW-lS-2Xx"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -21,7 +25,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" spacing="106" translatesAutoresizingMaskIntoConstraints="NO" id="2T9-Tv-gor">
-                    <rect key="frame" x="84.5" y="40" width="206" height="50"/>
+                    <rect key="frame" x="84.5" y="30" width="206" height="50"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9lH-3z-jXb">
                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -31,7 +35,7 @@
                             </constraints>
                             <state key="normal" title="Button" image="iconLibrary"/>
                             <connections>
-                                <action selector="musicLibraryPressed:" destination="-1" eventType="touchUpInside" id="sDX-v5-0MW"/>
+                                <action selector="libraryBtnPressed:" destination="-1" eventType="touchUpInside" id="gUW-E7-CNh"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GuP-Sh-RBG">
@@ -42,13 +46,13 @@
                             </constraints>
                             <state key="normal" title="Button" image="iconMicrophone"/>
                             <connections>
-                                <action selector="audioBtnPressed:" destination="-1" eventType="touchUpInside" id="F1i-zC-O7O"/>
+                                <action selector="recorderBtn:" destination="-1" eventType="touchUpInside" id="6sL-s9-GcN"/>
                             </connections>
                         </button>
                     </subviews>
                 </stackView>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="q3l-wE-awq">
-                    <rect key="frame" x="0.0" y="110" width="375" height="477"/>
+                    <rect key="frame" x="0.0" y="100" width="375" height="487"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="UIS-RR-O57">
                         <size key="itemSize" width="50" height="50"/>
@@ -85,7 +89,7 @@
                 <constraint firstItem="5IT-1y-qqB" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="6q4-y3-2DO"/>
                 <constraint firstItem="5IT-1y-qqB" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="74x-gJ-CLB"/>
                 <constraint firstItem="5IT-1y-qqB" firstAttribute="top" secondItem="q3l-wE-awq" secondAttribute="bottom" id="EaN-ct-vg9"/>
-                <constraint firstItem="2T9-Tv-gor" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="HmU-nP-9e3"/>
+                <constraint firstItem="2T9-Tv-gor" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="HmU-nP-9e3"/>
                 <constraint firstItem="5IT-1y-qqB" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="RQN-UP-CvY"/>
                 <constraint firstItem="2T9-Tv-gor" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="atf-hy-6Qa"/>
                 <constraint firstItem="q3l-wE-awq" firstAttribute="top" secondItem="2T9-Tv-gor" secondAttribute="bottom" constant="20" id="bC1-co-ppb"/>

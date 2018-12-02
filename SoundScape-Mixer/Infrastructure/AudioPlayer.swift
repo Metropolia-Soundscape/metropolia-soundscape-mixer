@@ -8,6 +8,7 @@
 
 import Foundation
 import AVFoundation
+import RealmSwift
 
 class AudioPlayer: NSObject, AVAudioPlayerDelegate {
     var audioPlaying: Bool = false

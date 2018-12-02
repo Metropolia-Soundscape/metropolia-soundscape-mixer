@@ -8,7 +8,7 @@ class SoundscapesViewController: BaseViewController {
     var reuseId = "soundscapesCollectionViewCell"
 
     let realm = try! Realm()
-    var soundscapes: Results<Soundscape>?
+    var soundscapes: Results<Soundscape>!
     
     var soundscapesObserverToken: NotificationToken?
     
@@ -23,16 +23,16 @@ class SoundscapesViewController: BaseViewController {
         super.viewDidLoad()
 
         tabBarItem = UITabBarItem(title: "Soundscapes", image: nil, selectedImage: nil)
-
+        
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.backBarButtonItem?.title = ""
 
         soundscapesCollectionView.register(UINib(nibName: "SoundscapesCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: reuseId)
         soundscapesCollectionView.dataSource = self
         soundscapesCollectionView.delegate = self
         setUpAddButton()
-        
         soundscapes = realm.objects(Soundscape.self)
         soundscapesObserverToken = soundscapes?.observe({ (_) in
             self.soundscapesCollectionView.reloadData()
@@ -84,7 +84,10 @@ extension SoundscapesViewController: UICollectionViewDataSource {
 
 extension SoundscapesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        let soundscapeVC = CreateSoundscapeViewController()
+        soundscapeVC.newSoundscape = false
+        soundscapeVC.soundscape = soundscapes[indexPath.row]
+        navigationController?.pushViewController(soundscapeVC, animated: true)
     }
 }
 

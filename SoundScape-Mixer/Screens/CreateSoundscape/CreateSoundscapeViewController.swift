@@ -10,6 +10,7 @@
 
 import UIKit
 import RealmSwift
+import Realm
 
 // MARK: SoundscapeViewController Implementation
 class CreateSoundscapeViewController: UIViewController {
@@ -18,13 +19,18 @@ class CreateSoundscapeViewController: UIViewController {
     
     @IBOutlet weak var audioCollectionView: UICollectionView!
     @IBOutlet weak var recorderBtn: UIButton!
-    @IBOutlet weak var musicLibraryBtn: UIButton!
+    @IBOutlet weak var libraryBtn: UIButton!
     @IBOutlet weak var playSoundscapeBtn: UIButton!
     
+    var cancelBtn: UIBarButtonItem!
+    var saveBtn: UIBarButtonItem!
+    var editBtn: UIBarButtonItem!
+
     let screenSize: CGRect = UIScreen.main.bounds
+    var newSoundscape: Bool = true
     let player = AudioPlayer.sharedInstance
     var soundscape: Soundscape?
-    
+    var log: String?
     private let reuseId = "createSoundscapeCollectionViewCell"
     
     var items: [Audio] = [] {
@@ -55,13 +61,19 @@ class CreateSoundscapeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelBtnPressed))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveBtnPressed))
-        navigationItem.rightBarButtonItem?.isEnabled = false
+        
         audioCollectionView.register(UINib(nibName: "CreateSoundscapeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: reuseId)
         audioCollectionView.dataSource = self
         audioCollectionView.delegate = self
-        playSoundscapeBtn.isHidden = true
+        
+        navigationItem.largeTitleDisplayMode = .never
+        
+        setupView()
+        if let soundscape = soundscape {
+            soundscape.audio.forEach {
+                items.append($0)
+            }
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -69,59 +81,34 @@ class CreateSoundscapeViewController: UIViewController {
         player.stopSoundscape()
     }
     
+    func setupView() {
+        cancelBtn = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelBtnPressed))
+        saveBtn = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveBtnPressed))
+        editBtn = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editBtnPressed))
+
+        switch newSoundscape {
+        case true:
+            navigationItem.leftBarButtonItem = cancelBtn
+            navigationItem.rightBarButtonItem = saveBtn
+            navigationItem.rightBarButtonItem?.isEnabled = false
+            playSoundscapeBtn.isEnabled = false
+        case false:
+            navigationItem.rightBarButtonItem = editBtn
+            libraryBtn.isEnabled = false
+            recorderBtn.isEnabled = false
+            playSoundscapeBtn.isEnabled = true
+        }
+    }
+    
     // MARK: IBActions
     
-    @objc private func cancelBtnPressed() {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    @objc private func saveBtnPressed() {
-        let alertController = UIAlertController(title: "Saving soundscape file",
-                                                message: "Please input your file name", preferredStyle: .alert)
-        alertController.addTextField { (textField) in
-            textField.placeholder = "New soundscape"
-        }
-        
-        let action = UIAlertAction(title: "Save", style: .default) { (action: UIAlertAction) in
-            let realm = try! Realm()
-            if let soundscape = self.soundscape {
-                if let soundscapeName = alertController.textFields?.first?.text {
-                    soundscape.name = soundscapeName
-                }
-                try! realm.write {
-                    realm.add(soundscape)
-                }
-            }
-            self.dismiss(animated: true, completion: nil)
-        }
-        
-        alertController.addAction(action)
-        present(alertController, animated: true, completion: nil)
-        //        if let url = URL(string: "http://resourcespace.tekniikanmuseo.fi/filestore/2/8/2_9759fa45847ae7a/282_f1a7c8f3ba0fd75.wav?v=2015-11-23+13%3A42%3A18") {
-        //            let docDirURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        //            let desURL = docDirURL.appendingPathComponent(url.lastPathComponent)
-        //            print(desURL)
-        //
-        //            URLSession.shared.downloadTask(with: url, completionHandler: { (location, response, error) -> Void in
-        //                guard let location = location, error == nil else { return }
-        //                do {
-        //                    try FileManager.default.moveItem(at: location, to: desURL)
-        //                } catch let error as NSError {
-        //                    print(error.localizedDescription)
-        //                }
-        //            }).resume()
-        //        }
-        
-        //        displayWarningAlert(withTitle: <#T##String?#>, errorMessage: <#T##String?#>, cancelHandler: <#T##(() -> Void)?##(() -> Void)?##() -> Void#>)
-    }
-    
-    @IBAction func audioBtnPressed(_ sender: Any) {
+    @IBAction func recorderBtn(_ sender: Any) {
         let audioVC = AudioRecorderVC()
         let navVC = UINavigationController(rootViewController: audioVC)
         self.present(navVC, animated: true, completion: nil)
     }
     
-    @IBAction func musicLibraryPressed(_ sender: UIButton) {
+    @IBAction func libraryBtnPressed(_ sender: UIButton) {
         let libraryViewController = LibraryViewController(appController: AppController(UIWindow()))
         libraryViewController.delegate = self
         let libNavVC = UINavigationController(rootViewController: libraryViewController)
@@ -137,6 +124,52 @@ class CreateSoundscapeViewController: UIViewController {
             player.playSoundscape(audio: items)
         }
     }
+    
+    @objc private func cancelBtnPressed() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc private func editBtnPressed() {
+        isEditing = true
+        navigationItem.rightBarButtonItem = saveBtn
+        navigationItem.rightBarButtonItem?.isEnabled = false
+        libraryBtn.isEnabled = true
+        recorderBtn.isEnabled = true
+        audioCollectionView.reloadData()
+    }
+    
+    @objc private func saveBtnPressed() {
+        let alertController = UIAlertController(title: "Saving soundscape file",
+                                                message: "Please input your file name", preferredStyle: .alert)
+        alertController.addTextField { (textField) in
+            textField.placeholder = "New soundscape"
+        }
+        
+        let action = UIAlertAction(title: "Save", style: .default) { (action: UIAlertAction) in
+            let realm = try! Realm()
+            if let soundscape = self.soundscape {
+                if let soundscapeName = alertController.textFields?.first?.text {
+                    soundscape.name = soundscapeName
+                }
+                if let log = self.log {
+                    soundscape.log = log
+                }
+                
+                self.items.forEach { self.soundscape?.audio.append($0) }
+                
+                try! realm.write {
+                    realm.add(soundscape)
+                }
+            }
+            if (self.presentingViewController != nil) {
+                self.navigationController?.popToRootViewController(animated: true)
+            }
+            self.dismiss(animated: true, completion: nil)
+        }
+        
+        alertController.addAction(action)
+        present(alertController, animated: true, completion: nil)
+    }
 }
 
 extension CreateSoundscapeViewController: UICollectionViewDataSource {
@@ -149,6 +182,7 @@ extension CreateSoundscapeViewController: UICollectionViewDataSource {
         cell.delegate = self
         let audio = items[indexPath.row]
         cell.audioNameLabel.text = audio.title
+        cell.deleteAudioButton.isHidden = !isEditing
         
         var color1: String {
             switch audio.categoryType! {
@@ -181,17 +215,20 @@ extension CreateSoundscapeViewController: UICollectionViewDataSource {
 
 extension CreateSoundscapeViewController: LibraryViewControllerDelegate {
     func libraryViewController(_ viewController: UIViewController, didSelectAudio audio: Audio) {
-        self.items.append(audio)
-        guard let soundscape = soundscape else { return }
-        
-        if let title = audio.title {
-            let logMessage = "Added \(title).\n"
-            
-            soundscape.log.append(logMessage)
-            
+        switch newSoundscape {
+        case true:
+            self.items.append(audio)
+            if let title = audio.title {
+                let logMessage = "Added \(title).\n"
+                if var log = log {
+                    log.append(logMessage)
+                } else {
+                    log = logMessage
+                }
+            }
+        case false:
+            soundscape?.audio.append(audio)
         }
-        
-        soundscape.audio.append(audio)
     }
 }
 
