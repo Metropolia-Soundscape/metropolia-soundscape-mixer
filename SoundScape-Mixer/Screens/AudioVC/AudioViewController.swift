@@ -14,16 +14,7 @@ class AudioViewController: UIViewController {
     
     weak var delegate: AudioViewControllerDelegate?
     
-    private lazy var downloadsSession: URLSession = {
-        let configuration = URLSessionConfiguration.background(withIdentifier: "dafadfadf")
-        return URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
-    }()
-    
-    private lazy var downloadService: DownloadService = {
-        let service = DownloadService()
-        service.session = downloadsSession
-        return service
-    }()
+    private var downloadService: DownloadService = DownloadService.shared
     
     var audioPlayer: AVPlayer?
     var category: AudioCategory?
@@ -40,13 +31,11 @@ class AudioViewController: UIViewController {
     var items: [Audio] = [] {
         didSet {
             cellViewModels = items.map {
-                let downloading = downloadService.activeDownloads.operation(for: $0.downloadURL)?.downloading ?? false
                 let downloaded = FileManager.default.downloadedFileExist(for: $0)
-                let progress = downloadService.activeDownloads.operation(for: $0.downloadURL)?.progress ?? 0.0
                 return AudioCollectionViewCellModel.viewModel(for: $0,
-                                                              downloading: downloading,
+                                                              downloading: false,
                                                               downloaded: downloaded,
-                                                              progress: progress)
+                                                              progress: 0.0)
             }
             
             if fetchedItems.count == 0 {
@@ -69,10 +58,7 @@ class AudioViewController: UIViewController {
         audioCollectionView.delegate = self
         navigationItem.largeTitleDisplayMode = .never
         searchBar.delegate = self
-    }
-    
-    deinit {
-        downloadsSession.invalidateAndCancel()
+        downloadService.delegates.add(self)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -150,7 +136,7 @@ extension AudioViewController: AudioCollectionViewCellDelegate {
         
         audioCollectionView.reloadItems(at: [indexPath])
         
-        downloadService.download(audio)
+        DownloadService.shared.download(audio)
     }
     
     func audioCollectionViewCellDidTapPauseDownloadButton(_ cell: AudioCollectionViewCell) {
@@ -189,92 +175,6 @@ extension AudioViewController: AudioCollectionViewCellDelegate {
     }
 }
 
-extension AudioViewController: URLSessionDownloadDelegate {
-    func urlSession(_ session: URLSession,
-                    downloadTask: URLSessionDownloadTask,
-                    didFinishDownloadingTo location: URL) {
-        
-        //        if let url = URL(string: "http://resourcespace.tekniikanmuseo.fi/filestore/2/8/2_9759fa45847ae7a/282_f1a7c8f3ba0fd75.wav?v=2015-11-23+13%3A42%3A18") {
-        //            let docDirURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        //            let desURL = docDirURL.appendingPathComponent(url.lastPathComponent)
-        //            print(desURL)
-        //
-        //            URLSession.shared.downloadTask(with: url, completionHandler: { (location, response, error) -> Void in
-        //                guard let location = location, error == nil else { return }
-        //                do {
-        //                    try FileManager.default.moveItem(at: location, to: desURL)
-        //                } catch let error as NSError {
-        //                    print(error.localizedDescription)
-        //                }
-        //            }).resume()
-        //        }
-        
-        DispatchQueue.main.async {
-            guard let downloadURL = downloadTask.originalRequest?.url,
-                let downloadOperation = self.downloadService.activeDownloads.operation(for: downloadURL) else {
-                    return
-            }
-            
-            if let index = self.downloadService.activeDownloads.index(of: downloadOperation) {
-                self.downloadService.activeDownloads.remove(at: index)
-            }
-            
-            let fileManager = FileManager.default
-            let destinationURL = FileManager.default.localFileURL(for: downloadOperation.url)
-            try? fileManager.removeItem(at: destinationURL)
-            
-            // Reload the data
-            if var cellViewModel = self.cellViewModels.filter({ URL(string: $0.url!)! == downloadOperation.url }).first,
-                let index = self.cellViewModels.index(of: cellViewModel) {
-                
-                cellViewModel.downloaded = true
-                cellViewModel.downloading = false
-                self.cellViewModels[index] = cellViewModel
-                
-                self.audioCollectionView.reloadItems(at: [IndexPath(row: index, section: 0)])
-            }
-            
-            do {
-                try fileManager.copyItem(at: location, to: destinationURL)
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
-    }
-    
-    func urlSession(_ session: URLSession,
-                    downloadTask: URLSessionDownloadTask,
-                    didWriteData bytesWritten: Int64,
-                    totalBytesWritten: Int64,
-                    totalBytesExpectedToWrite: Int64) {
-        DispatchQueue.main.async {
-            guard let downloadURL = downloadTask.originalRequest?.url,
-                let downloadOperation = self.downloadService.activeDownloads.operation(for: downloadURL) else {
-                    return
-            }
-            
-            let progress = Float(totalBytesWritten / totalBytesExpectedToWrite)
-            
-            if let index = self.downloadService.activeDownloads.index(of: downloadOperation) {
-                let downloadOperation = self.downloadService.activeDownloads[index]
-                downloadOperation.downloading = true
-                downloadOperation.progress = progress
-            }
-            
-            // Update UI
-            if var cellViewModel = self.cellViewModels.filter({ URL(string: $0.url!)! == downloadURL }).first,
-                let index = self.cellViewModels.index(of: cellViewModel) {
-                cellViewModel.downloaded = false
-                cellViewModel.downloading = true
-                cellViewModel.progress = progress
-                
-                self.cellViewModels[index] = cellViewModel
-                self.audioCollectionView.reloadItems(at: [IndexPath(row: index, section: 0)])
-            }
-        }
-    }
-}
-
 extension AudioViewController: UISearchBarDelegate {
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         print("Did end editing")
@@ -289,3 +189,46 @@ extension AudioViewController: UISearchBarDelegate {
     }
 }
 
+extension AudioViewController: DownloadServiceDelegate {
+    func downloadServiceDidFinishDownloading(_ service: DownloadService, operation: DownloadOperation) {
+        guard let fileLocation = operation.downloadedFileURL else { return }
+
+        let destinationURL = FileManager.default.localFileURL(for: operation.url)
+        try? FileManager.default.removeItem(at: destinationURL)
+
+        // Reload UI
+        DispatchQueue.main.sync {
+            if var cellViewModel = self.cellViewModels.filter({ URL(string: $0.url!)! == operation.url }).first,
+                let index = self.cellViewModels.index(of: cellViewModel) {
+
+                cellViewModel.downloaded = true
+                cellViewModel.downloading = false
+                self.cellViewModels[index] = cellViewModel
+
+                    self.audioCollectionView.reloadItems(at: [IndexPath(row: index, section: 0)])
+            }
+        }
+
+        do {
+            try FileManager.default.copyItem(at: fileLocation, to: destinationURL)
+        } catch {
+            print(error.localizedDescription)
+        }
+
+    }
+
+    func downloadService(_ service: DownloadService, operation: DownloadOperation, didUpdateProgress progress: Float) {
+        DispatchQueue.main.async {
+            print(progress)
+            if var cellViewModel = self.cellViewModels.filter({ URL(string: $0.url!)! == operation.url }).first,
+                let index = self.cellViewModels.index(of: cellViewModel) {
+                cellViewModel.downloaded = false
+                cellViewModel.progress = progress
+                cellViewModel.downloading = true
+
+                self.cellViewModels[index] = cellViewModel
+                self.audioCollectionView.reloadItems(at: [IndexPath(row: index, section: 0)])
+            }
+        }
+    }
+}
