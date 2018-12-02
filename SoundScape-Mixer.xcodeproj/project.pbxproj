@@ -40,8 +40,8 @@
 		FA7281C3219864FE009BF538 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7281C2219864FE009BF538 /* MainTabBarController.swift */; };
 		FA856D3D21AB55D7002A7D95 /* AppFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA856D3C21AB55D7002A7D95 /* AppFileManager.swift */; };
 		FA856D3F21AB58FA002A7D95 /* ResourcesFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA856D3E21AB58FA002A7D95 /* ResourcesFileManager.swift */; };
-		FA856D8D21AD788C002A7D95 /* AudioRecorderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA856D8C21AD788B002A7D95 /* AudioRecorderVC.swift */; };
-		FA856D8F21AD7890002A7D95 /* AudioRecorderVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA856D8E21AD7890002A7D95 /* AudioRecorderVC.xib */; };
+		FA856D8D21AD788C002A7D95 /* AudioRecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA856D8C21AD788B002A7D95 /* AudioRecorderViewController.swift */; };
+		FA856D8F21AD7890002A7D95 /* AudioRecorderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA856D8E21AD7890002A7D95 /* AudioRecorderViewController.xib */; };
 		FA856D9D21AD79AC002A7D95 /* AudioCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA856D9921AD79AB002A7D95 /* AudioCollectionViewCell.swift */; };
 		FA856D9E21AD79AC002A7D95 /* AudioViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA856D9A21AD79AB002A7D95 /* AudioViewController.xib */; };
 		FA856D9F21AD79AC002A7D95 /* AudioCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA856D9B21AD79AB002A7D95 /* AudioCollectionViewCell.xib */; };
@@ -112,8 +112,8 @@
 		FA7281D72198FA95009BF538 /* Audio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio.swift; sourceTree = "<group>"; };
 		FA856D3C21AB55D7002A7D95 /* AppFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFileManager.swift; sourceTree = "<group>"; };
 		FA856D3E21AB58FA002A7D95 /* ResourcesFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesFileManager.swift; sourceTree = "<group>"; };
-		FA856D8C21AD788B002A7D95 /* AudioRecorderVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRecorderVC.swift; sourceTree = "<group>"; };
-		FA856D8E21AD7890002A7D95 /* AudioRecorderVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioRecorderVC.xib; sourceTree = "<group>"; };
+		FA856D8C21AD788B002A7D95 /* AudioRecorderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRecorderViewController.swift; sourceTree = "<group>"; };
+		FA856D8E21AD7890002A7D95 /* AudioRecorderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioRecorderViewController.xib; sourceTree = "<group>"; };
 		FA856D9921AD79AB002A7D95 /* AudioCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioCollectionViewCell.swift; sourceTree = "<group>"; };
 		FA856D9A21AD79AB002A7D95 /* AudioViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioViewController.xib; sourceTree = "<group>"; };
 		FA856D9B21AD79AB002A7D95 /* AudioCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -314,8 +314,8 @@
 		FA856D8B21AD785F002A7D95 /* AudioRecorder */ = {
 			isa = PBXGroup;
 			children = (
-				FA856D8C21AD788B002A7D95 /* AudioRecorderVC.swift */,
-				FA856D8E21AD7890002A7D95 /* AudioRecorderVC.xib */,
+				FA856D8C21AD788B002A7D95 /* AudioRecorderViewController.swift */,
+				FA856D8E21AD7890002A7D95 /* AudioRecorderViewController.xib */,
 			);
 			path = AudioRecorder;
 			sourceTree = "<group>";
@@ -442,7 +442,7 @@
 				4183491D2187082F0048E24A /* LaunchScreen.storyboard in Resources */,
 				4183491A2187082F0048E24A /* Assets.xcassets in Resources */,
 				AC3F5DEF21A4D62700EAA7ED /* CategoryCollectionViewCell.xib in Resources */,
-				FA856D8F21AD7890002A7D95 /* AudioRecorderVC.xib in Resources */,
+				FA856D8F21AD7890002A7D95 /* AudioRecorderViewController.xib in Resources */,
 				AC1761E6219BD7DE00895E9F /* ProfileViewController.xib in Resources */,
 				FA9123ED219C388A00553B7E /* CreateSoundscapeViewController.xib in Resources */,
 				FA856D9E21AD79AC002A7D95 /* AudioViewController.xib in Resources */,
@@ -550,7 +550,7 @@
 				FA6A5FE021AF42F100BDCD82 /* CategoryCollectionViewCell.swift in Sources */,
 				4146038321A1AB6500D772AB /* UIColor.swift in Sources */,
 				FA856D3D21AB55D7002A7D95 /* AppFileManager.swift in Sources */,
-				FA856D8D21AD788C002A7D95 /* AudioRecorderVC.swift in Sources */,
+				FA856D8D21AD788C002A7D95 /* AudioRecorderViewController.swift in Sources */,
 				FA856D3F21AB58FA002A7D95 /* ResourcesFileManager.swift in Sources */,
 				FAE0EAB021AAC30600B0E79D /* AudioPlayer.swift in Sources */,
 				FA856DA021AD79AC002A7D95 /* AudioViewController.swift in Sources */,

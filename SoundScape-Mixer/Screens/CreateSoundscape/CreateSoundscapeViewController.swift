@@ -38,13 +38,13 @@ class CreateSoundscapeViewController: UIViewController {
             soundscape = Soundscape()
             if (items.isEmpty) {
                 navigationItem.rightBarButtonItem?.isEnabled = false
-                playSoundscapeBtn.isHidden = true
+                playSoundscapeBtn.isEnabled = false
                 player.stopSoundscape()
                 playing = false
                 soundscape = nil
             } else {
                 navigationItem.rightBarButtonItem?.isEnabled = true
-                playSoundscapeBtn.isHidden = false
+                playSoundscapeBtn.isEnabled = true
             }
             audioCollectionView.reloadData()
         }
@@ -103,7 +103,8 @@ class CreateSoundscapeViewController: UIViewController {
     // MARK: IBActions
     
     @IBAction func recorderBtn(_ sender: Any) {
-        let audioVC = AudioRecorderVC()
+        let audioVC = AudioRecorderViewController()
+        audioVC.delegate = self
         let navVC = UINavigationController(rootViewController: audioVC)
         self.present(navVC, animated: true, completion: nil)
     }
@@ -192,6 +193,8 @@ extension CreateSoundscapeViewController: UICollectionViewDataSource {
                 return "#414345"
             case .nature:
                 return "#AAFFA9"
+            case .record:
+                return "#FE8C00"
             }
         }
         
@@ -203,10 +206,12 @@ extension CreateSoundscapeViewController: UICollectionViewDataSource {
                 return "#232526"
             case .nature:
                 return "#11FFBD"
+            case .record:
+                return "#F83600"
             }
         }
         
-        cell.audioImageView.updateGradientColor(color1, color2)
+        cell.audioImageView.setup(color1, color2)
         cell.audioImageView.layer.cornerRadius = 5.0
         
         return cell
@@ -255,5 +260,15 @@ extension CreateSoundscapeViewController: CreateSoundscapeCollectionViewCellDele
         }
         items.remove(at: indexPath.row)
         player.players?.remove(at: indexPath.row)
+    }
+}
+
+extension CreateSoundscapeViewController: AudioRecorderViewControllerDelegate {
+    func audioRecorderViewControllerDidFinishRecording(recordingFileURL: URL) {
+        let audioRecord: Audio = Audio()
+        audioRecord.title = recordingFileURL.deletingPathExtension().lastPathComponent
+        audioRecord.downloadLink = "\(recordingFileURL)"
+        audioRecord.category = AudioCategory.record.rawValue
+        items.append(audioRecord)
     }
 }

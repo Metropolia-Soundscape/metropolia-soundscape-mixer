@@ -4,11 +4,16 @@ import UIKit
 
 public let kRecordingNumberCountKey = "kRecordingNumberCountKey"
 
-class AudioRecorderVC: UIViewController {
+protocol AudioRecorderViewControllerDelegate: class {
+    func audioRecorderViewControllerDidFinishRecording(recordingFileURL: URL)
+}
+
+class AudioRecorderViewController: UIViewController {
     @IBOutlet var recordBtn: UIButton!
     @IBOutlet var pauseBtn: UIButton!
     @IBOutlet weak var timerLbl: UILabel!
-
+    
+    var delegate: AudioRecorderViewControllerDelegate?
     var recordingSession: AVAudioSession!
     var audioRecorder: AVAudioRecorder!
     var hasPermission: Bool = false
@@ -17,6 +22,7 @@ class AudioRecorderVC: UIViewController {
 
     // TODO: Refactor this. Remove this property if neccessary
     private var tempRecordingFileURL: URL?
+    var finalFileURL: URL?
 
     private let audioFileExtension = "m4a"
     
@@ -134,9 +140,13 @@ class AudioRecorderVC: UIViewController {
                     {
                         let url = self.getDocumentDirectory().appendingPathComponent("\(fileName).\(self.audioFileExtension)")
                         if (!FileManager.default.fileExists(atPath: url.path)) {
+                            // Send file URL
+                            self.delegate?.audioRecorderViewControllerDidFinishRecording(recordingFileURL: url)
+                            
                             // Replace filename
                             try! FileManager.default.moveItem(at: tempURL, to: url)
                             alertController.dismiss(animated: true, completion: nil)
+                            self.dismiss(animated: true, completion: nil)
                         } else {
                             self.displayWarningAlert(withTitle: "Error", errorMessage: "\(fileName) already existed", cancelHandler: {
                                 self.handleSavingRecordingFile(tempURL: tempURL)
@@ -248,6 +258,6 @@ class AudioRecorderVC: UIViewController {
     }
 }
 
-extension AudioRecorderVC: AVAudioRecorderDelegate {}
+extension AudioRecorderViewController: AVAudioRecorderDelegate {}
 
 

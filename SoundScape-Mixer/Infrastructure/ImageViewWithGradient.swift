@@ -24,6 +24,12 @@ class ImageViewWithGradient: UIImageView {
         
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        myGradientLayer.frame = self.layer.bounds
+    }
+    
+    
     func setup(_ color1: String,_ color2: String) {
         myGradientLayer.startPoint = CGPoint(x: 0, y: 0.5)
         myGradientLayer.endPoint = CGPoint(x: 1, y: 0.5)
@@ -35,17 +41,4 @@ class ImageViewWithGradient: UIImageView {
         myGradientLayer.isOpaque = false
         self.layer.addSublayer(myGradientLayer)
     }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        myGradientLayer.frame = self.layer.bounds
-    }
 }
-
-extension ImageViewWithGradient {
-    func updateGradientColor(_ color1: String,_ color2: String) {
-        setup(color1, color2)
-    }
-}
-
-

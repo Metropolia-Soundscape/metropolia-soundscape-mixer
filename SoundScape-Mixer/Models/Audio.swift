@@ -5,6 +5,7 @@ enum AudioCategory: String {
     case human
     case machine
     case nature
+    case record
     
     static var allCategories: [AudioCategory] = [.human, .machine, .nature]
 }
