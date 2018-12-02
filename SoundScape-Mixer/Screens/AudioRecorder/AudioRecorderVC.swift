@@ -48,21 +48,18 @@ class AudioRecorderVC: UIViewController {
 
     private var isFinishedRecording = false {
         didSet {
-            if isFinishedRecording {
-                saveBtn.isEnabled = true
-            } else {
-                saveBtn.isEnabled = false
-            }
+            doneBtn.isEnabled = isFinishedRecording
         }
     }
 
     lazy var cancelBtn: UIBarButtonItem = {
-        let btn = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelBtnPressed))
+//        let btn = UIBarButtonItem(title: "Cancel", style: .cancel, target: self, action: #selector(cancelBtnPressed))
+        let btn = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action:  #selector(cancelBtnPressed))
         return btn
     }()
 
-    lazy var saveBtn: UIBarButtonItem = {
-        let btn = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveBtnPressed))
+    lazy var doneBtn: UIBarButtonItem = {
+        let btn = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneBtnPressed))
         btn.isEnabled = false
         return btn
     }()
@@ -89,7 +86,7 @@ class AudioRecorderVC: UIViewController {
     private func setupView() {
         navigationItem.title = "Recorder"
         navigationItem.leftBarButtonItem = cancelBtn
-        navigationItem.rightBarButtonItem = saveBtn
+        navigationItem.rightBarButtonItem = doneBtn
     }
 
     private func getDocumentDirectory() -> URL {
@@ -153,6 +150,10 @@ class AudioRecorderVC: UIViewController {
                 }
         }
 
+        alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: { _ in
+            alertController.dismiss(animated: true, completion: nil)
+        }))
+        
         alertController.addAction(confirmAction)
 
         present(alertController, animated: true, completion: nil)
@@ -194,9 +195,7 @@ class AudioRecorderVC: UIViewController {
             audioRecorder.stop()
             audioRecorder = nil
             isRecording = false
-            if let temp = tempRecordingFileURL {
-                handleSavingRecordingFile(tempURL: temp)
-            }
+            isFinishedRecording = true
         }
     }
 
@@ -218,8 +217,10 @@ class AudioRecorderVC: UIViewController {
         dismiss(animated: true, completion: nil)
     }
 
-    @objc private func saveBtnPressed() {
-        print("Save btn pressed")
+    @objc private func doneBtnPressed() {
+        if let temp = tempRecordingFileURL {
+            handleSavingRecordingFile(tempURL: temp)
+        }
     }
     
     @objc private func updateAudioMeter(timer: Timer) {

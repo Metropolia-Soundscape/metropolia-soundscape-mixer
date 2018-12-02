@@ -35,13 +35,12 @@ class ProfileViewController: BaseViewController {
         
         getAllRecordings()
     }
-
+    
     @IBAction func logoutButtonPressed(_: UIButton) {
         appController.logout()
     }
     
     private func getAllRecordings() {
-        
         do {
             let contentOfRecordsFolder = try FileManager.default.contentsOfDirectory(atPath: getDocumentDirectory().relativePath)
             
@@ -51,7 +50,6 @@ class ProfileViewController: BaseViewController {
         } catch let err {
             print(err.localizedDescription)
         }
-        
     }
     
     private func getDocumentDirectory() -> URL {

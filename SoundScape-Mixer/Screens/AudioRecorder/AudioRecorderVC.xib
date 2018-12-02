@@ -24,38 +24,37 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NCu-ds-wJZ">
-                    <rect key="frame" x="135.5" y="318.5" width="104" height="30"/>
+                    <rect key="frame" x="117" y="522" width="141" height="39"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
                     <state key="normal" title="Start recording"/>
                     <connections>
                         <action selector="recordBtnPressed:" destination="-1" eventType="touchUpInside" id="Caf-Lr-wFH"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dnx-Jx-1vM">
+                    <rect key="frame" x="114" y="314.5" width="147" height="38.5"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MxU-Bc-2MU">
-                    <rect key="frame" x="166.5" y="368.5" width="42" height="30"/>
+                    <rect key="frame" x="161" y="591" width="53" height="36"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                     <state key="normal" title="Pause"/>
                     <connections>
                         <action selector="pauseBtnPressed:" destination="-1" eventType="touchUpInside" id="JHS-BN-ovd"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dnx-Jx-1vM">
-                    <rect key="frame" x="122.5" y="180" width="130" height="130"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="130" id="WuZ-Hm-mIa"/>
-                        <constraint firstAttribute="height" constant="130" id="ZEZ-xZ-ZW8"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="NCu-ds-wJZ" firstAttribute="centerX" secondItem="W7m-hi-V0r" secondAttribute="centerX" id="9ML-WL-fPf"/>
-                <constraint firstItem="NCu-ds-wJZ" firstAttribute="centerY" secondItem="W7m-hi-V0r" secondAttribute="centerY" id="HKh-ra-zFC"/>
-                <constraint firstItem="NCu-ds-wJZ" firstAttribute="top" secondItem="Dnx-Jx-1vM" secondAttribute="bottom" constant="8.5" id="SB8-aa-nnP"/>
-                <constraint firstItem="MxU-Bc-2MU" firstAttribute="top" secondItem="NCu-ds-wJZ" secondAttribute="bottom" constant="20" id="hWI-yV-K69"/>
-                <constraint firstItem="MxU-Bc-2MU" firstAttribute="centerX" secondItem="W7m-hi-V0r" secondAttribute="centerX" id="pqX-yA-slW"/>
+                <constraint firstItem="UwD-nm-rWo" firstAttribute="bottom" secondItem="MxU-Bc-2MU" secondAttribute="bottom" constant="40" id="6RA-aT-EdO"/>
+                <constraint firstItem="Dnx-Jx-1vM" firstAttribute="centerY" secondItem="W7m-hi-V0r" secondAttribute="centerY" id="7L9-fR-YuU"/>
+                <constraint firstItem="MxU-Bc-2MU" firstAttribute="top" secondItem="NCu-ds-wJZ" secondAttribute="bottom" constant="30" id="byh-vo-gYT"/>
+                <constraint firstItem="Dnx-Jx-1vM" firstAttribute="centerX" secondItem="W7m-hi-V0r" secondAttribute="centerX" id="im1-sD-1jn"/>
+                <constraint firstItem="NCu-ds-wJZ" firstAttribute="centerX" secondItem="W7m-hi-V0r" secondAttribute="centerX" id="izC-CX-f58"/>
                 <constraint firstItem="Dnx-Jx-1vM" firstAttribute="centerX" secondItem="W7m-hi-V0r" secondAttribute="centerX" id="wE3-wN-UYR"/>
+                <constraint firstItem="MxU-Bc-2MU" firstAttribute="centerX" secondItem="W7m-hi-V0r" secondAttribute="centerX" id="yeC-TW-QSV"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="UwD-nm-rWo"/>
             <point key="canvasLocation" x="-199.19999999999999" y="182.15892053973016"/>
