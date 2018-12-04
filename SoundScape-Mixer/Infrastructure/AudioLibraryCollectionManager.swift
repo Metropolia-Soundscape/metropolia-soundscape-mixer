@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import KeychainSwift
 
 protocol LibraryCollectionManager {
     var collectionName: String? { get }
@@ -15,7 +16,9 @@ protocol LibraryCollectionManager {
 }
 
 class AudioLibraryCollectionManager: LibraryCollectionManager {
-    private let userDefault = UserDefaults.standard
+    
+    private let keychain = KeychainSwift()
+    
     private let key = "com.soundscape.audiolibraryCollectionManager"
     
     static let shared = AudioLibraryCollectionManager()
@@ -23,11 +26,10 @@ class AudioLibraryCollectionManager: LibraryCollectionManager {
     private init() {}
     
     var collectionName: String? {
-        return userDefault.string(forKey: key)
+        return keychain.get(key)
     }
     
     func save(collectionName: String) {
-        userDefault.set(collectionName, forKey: key)
-        userDefault.synchronize()
+        keychain.set(collectionName, forKey: key)
     }
 }

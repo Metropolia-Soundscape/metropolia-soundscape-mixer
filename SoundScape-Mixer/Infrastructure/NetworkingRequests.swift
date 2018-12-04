@@ -1,6 +1,7 @@
 import UIKit
 
 extension Network {
+    
     func authenticate(username: String, password: String, completion: @escaping (AuthJSON?, Error?) -> Void) {
         let dict = ["username": username, "password": password]
         var body: Network.Body?
@@ -12,10 +13,9 @@ extension Network {
         }
     }
 
-    func getCategoryAudio(collection: String, category: String, completion: @escaping ([[Audio]]?, Error?) -> Void) {
-        
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
-            let token = appDelegate.appController.loginStateService.state.token else { return }
+    func getCategoryAudio(category: String, completion: @escaping ([[Audio]]?, Error?) -> Void) {
+        guard let token = AppDelegate.appDelegate.appController.loginStateService.state.token,
+            let collection = AudioLibraryCollectionManager.shared.collectionName else { return }
         let params = ["key": token,
                       "collection": collection,
                       "link": "true",
@@ -28,5 +28,28 @@ extension Network {
         ) { (json: [[Audio]]?, error) in
             completion(json, error)
         }
+    }
+    
+    func uploadRecord(recordName: String) {
+        guard let token = AppDelegate.appDelegate.appController.loginStateService.state.token,
+            let collection = AudioLibraryCollectionManager.shared.collectionName else { return }
+        let params = ["key": token,
+                     "collection": collection,
+                     "resourcetype": "4",
+                     "field8": recordName,
+                     "field74": "record",
+                     "field75": "story",
+                     "field76": "soundscape"]
+    }
+    
+    func uploadSoundscapeStructure(soundscapeName: String, soundscapeStructure: Soundscape) {
+        guard let token = AppDelegate.appDelegate.appController.loginStateService.state.token,
+            let collection = AudioLibraryCollectionManager.shared.collectionName else { return }
+        let params = ["key": token,
+                      "collection": collection,
+                      "resourcetype": "5",
+                      "field8": soundscapeName,
+                      "field75": "story",
+                      "field76": "soundscape"]
     }
 }

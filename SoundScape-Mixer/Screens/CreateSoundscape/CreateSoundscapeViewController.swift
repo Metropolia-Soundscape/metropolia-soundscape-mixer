@@ -70,7 +70,7 @@ class CreateSoundscapeViewController: UIViewController {
         
         setupView()
         if let soundscape = soundscape {
-            soundscape.audio.forEach {
+            soundscape.audioArray.forEach {
                 items.append($0)
             }
         }
@@ -84,7 +84,7 @@ class CreateSoundscapeViewController: UIViewController {
     func setupView() {
         cancelBtn = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelBtnPressed))
         saveBtn = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveBtnPressed))
-        editBtn = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editBtnPressed))
+//        editBtn = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editBtnPressed))
 
         switch newSoundscape {
         case true:
@@ -94,8 +94,8 @@ class CreateSoundscapeViewController: UIViewController {
             playSoundscapeBtn.isEnabled = false
         case false:
             navigationItem.rightBarButtonItem = editBtn
-            libraryBtn.isEnabled = false
-            recorderBtn.isEnabled = false
+            libraryBtn.isHidden = true
+            recorderBtn.isHidden = true
             playSoundscapeBtn.isEnabled = true
         }
     }
@@ -130,14 +130,14 @@ class CreateSoundscapeViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    @objc private func editBtnPressed() {
-        isEditing = true
-        navigationItem.rightBarButtonItem = saveBtn
-        navigationItem.rightBarButtonItem?.isEnabled = false
-        libraryBtn.isEnabled = true
-        recorderBtn.isEnabled = true
-        audioCollectionView.reloadData()
-    }
+//    @objc private func editBtnPressed() {
+//        isEditing = true
+//        navigationItem.rightBarButtonItem = saveBtn
+//        navigationItem.rightBarButtonItem?.isEnabled = false
+//        libraryBtn.isEnabled = true
+//        recorderBtn.isEnabled = true
+//        audioCollectionView.reloadData()
+//    }
     
     @objc private func saveBtnPressed() {
         let alertController = UIAlertController(title: "Saving soundscape file",
@@ -156,7 +156,7 @@ class CreateSoundscapeViewController: UIViewController {
                     soundscape.log = log
                 }
                 
-                self.items.forEach { self.soundscape?.audio.append($0) }
+                self.items.forEach { self.soundscape?.audioArray.append($0) }
                 
                 try! realm.write {
                     realm.add(soundscape)
@@ -232,7 +232,7 @@ extension CreateSoundscapeViewController: LibraryViewControllerDelegate {
                 }
             }
         case false:
-            soundscape?.audio.append(audio)
+            soundscape?.audioArray.append(audio)
         }
     }
 }

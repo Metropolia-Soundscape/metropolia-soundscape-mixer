@@ -16,7 +16,6 @@ class AudioViewController: UIViewController {
     
     private var downloadService: DownloadService = DownloadService.shared
     
-    var audioPlayer: AVPlayer?
     var category: AudioCategory?
     var cellViewModels: [AudioCollectionViewCellModel] = []
     let screenSize: CGRect = UIScreen.main.bounds
@@ -69,10 +68,9 @@ class AudioViewController: UIViewController {
         
         let appController = AppDelegate.appDelegate.appController
         let network = appController?.networking
-        let collection = AudioLibraryCollectionManager.shared.collectionName
         
-        if let category = category, let collection = collection {
-            network?.getCategoryAudio(collection: collection, category: category.rawValue) { [weak self] audioArray, _ in
+        if let category = category {
+            network?.getCategoryAudio(category: category.rawValue) { [weak self] audioArray, _ in
                 if let audio = audioArray {
                     DispatchQueue.main.async {
                         self?.items = audio.compactMap { $0.first }
@@ -84,7 +82,7 @@ class AudioViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        audioPlayer = nil
+        player.stopAudio()
     }
     
     // MARK: Utils
@@ -163,7 +161,7 @@ extension AudioViewController: AudioCollectionViewCellDelegate {
     func audioCollectionViewCellDidTapPlayButton(_ cell: AudioCollectionViewCell) {
         if let playingIndexPath = playingCellIndex {
             playAudio(false, at: playingIndexPath.row)
-            audioPlayer?.pause()
+            player.stopAudio()
             playingCellIndex = nil
         }
 
@@ -185,8 +183,7 @@ extension AudioViewController: AudioCollectionViewCellDelegate {
         }
         
         if let fileURL = audioFileURL {
-            audioPlayer = AVPlayer(url:fileURL)
-            audioPlayer?.play()
+            player.playAudio(url: fileURL)
         }
     }
     
@@ -219,6 +216,8 @@ extension AudioViewController: DownloadServiceDelegate {
         guard let fileLocation = operation.downloadedFileURL else { return }
 
         let destinationURL = FileManager.default.localFileURL(for: operation.url)
+        print (destinationURL)
+        print (fileLocation)
         try? FileManager.default.removeItem(at: destinationURL)
 
         // Reload UI
@@ -229,7 +228,6 @@ extension AudioViewController: DownloadServiceDelegate {
                 cellViewModel.downloaded = true
                 cellViewModel.downloading = false
                 self.cellViewModels[index] = cellViewModel
-
                     self.audioCollectionView.reloadItems(at: [IndexPath(row: index, section: 0)])
             }
         }
@@ -244,7 +242,6 @@ extension AudioViewController: DownloadServiceDelegate {
 
     func downloadService(_ service: DownloadService, operation: DownloadOperation, didUpdateProgress progress: Float) {
         DispatchQueue.main.async {
-            print(progress)
             if var cellViewModel = self.cellViewModels.filter({ URL(string: $0.url!)! == operation.url }).first,
                 let index = self.cellViewModels.index(of: cellViewModel) {
                 cellViewModel.downloaded = false

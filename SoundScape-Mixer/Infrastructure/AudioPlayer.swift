@@ -33,7 +33,6 @@ class AudioPlayer: NSObject, AVAudioPlayerDelegate {
         soundscapePlaying = true
         players = audio.map {
             let player = AVPlayer(url: $0.downloadURL)
-            player.volume = $0.volume
             return player
         }
         players?.forEach { $0?.play() }

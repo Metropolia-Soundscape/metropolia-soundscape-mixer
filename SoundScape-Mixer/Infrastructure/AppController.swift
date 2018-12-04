@@ -7,7 +7,7 @@ class AppController {
     var loginViewController: LoginViewController?
     var soundscapesViewController: SoundscapesViewController?
     var profileViewController: ProfileViewController?
-
+    
     let window: UIWindow
 
     init(_ window: UIWindow) {

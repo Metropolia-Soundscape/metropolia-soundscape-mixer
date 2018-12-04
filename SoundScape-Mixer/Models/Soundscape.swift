@@ -10,9 +10,10 @@ import Foundation
 import RealmSwift
 import Realm
 
-class Soundscape: Object {
+class Soundscape: Object, Codable {
     @objc dynamic var name: String = ""
     @objc dynamic var log: String = ""
     
-    var audio: List<Audio> = List<Audio>()
+    var audioArray: List<Audio> = List<Audio>()
 }
+

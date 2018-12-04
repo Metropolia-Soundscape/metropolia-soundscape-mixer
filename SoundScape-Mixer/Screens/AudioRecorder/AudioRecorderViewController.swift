@@ -191,8 +191,7 @@ class AudioRecorderViewController: UIViewController {
                 audioRecorder.isMeteringEnabled = true
                 audioRecorder.prepareToRecord()
                 audioRecorder.record()
-                
-                
+
                 meterTimer = Timer.scheduledTimer(timeInterval: 0.1, target:self, selector:#selector(self.updateAudioMeter(timer:)), userInfo:nil, repeats:true)
 
                 recordBtn.setTitle("Stop recording", for: .normal)
@@ -251,6 +250,7 @@ class AudioRecorderViewController: UIViewController {
                     self.audioRecorder = nil
 
                     isRecording = false
+                    isFinishedRecording = true
                 }
             }
         
