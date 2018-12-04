@@ -14,9 +14,10 @@ import Realm
 
 // MARK: SoundscapeViewController Implementation
 class CreateSoundscapeViewController: UIViewController {
-    
+
+    private let reuseId = "createSoundscapeCollectionViewCell"
+
     // MARK: - IBOutlets
-    
     @IBOutlet weak var audioCollectionView: UICollectionView!
     @IBOutlet weak var recorderBtn: UIButton!
     @IBOutlet weak var libraryBtn: UIButton!
@@ -27,11 +28,10 @@ class CreateSoundscapeViewController: UIViewController {
     var editBtn: UIBarButtonItem!
 
     let screenSize: CGRect = UIScreen.main.bounds
-    var newSoundscape: Bool = true
     let player = AudioPlayer.sharedInstance
     var soundscape: Soundscape?
     var log: String?
-    private let reuseId = "createSoundscapeCollectionViewCell"
+    var newSoundscape: Bool = true
     
     var items: [Audio] = [] {
         didSet {
@@ -57,7 +57,7 @@ class CreateSoundscapeViewController: UIViewController {
         }
     }
     
-    // MARK: -Object lifecycle
+    // MARK: - Lifecycle methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,7 +100,7 @@ class CreateSoundscapeViewController: UIViewController {
         }
     }
     
-    // MARK: IBActions
+    // MARK: - IBActions methods
     
     @IBAction func recorderBtn(_ sender: Any) {
         let audioVC = AudioRecorderViewController()

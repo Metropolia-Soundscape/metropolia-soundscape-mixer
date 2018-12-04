@@ -35,6 +35,12 @@ class ProfileViewController: BaseViewController {
         
         getAllRecordings()
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        getAllRecordings()
+    }
     
     @IBAction func logoutButtonPressed(_: UIButton) {
         appController.logout()
@@ -54,9 +60,6 @@ class ProfileViewController: BaseViewController {
     
     private func getDocumentDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        
-        print(paths[0])
-        
         return paths[0].appendingPathComponent("Resources/Records/")
     }
 }
@@ -75,11 +78,6 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        do {
-            try audioPlayer = AVAudioPlayer(contentsOf: self.getDocumentDirectory().appendingPathComponent(recordings[indexPath.row]))
-            audioPlayer.play()
-        } catch let err {
-            print(err.localizedDescription)
-        }
+        AudioPlayer.sharedInstance.playAudio(url: self.getDocumentDirectory().appendingPathComponent(recordings[indexPath.row]))
     }
 }
