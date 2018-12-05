@@ -10,6 +10,10 @@ import Foundation
 import AVFoundation
 import RealmSwift
 
+protocol AudioPlayerDelegate {
+    func audioPlayerDidFinishPlaying(audioPlaying: Bool)
+}
+
 class AudioPlayer: NSObject, AVAudioPlayerDelegate {
 
     static let sharedInstance = AudioPlayer()
@@ -19,15 +23,21 @@ class AudioPlayer: NSObject, AVAudioPlayerDelegate {
 
     var player: AVPlayer?
     var players: [AVPlayer?]?
+    var delegate: AudioPlayerDelegate?
+    
+    override init() {
+        super.init()
+        NotificationCenter.default.addObserver(self, selector: #selector(audioPlayerDidFinishPlaying), name: Notification.Name.AVPlayerItemDidPlayToEndTime, object: player?.currentItem)
+    }
+    
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        delegate?.audioPlayerDidFinishPlaying(audioPlaying: false)
+    }
     
     func playAudio(url: URL) {
-        stopAudio()
-
         audioPlaying = true
         player?.pause()
         player = AVPlayer(url: url)
-        player?.volume = 1.0
-        print("Playing audio with volume level: \(player!.volume)")
         player?.play()
     }
     
@@ -37,8 +47,6 @@ class AudioPlayer: NSObject, AVAudioPlayerDelegate {
     }
     
     func playSoundscape(audio: [Audio]) {
-        stopAudio()
-        
         soundscapePlaying = true
         players = audio.map {
             let player = AVPlayer(url: $0.downloadURL)

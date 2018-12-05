@@ -5,8 +5,7 @@ public let kRecordingCell: String = "kRecordingCell"
 
 class ProfileViewController: BaseViewController {
     
-    private var audioPlayer: AVAudioPlayer!
-    
+    private var player = AudioPlayer.sharedInstance
     private var recordings: [String] = [String]() {
         didSet {
             self.tableView.reloadData()
@@ -38,8 +37,12 @@ class ProfileViewController: BaseViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
         getAllRecordings()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        player.stopAudio()
     }
     
     @IBAction func logoutButtonPressed(_: UIButton) {
@@ -78,6 +81,6 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        AudioPlayer.sharedInstance.playAudio(url: self.getDocumentDirectory().appendingPathComponent(recordings[indexPath.row]))
+        player.playAudio(url: self.getDocumentDirectory().appendingPathComponent(recordings[indexPath.row]))
     }
 }

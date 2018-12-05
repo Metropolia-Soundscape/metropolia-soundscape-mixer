@@ -21,12 +21,17 @@ class AudioViewController: UIViewController {
     let screenSize: CGRect = UIScreen.main.bounds
     var playingCellIndex: IndexPath?
     
-    var fetchedItems = [Audio]() {
+    var fetchedItems = [Audio]()
+    
+    var playing: Bool = false {
         didSet {
-            print(fetchedItems.count)
+            if let playingCellIndex = playingCellIndex {
+                self.cellViewModels[playingCellIndex.row].isPlaying = playing
+                self.audioCollectionView.reloadItems(at: [playingCellIndex])
+            }
         }
     }
-    
+
     var items: [Audio] = [] {
         didSet {
             cellViewModels = items.map {
@@ -61,6 +66,7 @@ class AudioViewController: UIViewController {
         searchBar.delegate = self
 
         downloadService.delegates.add(self)
+        player.delegate = self
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -197,6 +203,12 @@ extension AudioViewController: AudioCollectionViewCellDelegate {
     }
 }
 
+extension AudioViewController: AudioPlayerDelegate {
+    func audioPlayerDidFinishPlaying(audioPlaying: Bool) {
+        playing = audioPlaying
+    }
+}
+
 extension AudioViewController: UISearchBarDelegate {
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         print("Did end editing")
@@ -216,8 +228,6 @@ extension AudioViewController: DownloadServiceDelegate {
         guard let fileLocation = operation.downloadedFileURL else { return }
 
         let destinationURL = FileManager.default.localFileURL(for: operation.url)
-        print (destinationURL)
-        print (fileLocation)
         try? FileManager.default.removeItem(at: destinationURL)
 
         // Reload UI

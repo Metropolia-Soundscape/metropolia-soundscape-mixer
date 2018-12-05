@@ -25,8 +25,8 @@ class CreateSoundscapeCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        volumeSlider.setThumbImage(UIImage(named: "circle"), for: .normal)
     }
+    
     @IBAction func volumeSliderValueChanged(_ sender: Any) {
         delegate?.changeAudioVolume(self, audioVolume: volumeSlider.value)
     }
