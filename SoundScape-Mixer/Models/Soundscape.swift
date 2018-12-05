@@ -12,8 +12,8 @@ import Realm
 
 class Soundscape: Object, Codable {
     @objc dynamic var name: String = ""
-    @objc dynamic var log: String = ""
     
+    var log: List<String> = List<String>()
     var audioArray: List<Audio> = List<Audio>()
 }
 

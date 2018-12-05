@@ -11,16 +11,23 @@ import AVFoundation
 import RealmSwift
 
 class AudioPlayer: NSObject, AVAudioPlayerDelegate {
+
+    static let sharedInstance = AudioPlayer()
+
     var audioPlaying: Bool = false
     var soundscapePlaying: Bool = false
-    static let sharedInstance = AudioPlayer()
-    
+
     var player: AVPlayer?
     var players: [AVPlayer?]?
     
     func playAudio(url: URL) {
+        stopAudio()
+
         audioPlaying = true
+        player?.pause()
         player = AVPlayer(url: url)
+        player?.volume = 1.0
+        print("Playing audio with volume level: \(player!.volume)")
         player?.play()
     }
     
@@ -30,14 +37,17 @@ class AudioPlayer: NSObject, AVAudioPlayerDelegate {
     }
     
     func playSoundscape(audio: [Audio]) {
+        stopAudio()
+        
         soundscapePlaying = true
         players = audio.map {
             let player = AVPlayer(url: $0.downloadURL)
+            player.volume = $0.volume
             return player
         }
         players?.forEach { $0?.play() }
     }
-    
+
     func stopSoundscape() {
         soundscapePlaying = false
         players = nil

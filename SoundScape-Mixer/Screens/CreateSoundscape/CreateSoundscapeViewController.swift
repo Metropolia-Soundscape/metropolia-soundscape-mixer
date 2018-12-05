@@ -14,9 +14,10 @@ import Realm
 
 // MARK: SoundscapeViewController Implementation
 class CreateSoundscapeViewController: UIViewController {
-    
+
+    private let reuseId = "createSoundscapeCollectionViewCell"
+
     // MARK: - IBOutlets
-    
     @IBOutlet weak var audioCollectionView: UICollectionView!
     @IBOutlet weak var recorderBtn: UIButton!
     @IBOutlet weak var libraryBtn: UIButton!
@@ -27,11 +28,10 @@ class CreateSoundscapeViewController: UIViewController {
     var editBtn: UIBarButtonItem!
 
     let screenSize: CGRect = UIScreen.main.bounds
-    var newSoundscape: Bool = true
     let player = AudioPlayer.sharedInstance
     var soundscape: Soundscape?
-    var log: String?
-    private let reuseId = "createSoundscapeCollectionViewCell"
+    var log: List<String> = List<String>()
+    var newSoundscape: Bool = true
     
     var items: [Audio] = [] {
         didSet {
@@ -57,7 +57,7 @@ class CreateSoundscapeViewController: UIViewController {
         }
     }
     
-    // MARK: -Object lifecycle
+    // MARK: - Lifecycle methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,7 +100,7 @@ class CreateSoundscapeViewController: UIViewController {
         }
     }
     
-    // MARK: IBActions
+    // MARK: - IBActions methods
     
     @IBAction func recorderBtn(_ sender: Any) {
         let audioVC = AudioRecorderViewController()
@@ -152,9 +152,7 @@ class CreateSoundscapeViewController: UIViewController {
                 if let soundscapeName = alertController.textFields?.first?.text {
                     soundscape.name = soundscapeName
                 }
-                if let log = self.log {
-                    soundscape.log = log
-                }
+                soundscape.log = self.log
                 
                 self.items.forEach { self.soundscape?.audioArray.append($0) }
                 
@@ -183,7 +181,12 @@ extension CreateSoundscapeViewController: UICollectionViewDataSource {
         cell.delegate = self
         let audio = items[indexPath.row]
         cell.audioNameLabel.text = audio.title
-        cell.deleteAudioButton.isHidden = !isEditing
+        cell.volumeSlider.value = audio.volume
+        
+        if !newSoundscape {
+            cell.deleteAudioButton.isHidden = true
+            cell.volumeSlider.isEnabled = false
+        }
         
         var color1: String {
             switch audio.categoryType! {
@@ -225,12 +228,9 @@ extension CreateSoundscapeViewController: LibraryViewControllerDelegate {
             self.items.append(audio)
             if let title = audio.title {
                 let logMessage = "Added \(title).\n"
-                if var log = log {
                     log.append(logMessage)
-                } else {
-                    log = logMessage
-                }
             }
+            print(log)
         case false:
             soundscape?.audioArray.append(audio)
         }
@@ -248,10 +248,9 @@ extension CreateSoundscapeViewController: UICollectionViewDelegateFlowLayout {
 
 extension CreateSoundscapeViewController: CreateSoundscapeCollectionViewCellDelegate {
     func changeAudioVolume(_ cell: CreateSoundscapeCollectionViewCell, audioVolume: Float) {
-        guard let indexPath = audioCollectionView.indexPath(for: cell) else {
-            return
-        }
+        guard let indexPath = audioCollectionView.indexPath(for: cell) else { return }
         player.players?[indexPath.row]?.volume = audioVolume
+        items[indexPath.row].volume = audioVolume
     }
     
     func deleteAudio(_ cell: CreateSoundscapeCollectionViewCell) {

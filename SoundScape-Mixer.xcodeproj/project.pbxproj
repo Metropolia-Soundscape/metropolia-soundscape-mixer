@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		4146038321A1AB6500D772AB /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4146038221A1AB6500D772AB /* UIColor.swift */; };
 		418349132187082C0048E24A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418349122187082C0048E24A /* AppDelegate.swift */; };
-		4183491A2187082F0048E24A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 418349192187082F0048E24A /* Assets.xcassets */; };
 		4183491D2187082F0048E24A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4183491B2187082F0048E24A /* LaunchScreen.storyboard */; };
 		41834928218708300048E24A /* SoundScape_MixerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41834927218708300048E24A /* SoundScape_MixerTests.swift */; };
 		4FD1D3CF6C742250CB5EC27A /* Pods_SoundScape_MixerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4C62AC0ED8903DF724C48E8 /* Pods_SoundScape_MixerTests.framework */; };
@@ -33,6 +32,7 @@
 		FA04B9E821B0C4D200A3FCA4 /* AudioLibraryCollectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA04B9E721B0C4D200A3FCA4 /* AudioLibraryCollectionManager.swift */; };
 		FA04B9EC21B67F2200A3FCA4 /* Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA04B9EB21B67F2100A3FCA4 /* Audio.swift */; };
 		FA04B9EE21B6B6B700A3FCA4 /* RealmObjectCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA04B9ED21B6B6B700A3FCA4 /* RealmObjectCodable.swift */; };
+		FA04B9F221B74DD900A3FCA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA04B9F121B74DD900A3FCA4 /* Assets.xcassets */; };
 		FA6A5FDD21AD8B1C00BDCD82 /* LoginStateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC8576321952F7900947BDB /* LoginStateService.swift */; };
 		FA6A5FDE21AD8EA800BDCD82 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 413769582190CC8200A961E3 /* LoginViewController.xib */; };
 		FA6A5FE021AF42F100BDCD82 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6A5FDF21AF42F000BDCD82 /* CategoryCollectionViewCell.swift */; };
@@ -75,7 +75,6 @@
 		4146038221A1AB6500D772AB /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		4183490F2187082C0048E24A /* SoundScape-Mixer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SoundScape-Mixer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		418349122187082C0048E24A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		418349192187082F0048E24A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4183491C2187082F0048E24A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4183491E2187082F0048E24A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		41834923218708300048E24A /* SoundScape-MixerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SoundScape-MixerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -105,6 +104,7 @@
 		FA04B9E721B0C4D200A3FCA4 /* AudioLibraryCollectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioLibraryCollectionManager.swift; sourceTree = "<group>"; };
 		FA04B9EB21B67F2100A3FCA4 /* Audio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Audio.swift; sourceTree = "<group>"; };
 		FA04B9ED21B6B6B700A3FCA4 /* RealmObjectCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmObjectCodable.swift; sourceTree = "<group>"; };
+		FA04B9F121B74DD900A3FCA4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FA2E2232219B76E2004B43A6 /* AudioCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
 		FA6A5FDF21AF42F000BDCD82 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		FA6A5FE121B0AFC100BDCD82 /* SoundscapesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundscapesCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -234,17 +234,17 @@
 				418349122187082C0048E24A /* AppDelegate.swift */,
 				FA856D3C21AB55D7002A7D95 /* AppFileManager.swift */,
 				AC3F5DD521A4D59B00EAA7ED /* AudioCollectionViewCellViewModel.swift */,
+				FA04B9E721B0C4D200A3FCA4 /* AudioLibraryCollectionManager.swift */,
 				FAE0EAAF21AAC30600B0E79D /* AudioPlayer.swift */,
 				AC14741E21953AE500FF6D94 /* AuthJSON.swift */,
 				FA856DAB21AD834B002A7D95 /* DownloadService.swift */,
 				FABB6B7F21A5EC950030639E /* ImageViewWithGradient.swift */,
-				FA04B9E721B0C4D200A3FCA4 /* AudioLibraryCollectionManager.swift */,
 				ACC8576321952F7900947BDB /* LoginStateService.swift */,
 				ACEFDCFF218C3D5200CED22E /* Mocking.swift */,
 				ACEFDCFD218B5A2700CED22E /* Networking.swift */,
 				AC14741A219539F600FF6D94 /* NetworkingRequests.swift */,
 				FA856D3E21AB58FA002A7D95 /* ResourcesFileManager.swift */,
-				418349192187082F0048E24A /* Assets.xcassets */,
+				FA04B9F121B74DD900A3FCA4 /* Assets.xcassets */,
 				4183491B2187082F0048E24A /* LaunchScreen.storyboard */,
 			);
 			path = Infrastructure;
@@ -438,8 +438,8 @@
 				AC3F5DFD21A4D65500EAA7ED /* SoundscapesViewController.xib in Resources */,
 				FA6A5FE421B0AFC100BDCD82 /* SoundscapesCollectionViewCell.xib in Resources */,
 				4183491D2187082F0048E24A /* LaunchScreen.storyboard in Resources */,
-				4183491A2187082F0048E24A /* Assets.xcassets in Resources */,
 				AC3F5DEF21A4D62700EAA7ED /* CategoryCollectionViewCell.xib in Resources */,
+				FA04B9F221B74DD900A3FCA4 /* Assets.xcassets in Resources */,
 				FA856D8F21AD7890002A7D95 /* AudioRecorderViewController.xib in Resources */,
 				AC1761E6219BD7DE00895E9F /* ProfileViewController.xib in Resources */,
 				FA9123ED219C388A00553B7E /* CreateSoundscapeViewController.xib in Resources */,
@@ -723,7 +723,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "longnguyen.SoundScape-Mixer";
+				PRODUCT_BUNDLE_IDENTIFIER = com.soundspace.mixer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
@@ -744,7 +744,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "longnguyen.SoundScape-Mixer";
+				PRODUCT_BUNDLE_IDENTIFIER = com.soundspace.mixer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;

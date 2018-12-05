@@ -205,6 +205,11 @@ class AudioRecorderViewController: UIViewController {
             audioRecorder = nil
             isRecording = false
             isFinishedRecording = true
+            do {
+                try recordingSession.setCategory(.playback, mode: .default)
+            } catch {
+                print(error.localizedDescription)
+            }
         }
     }
 
