@@ -13,7 +13,6 @@ extension FileManager {
         return resourcesDirectory.appendingPathComponent("Library")
     }
     
-    
     var recordsDirectory: URL {
         return resourcesDirectory.appendingPathComponent("Records")
     }

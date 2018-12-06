@@ -36,3 +36,7 @@ class Audio: Object, Downloadable, Codable {
         return URL(string: downloadLink!)!
     }
 }
+
+class SuccessMessage: Codable {
+    var success: String?
+}

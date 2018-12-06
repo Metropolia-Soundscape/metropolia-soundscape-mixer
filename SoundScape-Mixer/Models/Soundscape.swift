@@ -17,3 +17,11 @@ class Soundscape: Object, Codable {
     var audioArray: List<Audio> = List<Audio>()
 }
 
+class UploadSoundscape: Codable {
+    var userfile: Soundscape
+    
+    init(soundscape: Soundscape) {
+        userfile = soundscape
+    }
+}
+

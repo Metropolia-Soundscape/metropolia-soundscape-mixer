@@ -52,7 +52,7 @@
                             <constraint firstAttribute="width" constant="20" id="pZC-RY-4S9"/>
                         </constraints>
                     </imageView>
-                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="EQb-5M-eZi">
+                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="1" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EQb-5M-eZi">
                         <rect key="frame" x="44" y="100" width="204" height="31"/>
                         <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -64,14 +64,6 @@
                             <action selector="volumeSliderValueChanged:" destination="gTV-IL-0wX" eventType="valueChanged" id="MH8-GP-tNf"/>
                         </connections>
                     </slider>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RmG-wH-hNW">
-                        <rect key="frame" x="646" y="105" width="20" height="20"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="20" id="S7m-JU-teo"/>
-                            <constraint firstAttribute="width" constant="20" id="rX0-pg-xUb"/>
-                        </constraints>
-                        <state key="normal" title="Button" image="iconShuffle"/>
-                    </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bYY-dv-cPE">
                         <rect key="frame" x="650" y="0.0" width="26" height="26"/>
                         <constraints>
@@ -91,10 +83,8 @@
                 <constraint firstItem="bYY-dv-cPE" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="GN3-h3-nkz"/>
                 <constraint firstAttribute="trailing" secondItem="bYY-dv-cPE" secondAttribute="trailing" constant="6" id="HKo-DZ-LzO"/>
                 <constraint firstItem="Nvz-Gg-vAc" firstAttribute="top" secondItem="n32-Gw-4aZ" secondAttribute="bottom" constant="15" id="Hah-fn-ucq"/>
-                <constraint firstItem="RmG-wH-hNW" firstAttribute="top" secondItem="n32-Gw-4aZ" secondAttribute="bottom" constant="15" id="Hmz-zY-2Wt"/>
                 <constraint firstItem="EQb-5M-eZi" firstAttribute="leading" secondItem="Nvz-Gg-vAc" secondAttribute="trailing" constant="10" id="Qs9-JG-CA9"/>
                 <constraint firstItem="Nvz-Gg-vAc" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="SA2-Z9-gbI"/>
-                <constraint firstAttribute="trailing" secondItem="RmG-wH-hNW" secondAttribute="trailing" constant="16" id="gu1-Wb-3J0"/>
                 <constraint firstItem="n32-Gw-4aZ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="jiW-D1-WfM"/>
                 <constraint firstItem="n32-Gw-4aZ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="zBD-wc-Um4"/>
             </constraints>
@@ -107,7 +97,6 @@
                 <outlet property="audioImageView" destination="cBE-gf-xak" id="xKP-c0-Lau"/>
                 <outlet property="audioNameLabel" destination="6fV-NO-lSj" id="z5c-J4-FRk"/>
                 <outlet property="deleteAudioButton" destination="bYY-dv-cPE" id="WZe-v0-0yy"/>
-                <outlet property="shuffleButton" destination="RmG-wH-hNW" id="EbC-PA-Yfk"/>
                 <outlet property="volumeSlider" destination="EQb-5M-eZi" id="4tl-Cp-K03"/>
             </connections>
             <point key="canvasLocation" x="155.19999999999999" y="85.457271364317847"/>
@@ -116,7 +105,6 @@
     <resources>
         <image name="iconDelete" width="40.069564819335938" height="40.069564819335938"/>
         <image name="iconDownload" width="200" height="200"/>
-        <image name="iconShuffle" width="211" height="200"/>
         <image name="iconSound" width="250" height="200"/>
     </resources>
 </document>

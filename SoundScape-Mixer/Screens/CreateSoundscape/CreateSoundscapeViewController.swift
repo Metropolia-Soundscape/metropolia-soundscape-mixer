@@ -13,10 +13,10 @@ import RealmSwift
 import Realm
 
 // MARK: SoundscapeViewController Implementation
-class CreateSoundscapeViewController: UIViewController {
-
+class CreateSoundscapeViewController: BaseViewController {
+    
     private let reuseId = "createSoundscapeCollectionViewCell"
-
+    
     // MARK: - IBOutlets
     @IBOutlet weak var audioCollectionView: UICollectionView!
     @IBOutlet weak var recorderBtn: UIButton!
@@ -26,22 +26,22 @@ class CreateSoundscapeViewController: UIViewController {
     var cancelBtn: UIBarButtonItem!
     var saveBtn: UIBarButtonItem!
     var editBtn: UIBarButtonItem!
-
+    
+    let realm = try! Realm()
     let screenSize: CGRect = UIScreen.main.bounds
     let player = AudioPlayer.sharedInstance
-    var soundscape: Soundscape?
+    var soundscape: Soundscape = Soundscape()
     var log: List<String> = List<String>()
     var newSoundscape: Bool = true
+    var logMessage: String = ""
     
     var items: [Audio] = [] {
         didSet {
-            soundscape = Soundscape()
             if (items.isEmpty) {
                 navigationItem.rightBarButtonItem?.isEnabled = false
                 playSoundscapeBtn.isEnabled = false
                 player.stopSoundscape()
                 playing = false
-                soundscape = nil
             } else {
                 navigationItem.rightBarButtonItem?.isEnabled = true
                 playSoundscapeBtn.isEnabled = true
@@ -57,6 +57,12 @@ class CreateSoundscapeViewController: UIViewController {
         }
     }
     
+    override init(appController: AppController) {
+        super.init(appController: appController)
+    }
+    
+    required init?(coder _: NSCoder) { fatalError("init(coder:) has not been implemented") }
+    
     // MARK: - Lifecycle methods
     
     override func viewDidLoad() {
@@ -69,10 +75,8 @@ class CreateSoundscapeViewController: UIViewController {
         navigationItem.largeTitleDisplayMode = .never
         
         setupView()
-        if let soundscape = soundscape {
-            soundscape.audioArray.forEach {
-                items.append($0)
-            }
+        if !newSoundscape {
+            soundscape.audioArray.forEach { items.append($0) }
         }
     }
     
@@ -84,8 +88,8 @@ class CreateSoundscapeViewController: UIViewController {
     func setupView() {
         cancelBtn = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelBtnPressed))
         saveBtn = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveBtnPressed))
-//        editBtn = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editBtnPressed))
-
+        //        editBtn = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editBtnPressed))
+        
         switch newSoundscape {
         case true:
             navigationItem.leftBarButtonItem = cancelBtn
@@ -130,14 +134,14 @@ class CreateSoundscapeViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-//    @objc private func editBtnPressed() {
-//        isEditing = true
-//        navigationItem.rightBarButtonItem = saveBtn
-//        navigationItem.rightBarButtonItem?.isEnabled = false
-//        libraryBtn.isEnabled = true
-//        recorderBtn.isEnabled = true
-//        audioCollectionView.reloadData()
-//    }
+    //    @objc private func editBtnPressed() {
+    //        isEditing = true
+    //        navigationItem.rightBarButtonItem = saveBtn
+    //        navigationItem.rightBarButtonItem?.isEnabled = false
+    //        libraryBtn.isEnabled = true
+    //        recorderBtn.isEnabled = true
+    //        audioCollectionView.reloadData()
+    //    }
     
     @objc private func saveBtnPressed() {
         let alertController = UIAlertController(title: "Saving soundscape file",
@@ -147,24 +151,32 @@ class CreateSoundscapeViewController: UIViewController {
         }
         
         let action = UIAlertAction(title: "Save", style: .default) { (action: UIAlertAction) in
-            let realm = try! Realm()
-            if let soundscape = self.soundscape {
-                if let soundscapeName = alertController.textFields?.first?.text {
-                    soundscape.name = soundscapeName
-                }
-                soundscape.log = self.log
-                
-                self.items.forEach { self.soundscape?.audioArray.append($0) }
-                
-                try! realm.write {
-                    realm.add(soundscape)
-                }
+            if let soundscapeName = alertController.textFields?.first?.text {
+                self.soundscape.name = soundscapeName
             }
+            
+            self.items.forEach { self.soundscape.audioArray.append($0) }
+            
+            try! self.realm.write {
+                self.realm.add(self.soundscape)
+            }
+            
+            let network = self.appController.networking
+            let encodedData = try! JSONEncoder().encode(self.soundscape)
+
+            network.uploadSoundscapeStructure(soundscapeName: self.soundscape.name, soundscapeStructure: encodedData, completionHandler: { (success) in
+                print(success)
+            })
+            
             if (self.presentingViewController != nil) {
                 self.navigationController?.popToRootViewController(animated: true)
             }
             self.dismiss(animated: true, completion: nil)
         }
+    
+        alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: { _ in
+            alertController.dismiss(animated: true, completion: nil)
+        }))
         
         alertController.addAction(action)
         present(alertController, animated: true, completion: nil)
@@ -223,17 +235,11 @@ extension CreateSoundscapeViewController: UICollectionViewDataSource {
 
 extension CreateSoundscapeViewController: LibraryViewControllerDelegate {
     func libraryViewController(_ viewController: UIViewController, didSelectAudio audio: Audio) {
-        switch newSoundscape {
-        case true:
-            self.items.append(audio)
-            if let title = audio.title {
-                let logMessage = "Added \(title).\n"
-                    log.append(logMessage)
-            }
-            print(log)
-        case false:
-            soundscape?.audioArray.append(audio)
+        if let title = audio.title {
+            logMessage = "Added \(title)"
+            soundscape.log.append(logMessage)
         }
+        self.items.append(audio)
     }
 }
 
@@ -249,6 +255,12 @@ extension CreateSoundscapeViewController: UICollectionViewDelegateFlowLayout {
 extension CreateSoundscapeViewController: CreateSoundscapeCollectionViewCellDelegate {
     func changeAudioVolume(_ cell: CreateSoundscapeCollectionViewCell, audioVolume: Float) {
         guard let indexPath = audioCollectionView.indexPath(for: cell) else { return }
+        let audio = items[indexPath.row]
+        let volumePercentage = Int(audioVolume * 100)
+        if let title = audio.title {
+            self.logMessage = "Changed volume of \(title) to \(volumePercentage)%"
+            self.soundscape.log.append(self.logMessage)
+        }
         player.players?[indexPath.row]?.volume = audioVolume
         items[indexPath.row].volume = audioVolume
     }
@@ -257,8 +269,14 @@ extension CreateSoundscapeViewController: CreateSoundscapeCollectionViewCellDele
         guard let indexPath = audioCollectionView.indexPath(for: cell) else {
             return
         }
+        let audio = items[indexPath.row]
         items.remove(at: indexPath.row)
         player.players?.remove(at: indexPath.row)
+        
+        if let title = audio.title {
+            logMessage = "Removed \(title)"
+            soundscape.log.append(logMessage)
+        }
     }
 }
 

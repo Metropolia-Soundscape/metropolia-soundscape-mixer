@@ -30,7 +30,11 @@ extension Network {
         }
     }
     
-    func uploadRecord(recordName: String) {
+    func uploadRecord(
+        recordName: String,
+        recordFile: Data,
+        completionHandler: ((_ success: Bool) -> Void)?)
+    {
         guard let token = AppDelegate.appDelegate.appController.loginStateService.state.token,
             let collection = AudioLibraryCollectionManager.shared.collectionName else { return }
         let params = ["key": token,
@@ -40,9 +44,22 @@ extension Network {
                      "field74": "record",
                      "field75": "story",
                      "field76": "soundscape"]
+        let aFormData = (recordFile, "userfile", "\(recordName).json", "application/json")
+        let body = Network.Body.multipart(formData: [aFormData], parameters: nil)
+        performRequest(method: HTTPMethod.post,
+                       headers: nil,
+                       endpoint: Network.Endpoint.soundscape,
+                       body: body,
+                       queryParameters: params) { (res: SuccessMessage?, error) in
+                        completionHandler?(error != nil)
+        }
     }
     
-    func uploadSoundscapeStructure(soundscapeName: String, soundscapeStructure: Soundscape) {
+    func uploadSoundscapeStructure(
+        soundscapeName: String,
+        soundscapeStructure: Data,
+        completionHandler: ((_ success: Bool) -> Void)?)
+    {
         guard let token = AppDelegate.appDelegate.appController.loginStateService.state.token,
             let collection = AudioLibraryCollectionManager.shared.collectionName else { return }
         let params = ["key": token,
@@ -51,5 +68,14 @@ extension Network {
                       "field8": soundscapeName,
                       "field75": "story",
                       "field76": "soundscape"]
+        let aFormData = (soundscapeStructure, "userfile", "\(soundscapeName).json", "application/json")
+        let body = Network.Body.multipart(formData: [aFormData], parameters: nil)
+        performRequest(method: HTTPMethod.post,
+                       headers: nil,
+                       endpoint: Network.Endpoint.soundscape,
+                       body: body,
+                       queryParameters: params) { (res: SuccessMessage?, error) in
+                        completionHandler?(error != nil)
+        }
     }
 }

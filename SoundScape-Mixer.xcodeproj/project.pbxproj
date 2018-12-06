@@ -38,6 +38,8 @@
 		FA6A5FE021AF42F100BDCD82 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6A5FDF21AF42F000BDCD82 /* CategoryCollectionViewCell.swift */; };
 		FA6A5FE321B0AFC100BDCD82 /* SoundscapesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6A5FE121B0AFC100BDCD82 /* SoundscapesCollectionViewCell.swift */; };
 		FA6A5FE421B0AFC100BDCD82 /* SoundscapesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA6A5FE221B0AFC100BDCD82 /* SoundscapesCollectionViewCell.xib */; };
+		FA7970DB21B9D771008BF4BD /* NSUUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7970DA21B9D771008BF4BD /* NSUUID.swift */; };
+		FA7970DD21B9D803008BF4BD /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7970DC21B9D803008BF4BD /* Data.swift */; };
 		FA856D3D21AB55D7002A7D95 /* AppFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA856D3C21AB55D7002A7D95 /* AppFileManager.swift */; };
 		FA856D3F21AB58FA002A7D95 /* ResourcesFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA856D3E21AB58FA002A7D95 /* ResourcesFileManager.swift */; };
 		FA856D8D21AD788C002A7D95 /* AudioRecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA856D8C21AD788B002A7D95 /* AudioRecorderViewController.swift */; };
@@ -109,6 +111,8 @@
 		FA6A5FDF21AF42F000BDCD82 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		FA6A5FE121B0AFC100BDCD82 /* SoundscapesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundscapesCollectionViewCell.swift; sourceTree = "<group>"; };
 		FA6A5FE221B0AFC100BDCD82 /* SoundscapesCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SoundscapesCollectionViewCell.xib; sourceTree = "<group>"; };
+		FA7970DA21B9D771008BF4BD /* NSUUID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSUUID.swift; sourceTree = "<group>"; };
+		FA7970DC21B9D803008BF4BD /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		FA856D3C21AB55D7002A7D95 /* AppFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFileManager.swift; sourceTree = "<group>"; };
 		FA856D3E21AB58FA002A7D95 /* ResourcesFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesFileManager.swift; sourceTree = "<group>"; };
 		FA856D8C21AD788B002A7D95 /* AudioRecorderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRecorderViewController.swift; sourceTree = "<group>"; };
@@ -345,6 +349,8 @@
 				FA04B9ED21B6B6B700A3FCA4 /* RealmObjectCodable.swift */,
 				4146038221A1AB6500D772AB /* UIColor.swift */,
 				FA04B9E521B0B54700A3FCA4 /* UIViewController.swift */,
+				FA7970DA21B9D771008BF4BD /* NSUUID.swift */,
+				FA7970DC21B9D803008BF4BD /* Data.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -547,7 +553,9 @@
 				4146038321A1AB6500D772AB /* UIColor.swift in Sources */,
 				FA04B9EE21B6B6B700A3FCA4 /* RealmObjectCodable.swift in Sources */,
 				FA856D3D21AB55D7002A7D95 /* AppFileManager.swift in Sources */,
+				FA7970DB21B9D771008BF4BD /* NSUUID.swift in Sources */,
 				FA856D8D21AD788C002A7D95 /* AudioRecorderViewController.swift in Sources */,
+				FA7970DD21B9D803008BF4BD /* Data.swift in Sources */,
 				FA856D3F21AB58FA002A7D95 /* ResourcesFileManager.swift in Sources */,
 				FAE0EAB021AAC30600B0E79D /* AudioPlayer.swift in Sources */,
 				FA856DA021AD79AC002A7D95 /* AudioViewController.swift in Sources */,

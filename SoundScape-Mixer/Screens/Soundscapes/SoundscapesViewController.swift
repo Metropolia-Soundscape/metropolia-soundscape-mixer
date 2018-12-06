@@ -44,7 +44,7 @@ class SoundscapesViewController: BaseViewController {
     }
     
     @objc func addTapped() {
-        let soundscapeViewController = CreateSoundscapeViewController()
+        let soundscapeViewController = CreateSoundscapeViewController(appController: appController)
         let navVC = UINavigationController(rootViewController: soundscapeViewController)
         self.present(navVC, animated: true, completion: nil)
     }
@@ -84,7 +84,7 @@ extension SoundscapesViewController: UICollectionViewDataSource {
 
 extension SoundscapesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let soundscapeVC = CreateSoundscapeViewController()
+        let soundscapeVC = CreateSoundscapeViewController(appController: appController)
         soundscapeVC.newSoundscape = false
         soundscapeVC.soundscape = soundscapes[indexPath.row]
         navigationController?.pushViewController(soundscapeVC, animated: true)
