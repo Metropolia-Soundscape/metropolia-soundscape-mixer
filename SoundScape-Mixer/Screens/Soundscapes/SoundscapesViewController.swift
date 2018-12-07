@@ -1,7 +1,7 @@
 import UIKit
 import RealmSwift
 
-class SoundscapesViewController: BaseViewController {
+class SoundscapesViewController: UIViewController {
     
     @IBOutlet weak var soundscapesCollectionView: UICollectionView!
     
@@ -12,18 +12,11 @@ class SoundscapesViewController: BaseViewController {
     
     var soundscapesObserverToken: NotificationToken?
     
-    override init(appController: AppController) {
-        super.init(appController: appController)
-        title = "Soundscapes"
-    }
-    
-    required init?(coder _: NSCoder) { fatalError("init(coder:) has not been implemented") }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tabBarItem = UITabBarItem(title: "Soundscapes", image: nil, selectedImage: nil)
-        
+//        tabBarItem = UITabBarItem(title: "Soundscapes", image: nil, selectedImage: nil)
+        title = "Soundscape"
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -38,13 +31,9 @@ class SoundscapesViewController: BaseViewController {
             self.soundscapesCollectionView.reloadData()
         })
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        
-    }
-    
+
     @objc func addTapped() {
-        let soundscapeViewController = CreateSoundscapeViewController(appController: appController)
+        let soundscapeViewController = CreateSoundscapeViewController()
         let navVC = UINavigationController(rootViewController: soundscapeViewController)
         self.present(navVC, animated: true, completion: nil)
     }
@@ -84,7 +73,7 @@ extension SoundscapesViewController: UICollectionViewDataSource {
 
 extension SoundscapesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let soundscapeVC = CreateSoundscapeViewController(appController: appController)
+        let soundscapeVC = CreateSoundscapeViewController()
         soundscapeVC.newSoundscape = false
         soundscapeVC.soundscape = soundscapes[indexPath.row]
         navigationController?.pushViewController(soundscapeVC, animated: true)

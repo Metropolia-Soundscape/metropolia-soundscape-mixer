@@ -13,7 +13,7 @@ import RealmSwift
 import Realm
 
 // MARK: SoundscapeViewController Implementation
-class CreateSoundscapeViewController: BaseViewController {
+class CreateSoundscapeViewController: UIViewController {
     
     private let reuseId = "createSoundscapeCollectionViewCell"
     
@@ -57,11 +57,11 @@ class CreateSoundscapeViewController: BaseViewController {
         }
     }
     
-    override init(appController: AppController) {
-        super.init(appController: appController)
-    }
-    
-    required init?(coder _: NSCoder) { fatalError("init(coder:) has not been implemented") }
+//    override init(appController: AppController) {
+//        super.init(appController: appController)
+//    }
+//
+//    required init?(coder _: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
     // MARK: - Lifecycle methods
     
@@ -114,7 +114,7 @@ class CreateSoundscapeViewController: BaseViewController {
     }
     
     @IBAction func libraryBtnPressed(_ sender: UIButton) {
-        let libraryViewController = LibraryViewController(appController: AppController(UIWindow()))
+        let libraryViewController = LibraryViewController()
         libraryViewController.delegate = self
         let libNavVC = UINavigationController(rootViewController: libraryViewController)
         self.present(libNavVC, animated: true, completion: nil)
@@ -134,14 +134,14 @@ class CreateSoundscapeViewController: BaseViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    //    @objc private func editBtnPressed() {
-    //        isEditing = true
-    //        navigationItem.rightBarButtonItem = saveBtn
-    //        navigationItem.rightBarButtonItem?.isEnabled = false
-    //        libraryBtn.isEnabled = true
-    //        recorderBtn.isEnabled = true
-    //        audioCollectionView.reloadData()
-    //    }
+        @objc private func editBtnPressed() {
+            isEditing = true
+            navigationItem.rightBarButtonItem = saveBtn
+            navigationItem.rightBarButtonItem?.isEnabled = false
+            libraryBtn.isEnabled = true
+            recorderBtn.isEnabled = true
+            audioCollectionView.reloadData()
+        }
     
     @objc private func saveBtnPressed() {
         let alertController = UIAlertController(title: "Saving soundscape file",

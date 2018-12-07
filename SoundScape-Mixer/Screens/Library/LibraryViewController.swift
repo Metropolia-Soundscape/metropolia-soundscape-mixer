@@ -4,7 +4,7 @@ protocol LibraryViewControllerDelegate: class {
     func libraryViewController(_ viewController: UIViewController, didSelectAudio audio: Audio)
 }
 
-class LibraryViewController: BaseViewController {
+class LibraryViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -12,13 +12,6 @@ class LibraryViewController: BaseViewController {
         let screenSize: CGRect = UIScreen.main.bounds
 
     private let reuseId = "categoryCollectionViewCell"
-    
-    override init(appController: AppController) {
-        super.init(appController: appController)
-        title = "Library"
-    }
-    
-    required init?(coder _: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +28,7 @@ class LibraryViewController: BaseViewController {
 
         collectionView.dataSource = self
         collectionView.delegate = self
-        navigationItem.title = "Library"
+        title = "Library"
     }
 
     @objc private func cancelBtnPressed() {

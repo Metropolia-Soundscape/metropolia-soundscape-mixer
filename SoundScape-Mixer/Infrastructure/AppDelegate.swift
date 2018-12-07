@@ -12,7 +12,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         appController = AppController(window!)
         appController.authorize()
         window?.makeKeyAndVisible()
-        
+
         return true
     }
 }

@@ -3,7 +3,7 @@ import AVFoundation
 
 public let kRecordingCell: String = "kRecordingCell"
 
-class ProfileViewController: BaseViewController {
+class ProfileViewController: UIViewController {
     
     private var player = AudioPlayer.sharedInstance
     private var recordings: [String] = [String]() {
@@ -13,13 +13,6 @@ class ProfileViewController: BaseViewController {
     }
     
     @IBOutlet weak var tableView: UITableView!
-    
-    override init(appController: AppController) {
-        super.init(appController: appController)
-        title = "Profile"
-    }
-    
-    required init?(coder _: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
     override func viewDidLoad() {
         super.viewDidLoad()

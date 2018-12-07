@@ -26,7 +26,7 @@ class AppController {
     func showLoggedInState(_ state: LoginState) {
         switch state {
             case .loggedIn(token: _):
-                rootViewController = RootViewController(appController: self)
+                rootViewController = RootViewController()
                 window.rootViewController = rootViewController
             case .loggedOut:
                 loginViewController = LoginViewController()

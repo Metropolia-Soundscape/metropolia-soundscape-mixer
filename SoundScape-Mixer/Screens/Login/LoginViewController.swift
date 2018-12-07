@@ -15,7 +15,7 @@ class LoginViewController: UIViewController {
     var lastOffset: CGPoint!
     var keyboardHeight: CGFloat = 0
     
-    let appController = AppDelegate.appDelegate.appController
+//    let appController = AppDelegate.appDelegate.appController
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,12 +38,12 @@ class LoginViewController: UIViewController {
 
     @IBAction func logInPressed(_: UIButton) {
         guard let username = usernameLbl.text, let password = passwordLbl.text, let collection = collectionLbl.text else { return }
-        appController?.networking.authenticate(username: username, password: password) { [weak self] authJSON, _ in
+        appController.networking.authenticate(username: username, password: password) { [weak self] authJSON, _ in
             if let authJSON = authJSON {
                 if (authJSON.apiKey != "Incorrect credentials! Try again." && collection.isEmpty == false) {
                     let loggedIn = LoginState(token: authJSON.apiKey)
-                    self?.appController?.loginStateService.state = loggedIn
-                    self?.appController?.showLoggedInState(loggedIn)
+                    self?.appController.loginStateService.state = loggedIn
+                    self?.appController.showLoggedInState(loggedIn)
                     AudioLibraryCollectionManager.shared.save(collectionName: collection)
                 } else {
                     self?.usernameLbl.text = nil

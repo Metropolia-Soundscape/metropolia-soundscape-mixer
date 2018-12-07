@@ -18,7 +18,6 @@
 		AC1761DE219BD61300895E9F /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1761DD219BD61300895E9F /* RootViewController.swift */; };
 		AC1761E4219BD7D400895E9F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1761E3219BD7D400895E9F /* ProfileViewController.swift */; };
 		AC1761E6219BD7DE00895E9F /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC1761E5219BD7DE00895E9F /* ProfileViewController.xib */; };
-		AC1761E8219BD90F00895E9F /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1761E7219BD90F00895E9F /* BaseViewController.swift */; };
 		AC3F5DD821A4D59C00EAA7ED /* AudioCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3F5DD521A4D59B00EAA7ED /* AudioCollectionViewCellViewModel.swift */; };
 		AC3F5DEE21A4D62700EAA7ED /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3F5DEA21A4D62700EAA7ED /* LibraryViewController.swift */; };
 		AC3F5DEF21A4D62700EAA7ED /* CategoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC3F5DEB21A4D62700EAA7ED /* CategoryCollectionViewCell.xib */; };
@@ -89,7 +88,6 @@
 		AC1761DD219BD61300895E9F /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		AC1761E3219BD7D400895E9F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		AC1761E5219BD7DE00895E9F /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
-		AC1761E7219BD90F00895E9F /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		AC3F5DD521A4D59B00EAA7ED /* AudioCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioCollectionViewCellViewModel.swift; path = "SoundScape-Mixer/Models/AudioCollectionViewCellViewModel.swift"; sourceTree = SOURCE_ROOT; };
 		AC3F5DEA21A4D62700EAA7ED /* LibraryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
 		AC3F5DEB21A4D62700EAA7ED /* CategoryCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -217,7 +215,6 @@
 		AC14741C219539FE00FF6D94 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				AC1761E7219BD90F00895E9F /* BaseViewController.swift */,
 				AC1761DD219BD61300895E9F /* RootViewController.swift */,
 				FA856D8B21AD785F002A7D95 /* AudioRecorder */,
 				FA856D9021AD7971002A7D95 /* Audio */,
@@ -543,7 +540,6 @@
 				AC3F5DFC21A4D65500EAA7ED /* SoundscapesViewController.swift in Sources */,
 				ACC8576221952CD400947BDB /* AppController.swift in Sources */,
 				AC3F5DD821A4D59C00EAA7ED /* AudioCollectionViewCellViewModel.swift in Sources */,
-				AC1761E8219BD90F00895E9F /* BaseViewController.swift in Sources */,
 				AC3F5DEE21A4D62700EAA7ED /* LibraryViewController.swift in Sources */,
 				AC1761DE219BD61300895E9F /* RootViewController.swift in Sources */,
 				FA04B9E621B0B54700A3FCA4 /* UIViewController.swift in Sources */,
