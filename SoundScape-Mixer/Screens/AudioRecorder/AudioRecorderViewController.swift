@@ -187,7 +187,6 @@ class AudioRecorderViewController: UIViewController {
                 try recordingSession.setCategory(.playAndRecord, mode: .default)
                 try recordingSession.setActive(true)
                 audioRecorder = try AVAudioRecorder(url: tempURL, settings: settings)
-                audioRecorder.delegate = self
                 audioRecorder.isMeteringEnabled = true
                 audioRecorder.prepareToRecord()
                 audioRecorder.record()
@@ -262,7 +261,4 @@ class AudioRecorderViewController: UIViewController {
         }
     }
 }
-
-extension AudioRecorderViewController: AVAudioRecorderDelegate {}
-
 
