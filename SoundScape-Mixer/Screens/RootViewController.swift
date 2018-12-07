@@ -8,24 +8,16 @@ class RootViewController: UITabBarController {
         
         let soundscapesViewController = SoundscapesViewController()
         let soundscapeNavigationController = UINavigationController(rootViewController: soundscapesViewController)
-        soundscapeNavigationController.tabBarItem.title = ""
-        soundscapeNavigationController.tabBarItem.image = UIImage(named: "star")
+        soundscapeNavigationController.tabBarItem = UITabBarItem(title: "Soundscapes", image: UIImage(named: "iconSoundscape"), selectedImage: nil)
         
         let createSoundscapeViewController = CreateSoundscapeViewController()
-        createSoundscapeViewController.tabBarItem.title = ""
-        createSoundscapeViewController.tabBarItem.image = UIImage(named: "iconAdd")
+        createSoundscapeViewController.tabBarItem = UITabBarItem(title: "Create", image: UIImage(named: "iconAdd"), selectedImage: nil)
         
         let libraryViewController = LibraryViewController()
         let libraryNavigationController = UINavigationController(rootViewController: libraryViewController)
-        libraryNavigationController.tabBarItem.title = ""
-        libraryNavigationController.tabBarItem.image = UIImage(named: "circle")
+        libraryNavigationController.tabBarItem = UITabBarItem(title: "Library", image: UIImage(named: "iconLibrary"), selectedImage: nil)
         
-        let profileViewController = ProfileViewController()
-        let profileNavigationController = UINavigationController(rootViewController: profileViewController)
-        profileNavigationController.tabBarItem.title = ""
-        profileNavigationController.tabBarItem.image = UIImage(named: "user")
-        
-        viewControllers = [soundscapeNavigationController, createSoundscapeViewController, libraryNavigationController, profileNavigationController]
+        viewControllers = [soundscapeNavigationController, createSoundscapeViewController, libraryNavigationController]
     }
 }
 

@@ -17,6 +17,8 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneBtnPressed))
+        
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: kRecordingCell)
         
         tableView.delegate = self
@@ -26,6 +28,10 @@ class ProfileViewController: UIViewController {
         tableView.backgroundColor = .clear
         
         getAllRecordings()
+    }
+    
+    @objc private func doneBtnPressed() {
+        self.dismiss(animated: true, completion: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {

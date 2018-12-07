@@ -342,12 +342,12 @@
 		FAE0EAB121AAD16600B0E79D /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				FA7970DC21B9D803008BF4BD /* Data.swift */,
 				FA856DA921AD8344002A7D95 /* FileManager.swift */,
+				FA7970DA21B9D771008BF4BD /* NSUUID.swift */,
 				FA04B9ED21B6B6B700A3FCA4 /* RealmObjectCodable.swift */,
 				4146038221A1AB6500D772AB /* UIColor.swift */,
 				FA04B9E521B0B54700A3FCA4 /* UIViewController.swift */,
-				FA7970DA21B9D771008BF4BD /* NSUUID.swift */,
-				FA7970DC21B9D803008BF4BD /* Data.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
