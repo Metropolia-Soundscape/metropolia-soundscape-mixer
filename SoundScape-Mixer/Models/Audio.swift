@@ -23,7 +23,8 @@ class Audio: Object, Downloadable, Codable {
     @objc dynamic var fileName: String?
     @objc dynamic var downloadLink: String?
     @objc dynamic var category: String?
-    @objc dynamic var volume: Float = 1.0
+
+    var volume: Float = 1.0
     
     var categoryType: AudioCategory? {
         if let categoryName = category {
@@ -31,8 +32,12 @@ class Audio: Object, Downloadable, Codable {
         }
         return nil
     }
-    
-    @objc dynamic var downloadURL: URL {
+
+    var downloadURL: URL {
         return URL(string: downloadLink!)!
+    }
+
+    override static func primaryKey() -> String? {
+        return "downloadLink"
     }
 }

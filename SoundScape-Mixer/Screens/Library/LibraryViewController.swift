@@ -9,7 +9,7 @@ class LibraryViewController: BaseViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     weak var delegate: LibraryViewControllerDelegate?
-        let screenSize: CGRect = UIScreen.main.bounds
+    let screenSize: CGRect = UIScreen.main.bounds
 
     private let reuseId = "categoryCollectionViewCell"
     

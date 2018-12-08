@@ -107,9 +107,7 @@ extension DownloadService: URLSessionDownloadDelegate {
         delegates.call { $0.downloadServiceDidFinishDownloading(self, operation: operation) }
     }
 
-    func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
-
-    }
+    func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {}
 
     func urlSession(_ session: URLSession,
                     downloadTask: URLSessionDownloadTask,
