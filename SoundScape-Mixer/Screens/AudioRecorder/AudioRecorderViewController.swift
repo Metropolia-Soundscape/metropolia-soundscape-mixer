@@ -11,6 +11,7 @@ protocol AudioRecorderViewControllerDelegate: class {
 class AudioRecorderViewController: UIViewController {
     @IBOutlet var recordBtn: UIButton!
     @IBOutlet var pauseBtn: UIButton!
+    @IBOutlet weak var playBtn: UIButton!
     @IBOutlet weak var timerLbl: UILabel!
     
     var delegate: AudioRecorderViewControllerDelegate?
@@ -19,12 +20,14 @@ class AudioRecorderViewController: UIViewController {
     var hasPermission: Bool = false
     var meterTimer:Timer!
     var currentRecordingCount: Int?
+    var playing = false
 
     // TODO: Refactor this. Remove this property if neccessary
     private var tempRecordingFileURL: URL?
     var finalFileURL: URL?
 
     private let audioFileExtension = "m4a"
+    
     
     private var isRecording = false {
         didSet {
@@ -236,14 +239,17 @@ class AudioRecorderViewController: UIViewController {
         }
     }
     
+    @IBAction func playButtonTapped(_ sender: Any) {
+        
+    }
+    
     @objc private func updateAudioMeter(timer: Timer) {
         if let audioRecorder = self.audioRecorder {
             
             if audioRecorder.isRecording {
-                let hr = Int((audioRecorder.currentTime / 60) / 60)
                 let min = Int(audioRecorder.currentTime / 60)
                 let sec = Int(audioRecorder.currentTime.truncatingRemainder(dividingBy: 60))
-                let totalTimeString = String(format: "%02d:%02d:%02d", hr, min, sec)
+                let totalTimeString = String(format: "%02d:%02d", min, sec)
                 timerLbl.text = totalTimeString
                 audioRecorder.updateMeters()
                 

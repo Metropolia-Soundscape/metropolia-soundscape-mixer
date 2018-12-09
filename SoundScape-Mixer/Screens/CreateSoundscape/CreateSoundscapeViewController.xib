@@ -101,8 +101,8 @@
         </view>
     </objects>
     <resources>
-        <image name="iconLibrary" width="51.200000762939453" height="51.200000762939453"/>
-        <image name="iconMicrophone" width="51.200000762939453" height="51.200000762939453"/>
-        <image name="iconPlay" width="200" height="200"/>
+        <image name="iconLibrary" width="45" height="45"/>
+        <image name="iconMicrophone" width="45" height="45"/>
+        <image name="iconPlay" width="45" height="45"/>
     </resources>
 </document>

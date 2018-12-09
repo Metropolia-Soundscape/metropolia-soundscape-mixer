@@ -10,11 +10,7 @@ import Foundation
 import AVFoundation
 import RealmSwift
 
-protocol AudioPlayerDelegate {
-    func audioPlayerDidFinishPlaying(audioPlaying: Bool)
-}
-
-class AudioPlayer: NSObject, AVAudioPlayerDelegate {
+class AudioPlayer: NSObject {
 
     static let sharedInstance = AudioPlayer()
 
@@ -23,17 +19,11 @@ class AudioPlayer: NSObject, AVAudioPlayerDelegate {
 
     var player: AVPlayer?
     var players: [AVPlayer?]?
-    var delegate: AudioPlayerDelegate?
-    
-    override init() {
+
+    private override init() {
         super.init()
-        NotificationCenter.default.addObserver(self, selector: #selector(audioPlayerDidFinishPlaying), name: Notification.Name.AVPlayerItemDidPlayToEndTime, object: player?.currentItem)
     }
-    
-    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-        delegate?.audioPlayerDidFinishPlaying(audioPlaying: false)
-    }
-    
+
     func playAudio(url: URL) {
         audioPlaying = true
         player?.pause()
@@ -49,7 +39,12 @@ class AudioPlayer: NSObject, AVAudioPlayerDelegate {
     func playSoundscape(audio: [Audio]) {
         soundscapePlaying = true
         players = audio.map {
-            let player = AVPlayer(url: $0.downloadURL)
+            var player: AVPlayer 
+            if FileManager.default.downloadedFileExist(for: $0) {
+                player = AVPlayer(url: FileManager.default.localFileURL(for: $0))
+            } else {
+                player = AVPlayer(url: $0.downloadURL)
+            }
             player.volume = $0.volume
             return player
         }
