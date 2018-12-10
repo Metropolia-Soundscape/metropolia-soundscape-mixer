@@ -6,14 +6,13 @@ protocol AudioViewControllerDelegate: class {
 }
 
 class AudioViewController: UIViewController {
-
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var audioCollectionView: UICollectionView!
+    @IBOutlet var searchBar: UISearchBar!
+    @IBOutlet var audioCollectionView: UICollectionView!
 
     weak var delegate: AudioViewControllerDelegate?
-    
+
     private var downloadService: DownloadService = DownloadService.shared
-    
+
     var category: AudioCategory?
 
     private lazy var dataSource: AudioDataSource = {
@@ -45,36 +44,32 @@ class AudioViewController: UIViewController {
 
         dataSource.refresh()
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
         AudioPlayer.sharedInstance.stopAudio()
     }
-    
+
     // MARK: Utils
 }
 
 extension AudioViewController: UISearchBarDelegate {
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+    func searchBarTextDidEndEditing(_: UISearchBar) {}
 
-    }
-    
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+    func searchBarTextDidBeginEditing(_: UISearchBar) {}
 
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    func searchBar(_: UISearchBar, textDidChange searchText: String) {
         dataSource.search(searchText)
     }
 
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+    func searchBarCancelButtonClicked(_: UISearchBar) {
         dataSource.endSearching()
     }
 }
 
 extension AudioViewController: AudioDataSourceDelegate {
-    func audioDataSource(_ dataSource: AudioDataSource, didSelectAudio audio: Audio) {
+    func audioDataSource(_: AudioDataSource, didSelectAudio audio: Audio) {
         delegate?.audioViewControllerDidSelectAudio(self, didSelectAudio: audio)
     }
 }

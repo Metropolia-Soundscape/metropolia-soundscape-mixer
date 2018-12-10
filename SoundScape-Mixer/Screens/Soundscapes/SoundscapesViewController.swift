@@ -1,17 +1,16 @@
-import UIKit
 import RealmSwift
+import UIKit
 
 class SoundscapesViewController: UIViewController {
-    
-    @IBOutlet weak var soundscapesCollectionView: UICollectionView!
-    
+    @IBOutlet var soundscapesCollectionView: UICollectionView!
+
     var reuseId = "soundscapesCollectionViewCell"
 
     let realm = try! Realm()
     var soundscapes: Results<Soundscape>!
-    
+
     var soundscapesObserverToken: NotificationToken?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,21 +24,23 @@ class SoundscapesViewController: UIViewController {
         soundscapesCollectionView.dataSource = self
         soundscapesCollectionView.delegate = self
         soundscapes = realm.objects(Soundscape.self)
-        soundscapesObserverToken = soundscapes?.observe({ (_) in
-            self.soundscapesCollectionView.reloadData()
-        })
+        soundscapesObserverToken = soundscapes?.observe(
+            { _ in
+                self.soundscapesCollectionView.reloadData()
+            }
+        )
     }
 }
 
 extension SoundscapesViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
         if let soundscapes = soundscapes {
             return soundscapes.count
         } else {
             return 0
         }
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseId, for: indexPath) as! SoundscapesCollectionViewCell
         if let soundscapes = soundscapes {
@@ -50,7 +51,7 @@ extension SoundscapesViewController: UICollectionViewDataSource {
 }
 
 extension SoundscapesViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let soundscapeVC = CreateSoundscapeViewController()
         soundscapeVC.newSoundscape = false
         soundscapeVC.soundscape = soundscapes[indexPath.row]
@@ -59,14 +60,16 @@ extension SoundscapesViewController: UICollectionViewDelegate {
 }
 
 extension SoundscapesViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = soundscapesCollectionView.bounds.width/2 - 10
+    func collectionView(
+        _: UICollectionView,
+        layout _: UICollectionViewLayout,
+        sizeForItemAt _: IndexPath
+    ) -> CGSize {
+        let width = soundscapesCollectionView.bounds.width / 2 - 10
         return CGSize(width: width, height: width)
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+
+    func collectionView(_: UICollectionView, layout _: UICollectionViewLayout, minimumLineSpacingForSectionAt _: Int) -> CGFloat {
         return 16.0
     }
 }

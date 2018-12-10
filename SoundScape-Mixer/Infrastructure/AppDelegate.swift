@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 class LibraryFileManger: AppFileManager<LibrarySubDirectory> {
     static let shared = LibraryFileManger(baseURL: FileManager.default.libraryDirectory)
-    
+
     private override init(baseURL: URL) {
         super.init(baseURL: baseURL)
     }

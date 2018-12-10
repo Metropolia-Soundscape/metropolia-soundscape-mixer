@@ -1,20 +1,20 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var contentView: UIView!
+    @IBOutlet var scrollView: UIScrollView!
+    @IBOutlet var contentView: UIView!
     @IBOutlet var usernameLbl: UITextField!
     @IBOutlet var passwordLbl: UITextField!
     @IBOutlet var collectionLbl: UITextField!
     @IBOutlet var signInBtn: UIButton!
-    @IBOutlet weak var errorMessageLbl: UILabel!
-    
-    @IBOutlet weak var constraintContentHeight: NSLayoutConstraint!
-    
+    @IBOutlet var errorMessageLbl: UILabel!
+
+    @IBOutlet var constraintContentHeight: NSLayoutConstraint!
+
     var activeField: UITextField?
     var lastOffset: CGPoint!
     var keyboardHeight: CGFloat = 0
-    
+
 //    let appController = AppDelegate.appDelegate.appController
 
     override func viewDidLoad() {
@@ -24,11 +24,11 @@ class LoginViewController: UIViewController {
         passwordLbl.delegate = self
         collectionLbl.delegate = self
         errorMessageLbl.numberOfLines = 0
-        
+
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-        
-        self.contentView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(returnTextView(gesture:))))
+
+        contentView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(returnTextView(gesture:))))
     }
 
     private func setupVC() {
@@ -40,7 +40,7 @@ class LoginViewController: UIViewController {
         guard let username = usernameLbl.text, let password = passwordLbl.text, let collection = collectionLbl.text else { return }
         appController.networking.authenticate(username: username, password: password) { [weak self] authJSON, _ in
             if let authJSON = authJSON {
-                if (authJSON.apiKey != "Incorrect credentials! Try again." && collection.isEmpty == false) {
+                if authJSON.apiKey != "Incorrect credentials! Try again." && collection.isEmpty == false {
                     let loggedIn = LoginState(token: authJSON.apiKey)
                     self?.appController.loginStateService.state = loggedIn
                     self?.appController.showLoggedInState(loggedIn)
@@ -54,12 +54,12 @@ class LoginViewController: UIViewController {
             }
         }
     }
-    
-    @objc func returnTextView(gesture: UIGestureRecognizer) {
+
+    @objc func returnTextView(gesture _: UIGestureRecognizer) {
         guard activeField != nil else {
             return
         }
-        
+
         activeField?.resignFirstResponder()
         activeField = nil
     }
@@ -68,11 +68,11 @@ class LoginViewController: UIViewController {
 extension LoginViewController: UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         activeField = textField
-        lastOffset = self.scrollView.contentOffset
+        lastOffset = scrollView.contentOffset
         return true
     }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+
+    func textFieldShouldReturn(_: UITextField) -> Bool {
         activeField?.resignFirstResponder()
         activeField = nil
         return true
@@ -83,36 +83,40 @@ extension LoginViewController {
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             keyboardHeight = keyboardSize.height
-            
+
             // so increase contentView's height by keyboard height
-            UIView.animate(withDuration: 0.3, animations: {
-                self.constraintContentHeight.constant += self.keyboardHeight
-            })
-            
+            UIView.animate(
+                withDuration: 0.3, animations: {
+                    self.constraintContentHeight.constant += self.keyboardHeight
+                }
+            )
+
             // move if keyboard hide input field
-            let distanceToBottom = self.scrollView.frame.size.height - (activeField?.frame.origin.y)! - (activeField?.frame.size.height)!
+            let distanceToBottom = scrollView.frame.size.height - (activeField?.frame.origin.y)! - (activeField?.frame.size.height)!
             let collapseSpace = keyboardHeight - distanceToBottom
-            
+
             if collapseSpace < 0 {
                 // no collapse
                 return
             }
-            
+
             // set new offset for scroll view
-            UIView.animate(withDuration: 0.3, animations: {
-                // scroll to the position above keyboard 10 points
-                self.scrollView.contentOffset = CGPoint(x: self.lastOffset.x, y: collapseSpace + 10)
-            })
+            UIView.animate(
+                withDuration: 0.3, animations: {
+                    // scroll to the position above keyboard 10 points
+                    self.scrollView.contentOffset = CGPoint(x: self.lastOffset.x, y: collapseSpace + 10)
+                }
+            )
         }
     }
-    
-    @objc func keyboardWillHide(notification: NSNotification) {
+
+    @objc func keyboardWillHide(notification _: NSNotification) {
         UIView.animate(withDuration: 0.3) {
             self.constraintContentHeight.constant -= self.keyboardHeight
-            
+
             self.scrollView.contentOffset = self.lastOffset
         }
-        
+
         keyboardHeight = 0.0
     }
 }

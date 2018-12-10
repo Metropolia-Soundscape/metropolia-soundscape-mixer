@@ -13,15 +13,14 @@ protocol DownloadOperationDelegate: NSObjectProtocol {
 }
 
 extension DownloadOperationDelegate {
-    func donwloadOperationDidPause(_ operation: DownloadOperation) {}
-    func downloadOperationDidResume(_ operation: DownloadOperation) {}
-    func donwloadOperation(_ operation: DownloadOperation, didUpdateProgress progress: Float) {}
-    func downloadOperation(_ operation: DownloadOperation, didFailDownloadingWithError error: Error) {}
-    func downloadOperationDidFinishDownloading(_ operation: DownloadOperation) {}
+    func donwloadOperationDidPause(_: DownloadOperation) {}
+    func downloadOperationDidResume(_: DownloadOperation) {}
+    func donwloadOperation(_: DownloadOperation, didUpdateProgress _: Float) {}
+    func downloadOperation(_: DownloadOperation, didFailDownloadingWithError _: Error) {}
+    func downloadOperationDidFinishDownloading(_: DownloadOperation) {}
 }
 
 class DownloadOperation: NSObject {
-
     var task: URLSessionDownloadTask?
 
     var downloading: Bool = false
@@ -43,7 +42,6 @@ protocol DownloadURLSession {
 }
 
 class MulticastDelegate<T>: NSObject {
-
     private var delegates: NSHashTable<AnyObject> = NSHashTable.weakObjects()
 
     func add(_ delegate: T) {
@@ -61,7 +59,6 @@ class MulticastDelegate<T>: NSObject {
             }
         }
     }
-
 }
 
 protocol DownloadServiceDelegate: NSObjectProtocol {
@@ -70,7 +67,6 @@ protocol DownloadServiceDelegate: NSObjectProtocol {
 }
 
 class DownloadService: NSObject {
-
     static let shared = DownloadService()
 
     private(set) var delegates = MulticastDelegate<DownloadServiceDelegate>()
@@ -100,27 +96,28 @@ class DownloadService: NSObject {
 }
 
 extension DownloadService: URLSessionDownloadDelegate {
-    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
+    func urlSession(_: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
         guard let url = downloadTask.originalRequest?.url,
             let operation = activeDownloads[url] else { return }
         operation.downloadedFileURL = location
         delegates.call { $0.downloadServiceDidFinishDownloading(self, operation: operation) }
     }
 
-    func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {}
+    func urlSessionDidFinishEvents(forBackgroundURLSession _: URLSession) {}
 
-    func urlSession(_ session: URLSession,
-                    downloadTask: URLSessionDownloadTask,
-                    didWriteData bytesWritten: Int64,
-                    totalBytesWritten: Int64,
-                    totalBytesExpectedToWrite: Int64)
-    {
+    func urlSession(
+        _: URLSession,
+        downloadTask: URLSessionDownloadTask,
+        didWriteData _: Int64,
+        totalBytesWritten: Int64,
+        totalBytesExpectedToWrite: Int64
+    ) {
         guard let url = downloadTask.originalRequest?.url,
             let operation = activeDownloads[url] else { return }
 
         let progress: Float = Float(totalBytesWritten / totalBytesExpectedToWrite)
         operation.progress = progress
-        delegates.call { $0.downloadService(self, operation: operation, didUpdateProgress: progress)}
+        delegates.call { $0.downloadService(self, operation: operation, didUpdateProgress: progress) }
     }
 }
 

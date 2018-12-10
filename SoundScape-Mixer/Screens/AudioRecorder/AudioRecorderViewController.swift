@@ -11,14 +11,14 @@ protocol AudioRecorderViewControllerDelegate: class {
 class AudioRecorderViewController: UIViewController {
     @IBOutlet var recordBtn: UIButton!
     @IBOutlet var pauseBtn: UIButton!
-    @IBOutlet weak var playBtn: UIButton!
-    @IBOutlet weak var timerLbl: UILabel!
-    
+    @IBOutlet var playBtn: UIButton!
+    @IBOutlet var timerLbl: UILabel!
+
     var delegate: AudioRecorderViewControllerDelegate?
     var recordingSession: AVAudioSession!
     var audioRecorder: AVAudioRecorder!
     var hasPermission: Bool = false
-    var meterTimer:Timer!
+    var meterTimer: Timer!
     var currentRecordingCount: Int?
     var playing = false
 
@@ -27,8 +27,7 @@ class AudioRecorderViewController: UIViewController {
     var finalFileURL: URL?
 
     private let audioFileExtension = "m4a"
-    
-    
+
     private var isRecording = false {
         didSet {
             if isRecording {
@@ -63,7 +62,7 @@ class AudioRecorderViewController: UIViewController {
 
     lazy var cancelBtn: UIBarButtonItem = {
 //        let btn = UIBarButtonItem(title: "Cancel", style: .cancel, target: self, action: #selector(cancelBtnPressed))
-        let btn = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action:  #selector(cancelBtnPressed))
+        let btn = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelBtnPressed))
         return btn
     }()
 
@@ -75,12 +74,12 @@ class AudioRecorderViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         if let count = UserDefaults.standard.value(forKey: kRecordingNumberCountKey) as? Int {
-            self.currentRecordingCount = count 
+            currentRecordingCount = count
         } else {
             UserDefaults.standard.set(1, forKey: kRecordingNumberCountKey)
-            self.currentRecordingCount = 1
+            currentRecordingCount = 1
         }
 
         recordingSession = AVAudioSession.sharedInstance()
@@ -124,49 +123,58 @@ class AudioRecorderViewController: UIViewController {
     }
 
     private func handleSavingRecordingFile(tempURL: URL) {
-
         guard FileManager.default.fileExists(atPath: tempURL.path) else { return }
 
-        let alertController = UIAlertController(title: "Saving audio file",
-                                                message: "Please input your file name", preferredStyle: .alert)
-        alertController.addTextField { (textField) in
+        let alertController = UIAlertController(
+            title: "Saving audio file",
+            message: "Please input your file name", preferredStyle: .alert
+        )
+        alertController.addTextField { textField in
             textField.placeholder = "New recording"
         }
 
         let confirmAction = UIAlertAction(
             title: "Save",
-            style: UIAlertAction.Style.default) { (_) in
-                // Check if filename already exists
-                if let textField = alertController.textFields?.first {
-                    if let fileName = textField.text,
-                        fileName.trimmingCharacters(in: .whitespacesAndNewlines) != ""
-                    {
-                        let url = self.getDocumentDirectory().appendingPathComponent("\(fileName).\(self.audioFileExtension)")
-                        if (!FileManager.default.fileExists(atPath: url.path)) {
-                            // Send file URL
-                            self.delegate?.audioRecorderViewControllerDidFinishRecording(recordingFileURL: url)
-                            
-                            // Replace filename
-                            try! FileManager.default.moveItem(at: tempURL, to: url)
-                            alertController.dismiss(animated: true, completion: nil)
-                            self.dismiss(animated: true, completion: nil)
-                        } else {
-                            self.displayWarningAlert(withTitle: "Error", errorMessage: "\(fileName) already existed", cancelHandler: {
-                                self.handleSavingRecordingFile(tempURL: tempURL)
-                            })
-                        }
+            style: UIAlertAction.Style.default
+        ) { _ in
+            // Check if filename already exists
+            if let textField = alertController.textFields?.first {
+                if let fileName = textField.text,
+                    fileName.trimmingCharacters(in: .whitespacesAndNewlines) != "" {
+                    let url = self.getDocumentDirectory().appendingPathComponent("\(fileName).\(self.audioFileExtension)")
+                    if !FileManager.default.fileExists(atPath: url.path) {
+                        // Send file URL
+                        self.delegate?.audioRecorderViewControllerDidFinishRecording(recordingFileURL: url)
+
+                        // Replace filename
+                        try! FileManager.default.moveItem(at: tempURL, to: url)
+                        alertController.dismiss(animated: true, completion: nil)
+                        self.dismiss(animated: true, completion: nil)
                     } else {
-                        self.displayWarningAlert(withTitle: "Error", errorMessage: "Please type a valid name", cancelHandler: {
-                            self.handleSavingRecordingFile(tempURL: tempURL)
-                        })
+                        self.displayWarningAlert(
+                            withTitle: "Error", errorMessage: "\(fileName) already existed", cancelHandler: {
+                                self.handleSavingRecordingFile(tempURL: tempURL)
+                            }
+                        )
                     }
+                } else {
+                    self.displayWarningAlert(
+                        withTitle: "Error", errorMessage: "Please type a valid name", cancelHandler: {
+                            self.handleSavingRecordingFile(tempURL: tempURL)
+                        }
+                    )
                 }
+            }
         }
 
-        alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: { _ in
-            alertController.dismiss(animated: true, completion: nil)
-        }))
-        
+        alertController.addAction(
+            UIAlertAction(
+                title: "Cancel", style: UIAlertAction.Style.default, handler: { _ in
+                    alertController.dismiss(animated: true, completion: nil)
+                }
+            )
+        )
+
         alertController.addAction(confirmAction)
 
         present(alertController, animated: true, completion: nil)
@@ -174,9 +182,9 @@ class AudioRecorderViewController: UIViewController {
 
     @IBAction func recordBtnPressed(_: Any) {
         if audioRecorder == nil && hasPermission {
-            self.currentRecordingCount! += 1
-            let tempURL = getDocumentDirectory().appendingPathComponent("NewRecording\(self.currentRecordingCount!).\(audioFileExtension)")
-            UserDefaults.standard.set(self.currentRecordingCount, forKey: kRecordingNumberCountKey)
+            currentRecordingCount! += 1
+            let tempURL = getDocumentDirectory().appendingPathComponent("NewRecording\(currentRecordingCount!).\(audioFileExtension)")
+            UserDefaults.standard.set(currentRecordingCount, forKey: kRecordingNumberCountKey)
             tempRecordingFileURL = tempURL
 
             let settings = [
@@ -194,7 +202,7 @@ class AudioRecorderViewController: UIViewController {
                 audioRecorder.prepareToRecord()
                 audioRecorder.record()
 
-                meterTimer = Timer.scheduledTimer(timeInterval: 0.1, target:self, selector:#selector(self.updateAudioMeter(timer:)), userInfo:nil, repeats:true)
+                meterTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateAudioMeter(timer:)), userInfo: nil, repeats: true)
 
                 recordBtn.setTitle("Stop recording", for: .normal)
 
@@ -238,21 +246,18 @@ class AudioRecorderViewController: UIViewController {
             handleSavingRecordingFile(tempURL: temp)
         }
     }
-    
-    @IBAction func playButtonTapped(_ sender: Any) {
-        
-    }
-    
-    @objc private func updateAudioMeter(timer: Timer) {
+
+    @IBAction func playButtonTapped(_: Any) {}
+
+    @objc private func updateAudioMeter(timer _: Timer) {
         if let audioRecorder = self.audioRecorder {
-            
             if audioRecorder.isRecording {
                 let min = Int(audioRecorder.currentTime / 60)
                 let sec = Int(audioRecorder.currentTime.truncatingRemainder(dividingBy: 60))
                 let totalTimeString = String(format: "%02d:%02d", min, sec)
                 timerLbl.text = totalTimeString
                 audioRecorder.updateMeters()
-                
+
                 if sec >= 30 {
                     // Stop the recorder
 
@@ -263,8 +268,6 @@ class AudioRecorderViewController: UIViewController {
                     isFinishedRecording = true
                 }
             }
-        
         }
     }
 }
-

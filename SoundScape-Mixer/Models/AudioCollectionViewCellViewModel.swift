@@ -10,16 +10,19 @@ struct AudioCollectionViewCellModel: Equatable {
 }
 
 extension AudioCollectionViewCellModel {
-    static func viewModel(for audio: Audio,
-                          downloading: Bool,
-                          downloaded: Bool,
-                          progress: Float) -> AudioCollectionViewCellModel {
-        return AudioCollectionViewCellModel(isPlaying: false,
-                                            title: audio.title,
-                                            url: audio.downloadLink,
-                                            downloading: downloading,
-                                            downloaded: downloaded,
-                                            progress: progress)
+    static func viewModel(
+        for audio: Audio,
+        downloading: Bool,
+        downloaded: Bool,
+        progress: Float
+    ) -> AudioCollectionViewCellModel {
+        return AudioCollectionViewCellModel(
+            isPlaying: false,
+            title: audio.title,
+            url: audio.downloadLink,
+            downloading: downloading,
+            downloaded: downloaded,
+            progress: progress
+        )
     }
 }
-

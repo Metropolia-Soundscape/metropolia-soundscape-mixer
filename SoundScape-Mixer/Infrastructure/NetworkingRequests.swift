@@ -5,7 +5,6 @@ protocol AudioService: class {
 }
 
 extension Network {
-    
     func authenticate(username: String, password: String, completion: @escaping (AuthJSON?, Error?) -> Void) {
         let dict = ["username": username, "password": password]
         var body: Network.Body?
@@ -16,37 +15,39 @@ extension Network {
             completion(json, error)
         }
     }
-    
+
     func uploadRecord(
         recordName: String,
         recordFile: Data,
-        completionHandler: ((_ success: Bool) -> Void)?)
-    {
+        completionHandler: ((_ success: Bool) -> Void)?
+    ) {
         guard let token = AppDelegate.appDelegate.appController.loginStateService.state.token,
             let collection = AudioLibraryCollectionManager.shared.collectionName else { return }
         let params = ["key": token,
-                     "collection": collection,
-                     "resourcetype": "4",
-                     "field8": recordName,
-                     "field74": "record",
-                     "field75": "story",
-                     "field76": "soundscape"]
+                      "collection": collection,
+                      "resourcetype": "4",
+                      "field8": recordName,
+                      "field74": "record",
+                      "field75": "story",
+                      "field76": "soundscape"]
         let aFormData = (recordFile, "userfile", "\(recordName).json", "application/json")
         let body = Network.Body.multipart(formData: [aFormData], parameters: nil)
-        performRequest(method: HTTPMethod.post,
-                       headers: nil,
-                       endpoint: Network.Endpoint.soundscape,
-                       body: body,
-                       queryParameters: params) { (res: SuccessMessage?, error) in
-                        completionHandler?(error != nil)
+        performRequest(
+            method: HTTPMethod.post,
+            headers: nil,
+            endpoint: Network.Endpoint.soundscape,
+            body: body,
+            queryParameters: params
+        ) { (_: SuccessMessage?, error) in
+            completionHandler?(error != nil)
         }
     }
-    
+
     func uploadSoundscapeStructure(
         soundscapeName: String,
         soundscapeStructure: Data,
-        completionHandler: ((_ success: Bool) -> Void)?)
-    {
+        completionHandler: ((_ success: Bool) -> Void)?
+    ) {
         guard let token = AppDelegate.appDelegate.appController.loginStateService.state.token,
             let collection = AudioLibraryCollectionManager.shared.collectionName else { return }
         let params = ["key": token,
@@ -57,12 +58,14 @@ extension Network {
                       "field76": "soundscape"]
         let aFormData = (soundscapeStructure, "userfile", "\(soundscapeName).json", "application/json")
         let body = Network.Body.multipart(formData: [aFormData], parameters: nil)
-        performRequest(method: HTTPMethod.post,
-                       headers: nil,
-                       endpoint: Network.Endpoint.soundscape,
-                       body: body,
-                       queryParameters: params) { (res: SuccessMessage?, error) in
-                        completionHandler?(error != nil)
+        performRequest(
+            method: HTTPMethod.post,
+            headers: nil,
+            endpoint: Network.Endpoint.soundscape,
+            body: body,
+            queryParameters: params
+        ) { (_: SuccessMessage?, error) in
+            completionHandler?(error != nil)
         }
     }
 }

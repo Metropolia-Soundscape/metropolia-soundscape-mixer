@@ -11,7 +11,7 @@ protocol Persistable {
 }
 
 protocol OffilineDataSourceDelegate: NSObjectProtocol {
-    func offlineDataSource<Element>(_ dataSource: OfflineDataSource<Element>, didFetchItems:[Element])
+    func offlineDataSource<Element>(_ dataSource: OfflineDataSource<Element>, didFetchItems: [Element])
 }
 
 class OfflineDataSource<Element: Object>: NSObject {
@@ -26,9 +26,7 @@ class OfflineDataSource<Element: Object>: NSObject {
         localItems = Array(realm.objects(Element.self))
     }
 
-    func fetchItems() {
-
-    }
+    func fetchItems() {}
 }
 
 protocol AudioDataSourceDelegate: NSObjectProtocol {
@@ -38,13 +36,12 @@ protocol AudioDataSourceDelegate: NSObjectProtocol {
 }
 
 extension AudioDataSourceDelegate {
-    func audioDataSource(_ dataSource: AudioDataSource, didFetchAudioWithError error: Error) {}
-    func audioDataSource(_ dataSource: AudioDataSource, didFinishDownloadingWithItems items: [Audio]) {}
-    func audioDataSource(_ dataSource: AudioDataSource, didSelectAudio audio: Audio) {}
+    func audioDataSource(_: AudioDataSource, didFetchAudioWithError _: Error) {}
+    func audioDataSource(_: AudioDataSource, didFinishDownloadingWithItems _: [Audio]) {}
+    func audioDataSource(_: AudioDataSource, didSelectAudio _: Audio) {}
 }
 
 class AudioDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
-
     private let player = AudioPlayer.sharedInstance
     private let realm = try! Realm()
     private var playingCellIndex: IndexPath?
@@ -83,17 +80,21 @@ class AudioDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDel
         audioCategory = category
         super.init()
 
-        observationToken = items.observe({ (_) in
-            self.cellViewModels = self.items.map {
-                let downloaded = FileManager.default.downloadedFileExist(for: $0)
-                return AudioCollectionViewCellModel.viewModel(for: $0,
-                                                              downloading: false,
-                                                              downloaded: downloaded,
-                                                              progress: 0.0)
-            }
+        observationToken = items.observe(
+            { _ in
+                self.cellViewModels = self.items.map {
+                    let downloaded = FileManager.default.downloadedFileExist(for: $0)
+                    return AudioCollectionViewCellModel.viewModel(
+                        for: $0,
+                        downloading: false,
+                        downloaded: downloaded,
+                        progress: 0.0
+                    )
+                }
 
-            self.collectionView?.reloadData()
-        })
+                self.collectionView?.reloadData()
+            }
+        )
 
         NotificationCenter.default.addObserver(self, selector: #selector(audioPlayerDidFinishPlaying), name: Notification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
 
@@ -104,7 +105,7 @@ class AudioDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDel
 
     /// Fetch remote items
     func refresh() {
-        audioService.getCategoryAudio(category: audioCategory.rawValue) { [weak self] (audioArray, error) in
+        audioService.getCategoryAudio(category: audioCategory.rawValue) { [weak self] audioArray, error in
             DispatchQueue.main.async {
                 guard let strongSelf = self else { return }
                 if let err = error {
@@ -114,7 +115,7 @@ class AudioDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDel
 
                 var items = [Audio]()
                 if let audio = audioArray {
-                    items =  audio.compactMap { $0.first }
+                    items = audio.compactMap { $0.first }
 
                     try! strongSelf.realm.write {
                         strongSelf.realm.add(items, update: true)
@@ -149,17 +150,19 @@ class AudioDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDel
     private func cellViewModels(for results: Results<Audio>) -> [AudioCollectionViewCellModel] {
         return results.map {
             let downloaded = FileManager.default.downloadedFileExist(for: $0)
-            return AudioCollectionViewCellModel.viewModel(for: $0,
-                                                          downloading: false,
-                                                          downloaded: downloaded,
-                                                          progress: 0.0)
+            return AudioCollectionViewCellModel.viewModel(
+                for: $0,
+                downloading: false,
+                downloaded: downloaded,
+                progress: 0.0
+            )
         }
     }
 
     // MARK: UICollectionViewDataSource methods
-    func numberOfSections(in collectionView: UICollectionView) -> Int { return 1 }
+    func numberOfSections(in _: UICollectionView) -> Int { return 1 }
 
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
         return cellViewModels.count
     }
 
@@ -168,9 +171,11 @@ class AudioDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDel
         cell.delegate = self
 
         let cellViewModel = cellViewModels[indexPath.row]
-        cell.setup(downloaded: cellViewModel.downloaded,
-                   downloading: cellViewModel.downloading,
-                   progress: cellViewModel.progress)
+        cell.setup(
+            downloaded: cellViewModel.downloaded,
+            downloading: cellViewModel.downloading,
+            progress: cellViewModel.progress
+        )
         cell.playing = cellViewModel.isPlaying
         cell.audioNameLabel.text = cellViewModel.title
 
@@ -181,7 +186,7 @@ class AudioDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDel
     }
 
     // MARK: UICollectionViewDelegate methods
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let audio = displayItems[indexPath.row]
         delegate?.audioDataSource(self, didSelectAudio: audio)
     }
@@ -203,9 +208,9 @@ extension AudioDataSource: AudioCollectionViewCellDelegate {
         DownloadService.shared.download(audio)
     }
 
-    func audioCollectionViewCellDidTapPauseDownloadButton(_ cell: AudioCollectionViewCell) {}
+    func audioCollectionViewCellDidTapPauseDownloadButton(_: AudioCollectionViewCell) {}
 
-    func audioCollectionViewCellDidTapCancelDownloadButton(_ cell: AudioCollectionViewCell) {}
+    func audioCollectionViewCellDidTapCancelDownloadButton(_: AudioCollectionViewCell) {}
 
     func audioCollectionViewCellDidTapPlayButton(_ cell: AudioCollectionViewCell) {
         if let playingIndexPath = playingCellIndex {
@@ -247,9 +252,11 @@ extension AudioDataSource: AudioCollectionViewCellDelegate {
 }
 
 extension AudioDataSource: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(
+        _: UICollectionView,
+        layout _: UICollectionViewLayout,
+        sizeForItemAt _: IndexPath
+    ) -> CGSize {
         let width = UIScreen.main.bounds.size.width
         return CGSize(width: width, height: 55.0)
     }
@@ -257,7 +264,7 @@ extension AudioDataSource: UICollectionViewDelegateFlowLayout {
 
 // MARK: - DownloadServiceDelegate methods
 extension AudioDataSource: DownloadServiceDelegate {
-    func downloadServiceDidFinishDownloading(_ service: DownloadService, operation: DownloadOperation) {
+    func downloadServiceDidFinishDownloading(_: DownloadService, operation: DownloadOperation) {
         guard let fileLocation = operation.downloadedFileURL else { return }
 
         let destinationURL = FileManager.default.localFileURL(for: operation.url)
@@ -267,7 +274,6 @@ extension AudioDataSource: DownloadServiceDelegate {
         DispatchQueue.main.sync {
             if var cellViewModel = self.cellViewModels.filter({ URL(string: $0.url!)! == operation.url }).first,
                 let index = self.cellViewModels.index(of: cellViewModel) {
-
                 cellViewModel.downloaded = true
                 cellViewModel.downloading = false
                 self.cellViewModels[index] = cellViewModel
@@ -280,10 +286,9 @@ extension AudioDataSource: DownloadServiceDelegate {
         } catch {
             print(error.localizedDescription)
         }
-
     }
 
-    func downloadService(_ service: DownloadService, operation: DownloadOperation, didUpdateProgress progress: Float) {
+    func downloadService(_: DownloadService, operation: DownloadOperation, didUpdateProgress progress: Float) {
         DispatchQueue.main.async {
             if var cellViewModel = self.cellViewModels.filter({ URL(string: $0.url!)! == operation.url }).first,
                 let index = self.cellViewModels.index(of: cellViewModel) {

@@ -1,65 +1,64 @@
-import UIKit
 import AVFoundation
+import UIKit
 
 public let kRecordingCell: String = "kRecordingCell"
 
 class ProfileViewController: UIViewController {
-    
     private var player = AudioPlayer.sharedInstance
     private var recordings: [String] = [String]() {
         didSet {
-            self.tableView.reloadData()
+            tableView.reloadData()
         }
     }
-    
-    @IBOutlet weak var tableView: UITableView!
-    
+
+    @IBOutlet var tableView: UITableView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneBtnPressed))
-        
+
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: kRecordingCell)
-        
+
         tableView.delegate = self
-        
+
         tableView.dataSource = self
-        
+
         tableView.backgroundColor = .clear
-        
+
         getAllRecordings()
     }
-    
+
     @objc private func doneBtnPressed() {
-        self.dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getAllRecordings()
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         player.stopAudio()
     }
-    
+
     @IBAction func logoutButtonPressed(_: UIButton) {
         appController.logout()
     }
-    
+
     private func getAllRecordings() {
         do {
             let contentOfRecordsFolder = try FileManager.default.contentsOfDirectory(atPath: getDocumentDirectory().relativePath)
-            
+
             print(getDocumentDirectory().relativePath)
-            
-            self.recordings = contentOfRecordsFolder
+
+            recordings = contentOfRecordsFolder
         } catch let err {
             print(err.localizedDescription)
         }
     }
-    
+
     private func getDocumentDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths[0].appendingPathComponent("Resources/Records/")
@@ -67,19 +66,19 @@ class ProfileViewController: UIViewController {
 }
 
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         return recordings.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: kRecordingCell, for: indexPath)
-        
+
         cell.textLabel?.text = recordings[indexPath.row]
-        
+
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        player.playAudio(url: self.getDocumentDirectory().appendingPathComponent(recordings[indexPath.row]))
+
+    func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
+        player.playAudio(url: getDocumentDirectory().appendingPathComponent(recordings[indexPath.row]))
     }
 }

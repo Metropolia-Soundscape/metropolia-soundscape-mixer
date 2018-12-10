@@ -1,17 +1,8 @@
-//
-//  AudioPlayer.swift
-//  SoundScape-Mixer
-//
-//  Created by Hồng Ngọc Doãn on 11/25/18.
-//  Copyright © 2018 Long Nguyen. All rights reserved.
-//
-
-import Foundation
 import AVFoundation
+import Foundation
 import RealmSwift
 
 class AudioPlayer: NSObject {
-
     static let sharedInstance = AudioPlayer()
 
     var audioPlaying: Bool = false
@@ -30,16 +21,16 @@ class AudioPlayer: NSObject {
         player = AVPlayer(url: url)
         player?.play()
     }
-    
+
     func stopAudio() {
         audioPlaying = false
         player = nil
     }
-    
+
     func playSoundscape(audio: [Audio]) {
         soundscapePlaying = true
         players = audio.map {
-            var player: AVPlayer 
+            var player: AVPlayer
             if FileManager.default.downloadedFileExist(for: $0) {
                 player = AVPlayer(url: FileManager.default.localFileURL(for: $0))
             } else {

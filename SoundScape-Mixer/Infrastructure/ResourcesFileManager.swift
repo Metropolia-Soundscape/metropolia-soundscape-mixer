@@ -1,13 +1,4 @@
-//
-//  ResourcesFileManager.swift
-//  SoundScape-Mixer
-//
-//  Created by Hồng Ngọc Doãn on 11/26/18.
-//  Copyright © 2018 Long Nguyen. All rights reserved.
-//
-
 import Foundation
-
 
 enum DocumentSubDirectory: String {
     case resources = "Resources"

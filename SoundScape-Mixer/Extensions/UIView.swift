@@ -12,11 +12,11 @@ extension UICollectionViewCell: ReusableView {}
 extension UITableViewCell: ReusableView {}
 
 extension UICollectionView {
-    func registerClass<T: UICollectionViewCell>(_ : T.Type) {
+    func registerClass<T: UICollectionViewCell>(_: T.Type) {
         register(T.self, forCellWithReuseIdentifier: T.reusableIdentifier)
     }
 
-    func registerNib<T: UICollectionViewCell>(_ : T.Type, bundle: Bundle? = nil) {
+    func registerNib<T: UICollectionViewCell>(_: T.Type, bundle: Bundle? = nil) {
         let nibName = String(describing: T.self)
         register(UINib(nibName: nibName, bundle: bundle), forCellWithReuseIdentifier: T.reusableIdentifier)
     }

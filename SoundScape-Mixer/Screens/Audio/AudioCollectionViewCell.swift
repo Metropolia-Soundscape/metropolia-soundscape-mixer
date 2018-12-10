@@ -9,14 +9,13 @@ protocol AudioCollectionViewCellDelegate: class {
 }
 
 class AudioCollectionViewCell: UICollectionViewCell {
+    @IBOutlet var audioNameLabel: UILabel!
+    @IBOutlet var playButton: UIButton!
+    @IBOutlet var pauseButton: UIButton!
+    @IBOutlet var cancelButton: UIButton!
+    @IBOutlet var downloadButton: UIButton!
+    @IBOutlet var progressView: UIProgressView!
 
-    @IBOutlet weak var audioNameLabel: UILabel!
-    @IBOutlet weak var playButton: UIButton!
-    @IBOutlet weak var pauseButton: UIButton!
-    @IBOutlet weak var cancelButton: UIButton!
-    @IBOutlet weak var downloadButton: UIButton!
-    @IBOutlet weak var progressView: UIProgressView!
-    
     weak var delegate: AudioCollectionViewCellDelegate?
 
     var downloadLink: String?
@@ -28,16 +27,15 @@ class AudioCollectionViewCell: UICollectionViewCell {
         }
     }
 
-    
-    @IBAction func playPressed(_ sender: Any) {
+    @IBAction func playPressed(_: Any) {
         delegate?.audioCollectionViewCellDidTapPlayButton(self)
     }
-    
-    @IBAction func startDownloadPressed(_ sender: Any) {
+
+    @IBAction func startDownloadPressed(_: Any) {
         delegate?.audioCollectionViewCellDidTapStartDownloadButton(self)
     }
-    
-    func setup(downloaded: Bool, downloading: Bool, progress: Float) {
+
+    func setup(downloaded: Bool, downloading: Bool, progress _: Float) {
         if downloaded {
             pauseButton.isHidden = true
             cancelButton.isHidden = true
