@@ -1,4 +1,5 @@
 import UIKit
+import RealmSwift
 
 extension UIViewController {
     var appController: AppController {
@@ -7,6 +8,14 @@ extension UIViewController {
     
     var fileManager: FileManager {
         return FileManager.default
+    }
+    
+    var realm: Realm {
+        return try! Realm()
+    }
+    
+    var screenSize: CGRect {
+        return UIScreen.main.bounds
     }
 
     func displayWarningAlert(withTitle title: String?, errorMessage message: String?, cancelHandler handler: (() -> Void)? = nil) {

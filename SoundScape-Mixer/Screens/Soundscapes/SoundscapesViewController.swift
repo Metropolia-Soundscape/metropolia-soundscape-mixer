@@ -6,7 +6,6 @@ class SoundscapesViewController: UIViewController {
 
     var reuseId = "soundscapesCollectionViewCell"
 
-    let realm = try! Realm()
     var soundscapes: Results<Soundscape>!
 
     var soundscapesObserverToken: NotificationToken?

@@ -91,7 +91,6 @@ class AudioDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDel
                         progress: 0.0
                     )
                 }
-
                 self.collectionView?.reloadData()
             }
         )
@@ -181,6 +180,10 @@ class AudioDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDel
 
         // TODO: Remove this line
         cell.progressView.setProgress(cellViewModel.progress, animated: true)
+        
+        if (audioCategory == AudioCategory.record) {
+            cell.downloadButton.isHidden = true
+        }
 
         return cell
     }

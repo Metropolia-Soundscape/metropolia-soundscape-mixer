@@ -19,8 +19,6 @@ class CreateSoundscapeViewController: UIViewController {
     var saveBtn: UIBarButtonItem!
     var editBtn: UIBarButtonItem!
 
-    let realm = try! Realm()
-    let screenSize: CGRect = UIScreen.main.bounds
     let player = AudioPlayer.sharedInstance
     var soundscape: Soundscape = Soundscape()
     var newSoundscape: Bool = true
@@ -290,6 +288,11 @@ extension CreateSoundscapeViewController: AudioRecorderViewControllerDelegate {
             logMessage = "Added Record-\(title)"
             soundscape.log.append(logMessage)
         }
+        
+        try! realm.write {
+            realm.add(audioRecord)
+        }
+        
         items.append(audioRecord)
     }
 }

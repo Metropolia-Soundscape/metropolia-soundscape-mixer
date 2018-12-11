@@ -5,15 +5,14 @@ import RealmSwift
 public let kRecordingCell: String = "kRecordingCell"
 
 class ProfileViewController: UIViewController {
-    let realm = try! Realm()
-    
+  
     private var player = AudioPlayer.sharedInstance
-    private var recordings: [String] = [String]() {
-        didSet {
-            tableView.reloadData()
-        }
-    }
+    var items: [String] = ["Recordings"]
+    
+    var recordingsObserverToken: NotificationToken?
 
+    // MARK: - IBOutlets
+    
     @IBOutlet var tableView: UITableView!
 
     override func viewDidLoad() {
@@ -22,23 +21,13 @@ class ProfileViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneBtnPressed))
 
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: kRecordingCell)
-
         tableView.delegate = self
-
         tableView.dataSource = self
-
-        tableView.backgroundColor = .clear
-        
-        getAllRecordings()
+        tableView.tableFooterView = UIView()
     }
 
     @objc private func doneBtnPressed() {
         dismiss(animated: true, completion: nil)
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        getAllRecordings()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -78,14 +67,6 @@ class ProfileViewController: UIViewController {
         )
     }
     
-    func getAllRecordings() {
-        do {
-            try recordings = fileManager.contentsOfDirectory(atPath: fileManager.recordingsDirectory.relativePath)
-        } catch {
-            print(error)
-        }
-    }
-    
     func eraseAllRecordings() {
         let alertController = UIAlertController(title: "Delete All Recordings", message: "This will permanently delete all recordings.", preferredStyle: .alert)
         self.present(alertController, animated: true)
@@ -99,14 +80,17 @@ class ProfileViewController: UIViewController {
         alertController.addAction(
             UIAlertAction(title: "Delete All Recordings", style: .destructive, handler: { _ in
                 do {
-                    try self.recordings = self.fileManager.contentsOfDirectory(atPath: self.fileManager.recordingsDirectory.relativePath)
-                    for recording in self.recordings {
+                    let systemRecordings = try self.fileManager.contentsOfDirectory(atPath: self.fileManager.recordingsDirectory.relativePath)
+                    for recording in systemRecordings {
                         try self.fileManager.removeItem(atPath: self.fileManager.recordingsDirectory.appendingPathComponent(recording).relativePath)
+                    }
+                    let realmRecordings = self.realm.objects(Audio.self).filter("category = 'record'")
+                    try self.realm.write {
+                        self.realm.delete(realmRecordings)
                     }
                 } catch {
                     print(error)
                 }
-                self.getAllRecordings()
             })
         )
     }
@@ -114,18 +98,21 @@ class ProfileViewController: UIViewController {
 
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
-        return recordings.count
+        return items.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: kRecordingCell, for: indexPath)
-
-        cell.textLabel?.text = recordings[indexPath.row]
-
+        cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
+        cell.textLabel?.text = items[indexPath.row]
+        cell.selectionStyle = .none
+        
         return cell
     }
 
     func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
-        player.playAudio(url: fileManager.recordingsDirectory.appendingPathComponent(recordings[indexPath.row]))
+        let audioViewController = AudioViewController()
+        audioViewController.category = AudioCategory.record
+        navigationController?.pushViewController(audioViewController, animated: true)
     }
 }
