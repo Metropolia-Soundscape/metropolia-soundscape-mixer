@@ -51,10 +51,10 @@ extension SoundscapesViewController: UICollectionViewDataSource {
 
 extension SoundscapesViewController: UICollectionViewDelegate {
     func collectionView(_: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let soundscapeVC = CreateSoundscapeViewController()
-        soundscapeVC.newSoundscape = false
-        soundscapeVC.soundscape = soundscapes[indexPath.row]
-        navigationController?.pushViewController(soundscapeVC, animated: true)
+        let soundscapeViewController = CreateSoundscapeViewController()
+        soundscapeViewController.newSoundscape = false
+        soundscapeViewController.soundscape = soundscapes[indexPath.row]
+        navigationController?.pushViewController(soundscapeViewController, animated: true)
     }
 }
 

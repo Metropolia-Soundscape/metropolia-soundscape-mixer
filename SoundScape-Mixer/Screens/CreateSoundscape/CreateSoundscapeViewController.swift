@@ -24,7 +24,22 @@ class CreateSoundscapeViewController: UIViewController {
     var newSoundscape: Bool = true
     var logMessage: String = ""
 
-    var items: [Audio] = [] {
+//    var items: [Audio] = [] {
+//        didSet {
+//            if items.isEmpty {
+//                navigationItem.rightBarButtonItem?.isEnabled = false
+//                playSoundscapeBtn.isEnabled = false
+//                player.stopSoundscape()
+//                playing = false
+//            } else {
+//                navigationItem.rightBarButtonItem?.isEnabled = true
+//                playSoundscapeBtn.isEnabled = true
+//            }
+//            audioCollectionView.reloadData()
+//        }
+//    }
+    
+    var items: [SoundscapeAudio] = [] {
         didSet {
             if items.isEmpty {
                 navigationItem.rightBarButtonItem?.isEnabled = false
@@ -148,6 +163,16 @@ class CreateSoundscapeViewController: UIViewController {
                 if let soundscapeName = alertController.textFields?.first?.text,
                     soundscapeName.trimmingCharacters(in: .whitespacesAndNewlines) != "" {
                     self.soundscape.name = soundscapeName
+                    
+                    self.items.forEach {
+                        self.soundscape.audioArray.append($0)
+                        if let audio = $0.audio {
+                            if audio.category == AudioCategory.recording.rawValue {
+                                self.uploadRecord(record: audio)
+                            }
+                        }
+                    }
+                    
                     self.uploadSoundscape()
                     self.dismiss(animated: true, completion: nil)
                 } else {
@@ -163,13 +188,6 @@ class CreateSoundscapeViewController: UIViewController {
     }
     
     func uploadSoundscape() {
-        self.items.forEach {
-            self.soundscape.audioArray.append($0)
-            if $0.category == AudioCategory.record.rawValue {
-                self.uploadRecord(record: $0)
-            }
-        }
-        
         try! self.realm.write {
             self.realm.add(self.soundscape)
         }
@@ -210,16 +228,19 @@ extension CreateSoundscapeViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseId, for: indexPath) as! CreateSoundscapeCollectionViewCell
         cell.delegate = self
         
-        let audio = items[indexPath.row]
+        let volume = items[indexPath.row].volume
         
-        cell.audioNameLabel.text = audio.title
-        cell.volumeSlider.value = audio.volume
-        cell.audioImageView.layer.cornerRadius = 5.0
-        if let category = audio.categoryType {
-            if let color1 = AudioCategory.color1[category], let color2 = AudioCategory.color2[category] {
-                cell.audioImageView.setup(color1, color2)
+        if let audio = items[indexPath.row].audio {
+            cell.audioNameLabel.text = audio.title
+            cell.volumeSlider.value = Float(volume)
+            cell.audioImageView.layer.cornerRadius = 5.0
+            if let category = audio.categoryType {
+                if let color1 = AudioCategory.color1[category], let color2 = AudioCategory.color2[category] {
+                    cell.audioImageView.setup(color1, color2)
+                }
             }
         }
+        
         if !newSoundscape {
             cell.deleteAudioButton.isHidden = true
             cell.volumeSlider.isEnabled = false
@@ -235,7 +256,9 @@ extension CreateSoundscapeViewController: LibraryViewControllerDelegate {
             logMessage = "Added \(title)"
             soundscape.log.append(logMessage)
         }
-        items.append(audio)
+        let soundscapeAudio = SoundscapeAudio()
+        soundscapeAudio.audio = audio
+        items.append(soundscapeAudio)
     }
 }
 
@@ -253,27 +276,31 @@ extension CreateSoundscapeViewController: UICollectionViewDelegateFlowLayout {
 extension CreateSoundscapeViewController: CreateSoundscapeCollectionViewCellDelegate {
     func createSoundscapeCollectionViewCell(_ cell: CreateSoundscapeCollectionViewCell, didChangeVolume audioVolume: Float) {
         guard let indexPath = audioCollectionView.indexPath(for: cell) else { return }
-        let audio = items[indexPath.row]
+        
         let volumePercentage = Int(audioVolume * 100)
-        if let title = audio.title {
-            logMessage = "Changed volume of \(title) to \(volumePercentage)%"
-            soundscape.log.append(logMessage)
+        if let audio = items[indexPath.row].audio {
+            if let title = audio.title {
+                logMessage = "Changed volume of \(title) to \(volumePercentage)%"
+                soundscape.log.append(logMessage)
+            }
         }
+        
         player.players?[indexPath.row]?.volume = audioVolume
-        items[indexPath.row].volume = audioVolume
+        items[indexPath.row].volume = volumePercentage
     }
 
     func createSoundscapeCollectionViewCellDidDeleteAudio(_ cell: CreateSoundscapeCollectionViewCell) {
         guard let indexPath = audioCollectionView.indexPath(for: cell) else {
             return
         }
-        let audio = items[indexPath.row]
+        
         items.remove(at: indexPath.row)
         player.players?.remove(at: indexPath.row)
-
-        if let title = audio.title {
-            logMessage = "Removed \(title)"
-            soundscape.log.append(logMessage)
+        if let audio = items[indexPath.row].audio {
+            if let title = audio.title {
+                logMessage = "Removed \(title)"
+                soundscape.log.append(logMessage)
+            }
         }
     }
 }
@@ -283,7 +310,7 @@ extension CreateSoundscapeViewController: AudioRecorderViewControllerDelegate {
         let audioRecord: Audio = Audio()
         audioRecord.title = recordingFileURL.deletingPathExtension().lastPathComponent
         audioRecord.downloadLink = "\(recordingFileURL)"
-        audioRecord.category = AudioCategory.record.rawValue
+        audioRecord.category = AudioCategory.recording.rawValue
         if let title = audioRecord.title {
             logMessage = "Added Record-\(title)"
             soundscape.log.append(logMessage)
@@ -293,6 +320,8 @@ extension CreateSoundscapeViewController: AudioRecorderViewControllerDelegate {
             realm.add(audioRecord)
         }
         
-        items.append(audioRecord)
+        let soundscapeRecord: SoundscapeAudio = SoundscapeAudio()
+        soundscapeRecord.audio = audioRecord
+        items.append(soundscapeRecord)
     }
 }

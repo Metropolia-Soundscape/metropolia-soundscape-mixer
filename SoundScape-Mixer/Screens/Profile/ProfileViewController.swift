@@ -112,7 +112,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         let audioViewController = AudioViewController()
-        audioViewController.category = AudioCategory.record
+        audioViewController.category = AudioCategory.recording
         navigationController?.pushViewController(audioViewController, animated: true)
     }
 }

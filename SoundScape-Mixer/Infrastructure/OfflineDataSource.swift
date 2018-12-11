@@ -181,7 +181,7 @@ class AudioDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDel
         // TODO: Remove this line
         cell.progressView.setProgress(cellViewModel.progress, animated: true)
         
-        if (audioCategory == AudioCategory.record) {
+        if (audioCategory == AudioCategory.recording) {
             cell.downloadButton.isHidden = true
         }
 

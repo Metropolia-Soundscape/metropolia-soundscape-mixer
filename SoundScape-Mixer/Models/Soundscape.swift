@@ -6,7 +6,8 @@ class Soundscape: Object, Codable {
     @objc dynamic var name: String = ""
 
     var log: List<String> = List<String>()
-    var audioArray: List<Audio> = List<Audio>()
+//    var audioArray: List<Audio> = List<Audio>()
+    var audioArray: List<SoundscapeAudio> = List<SoundscapeAudio>()
 }
 
 class UploadSoundscape: Codable {
