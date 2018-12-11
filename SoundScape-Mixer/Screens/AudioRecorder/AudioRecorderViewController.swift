@@ -2,8 +2,6 @@ import AVFoundation
 import Foundation
 import UIKit
 
-public let kRecordingNumberCountKey = "kRecordingNumberCountKey"
-
 protocol AudioRecorderViewControllerDelegate: class {
     func audioRecorderViewControllerDidSaveRecording(recordingFileURL: URL)
 }
@@ -22,7 +20,6 @@ class AudioRecorderViewController: UIViewController {
     var currentRecordingCount: Int?
     var playing = false
 
-    // TODO: Refactor this. Remove this property if neccessary
     private var tempRecordingFileURL: URL?
     var finalFileURL: URL?
 
@@ -74,13 +71,6 @@ class AudioRecorderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let count = UserDefaults.standard.value(forKey: kRecordingNumberCountKey) as? Int {
-            currentRecordingCount = count
-        } else {
-            UserDefaults.standard.set(1, forKey: kRecordingNumberCountKey)
-            currentRecordingCount = 1
-        }
-
         recordingSession = AVAudioSession.sharedInstance()
         AVAudioSession.sharedInstance().requestRecordPermission { hasPermission in
             self.hasPermission = hasPermission
@@ -94,14 +84,6 @@ class AudioRecorderViewController: UIViewController {
         navigationItem.title = "Recorder"
         navigationItem.leftBarButtonItem = cancelBtn
         navigationItem.rightBarButtonItem = doneBtn
-    }
-
-    private func getDocumentDirectory() -> URL {
-        // TODO: Hanlde exceptions
-        let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-            .appendingPathComponent("Resources/Records/")
-        try! FileManager.default.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
-        return url
     }
 
     private func showAlert(text: String) {
@@ -147,7 +129,7 @@ class AudioRecorderViewController: UIViewController {
             if let textField = alertController.textFields?.first {
                 if let fileName = textField.text,
                     fileName.trimmingCharacters(in: .whitespacesAndNewlines) != "" {
-                    let url = self.getDocumentDirectory().appendingPathComponent("\(fileName).\(self.audioFileExtension)")
+                    let url = self.fileManager.recordingsDirectory.appendingPathComponent("\(fileName).\(self.audioFileExtension)")
                     if !FileManager.default.fileExists(atPath: url.path) {
                         // Send file URL
                         self.delegate?.audioRecorderViewControllerDidSaveRecording(recordingFileURL: url)
@@ -180,9 +162,7 @@ class AudioRecorderViewController: UIViewController {
 
     @IBAction func recordBtnPressed(_: Any) {
         if audioRecorder == nil && hasPermission {
-            currentRecordingCount! += 1
-            let tempURL = getDocumentDirectory().appendingPathComponent("NewRecording\(currentRecordingCount!).\(audioFileExtension)")
-            UserDefaults.standard.set(currentRecordingCount, forKey: kRecordingNumberCountKey)
+            let tempURL = fileManager.recordingsDirectory.appendingPathComponent("NewRecording.\(audioFileExtension)")
             tempRecordingFileURL = tempURL
 
             let settings = [
@@ -236,6 +216,14 @@ class AudioRecorderViewController: UIViewController {
     }
 
     @objc private func cancelBtnPressed() {
+        if let tempRecordingFileURL = tempRecordingFileURL {
+            do {
+                try fileManager.removeItem(at: tempRecordingFileURL)
+            } catch {
+                print (error)
+            }
+        }
+       
         dismiss(animated: true, completion: nil)
     }
 
@@ -257,11 +245,8 @@ class AudioRecorderViewController: UIViewController {
                 audioRecorder.updateMeters()
 
                 if sec >= 30 {
-                    // Stop the recorder
-
                     self.audioRecorder.stop()
                     self.audioRecorder = nil
-
                     isRecording = false
                     isFinishedRecording = true
                 }

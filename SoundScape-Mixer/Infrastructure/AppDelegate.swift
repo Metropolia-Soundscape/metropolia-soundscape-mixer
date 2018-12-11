@@ -12,7 +12,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         appController = AppController(window!)
         appController.authorize()
         window?.makeKeyAndVisible()
-
+        
+        do {
+            try FileManager.default.createDirectory(at: FileManager.default.recordingsDirectory, withIntermediateDirectories: true, attributes: nil)
+        } catch {
+            print(error)
+        }
+        
         return true
     }
 }

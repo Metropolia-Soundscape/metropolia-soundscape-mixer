@@ -13,8 +13,8 @@ extension FileManager {
         return resourcesDirectory.appendingPathComponent("Library")
     }
 
-    var recordsDirectory: URL {
-        return resourcesDirectory.appendingPathComponent("Records")
+    var recordingsDirectory: URL {
+        return resourcesDirectory.appendingPathComponent("Recordings")
     }
 
     var soundscapesDirectory: URL {

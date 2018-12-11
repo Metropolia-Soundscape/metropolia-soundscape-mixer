@@ -4,6 +4,10 @@ extension UIViewController {
     var appController: AppController {
         return AppDelegate.appController
     }
+    
+    var fileManager: FileManager {
+        return FileManager.default
+    }
 
     func displayWarningAlert(withTitle title: String?, errorMessage message: String?, cancelHandler handler: (() -> Void)? = nil) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)

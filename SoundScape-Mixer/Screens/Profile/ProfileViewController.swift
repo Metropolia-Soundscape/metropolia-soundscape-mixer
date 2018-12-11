@@ -1,9 +1,12 @@
 import AVFoundation
 import UIKit
+import RealmSwift
 
 public let kRecordingCell: String = "kRecordingCell"
 
 class ProfileViewController: UIViewController {
+    let realm = try! Realm()
+    
     private var player = AudioPlayer.sharedInstance
     private var recordings: [String] = [String]() {
         didSet {
@@ -25,7 +28,7 @@ class ProfileViewController: UIViewController {
         tableView.dataSource = self
 
         tableView.backgroundColor = .clear
-
+        
         getAllRecordings()
     }
 
@@ -46,22 +49,66 @@ class ProfileViewController: UIViewController {
     @IBAction func logoutButtonPressed(_: UIButton) {
         appController.logout()
     }
-
-    private func getAllRecordings() {
+    
+    @IBAction func eraseAllRecordingsButtonPressed(_ sender: Any) {
+        eraseAllRecordings()
+    }
+    
+    @IBAction func eraseAllSoundscapesButtonPressed(_ sender: Any) {
+        let alertController = UIAlertController(title: "Delete All Soundscapes", message: "This will permanently delete all soundscapes.", preferredStyle: .alert)
+        self.present(alertController, animated: true)
+        
+        alertController.addAction(
+            UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+                alertController.dismiss(animated: true)
+            })
+        )
+        
+        alertController.addAction(
+            UIAlertAction(title: "Delete All Soundscapes", style: .destructive, handler: { _ in
+                let soundscapes = self.realm.objects(Soundscape.self)
+                do {
+                    try self.realm.write {
+                        self.realm.delete(soundscapes)
+                    }
+                } catch {
+                    print(error)
+                }
+            })
+        )
+    }
+    
+    func getAllRecordings() {
         do {
-            let contentOfRecordsFolder = try FileManager.default.contentsOfDirectory(atPath: getDocumentDirectory().relativePath)
-
-            print(getDocumentDirectory().relativePath)
-
-            recordings = contentOfRecordsFolder
-        } catch let err {
-            print(err.localizedDescription)
+            try recordings = fileManager.contentsOfDirectory(atPath: fileManager.recordingsDirectory.relativePath)
+        } catch {
+            print(error)
         }
     }
-
-    private func getDocumentDirectory() -> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return paths[0].appendingPathComponent("Resources/Records/")
+    
+    func eraseAllRecordings() {
+        let alertController = UIAlertController(title: "Delete All Recordings", message: "This will permanently delete all recordings.", preferredStyle: .alert)
+        self.present(alertController, animated: true)
+        
+        alertController.addAction(
+            UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+                alertController.dismiss(animated: true)
+            })
+        )
+        
+        alertController.addAction(
+            UIAlertAction(title: "Delete All Recordings", style: .destructive, handler: { _ in
+                do {
+                    try self.recordings = self.fileManager.contentsOfDirectory(atPath: self.fileManager.recordingsDirectory.relativePath)
+                    for recording in self.recordings {
+                        try self.fileManager.removeItem(atPath: self.fileManager.recordingsDirectory.appendingPathComponent(recording).relativePath)
+                    }
+                } catch {
+                    print(error)
+                }
+                self.getAllRecordings()
+            })
+        )
     }
 }
 
@@ -79,6 +126,6 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
-        player.playAudio(url: getDocumentDirectory().appendingPathComponent(recordings[indexPath.row]))
+        player.playAudio(url: fileManager.recordingsDirectory.appendingPathComponent(recordings[indexPath.row]))
     }
 }
