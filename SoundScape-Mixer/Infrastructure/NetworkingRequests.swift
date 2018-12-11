@@ -19,6 +19,7 @@ extension Network {
     func uploadRecord(
         recordName: String,
         recordFile: Data,
+        mimetype: String,
         completionHandler: ((_ success: Bool) -> Void)?
     ) {
         guard let token = AppDelegate.appDelegate.appController.loginStateService.state.token,
@@ -26,11 +27,11 @@ extension Network {
         let params = ["key": token,
                       "collection": collection,
                       "resourcetype": "4",
-                      "field8": recordName,
+                      "field8": "Record_\(recordName)",
                       "field74": "record",
                       "field75": "story",
                       "field76": "soundscape"]
-        let aFormData = (recordFile, "userfile", "\(recordName).json", "application/json")
+        let aFormData = (recordFile, "userfile", "Record_\(recordName).\(mimetype)", mimetype)
         let body = Network.Body.multipart(formData: [aFormData], parameters: nil)
         performRequest(
             method: HTTPMethod.post,

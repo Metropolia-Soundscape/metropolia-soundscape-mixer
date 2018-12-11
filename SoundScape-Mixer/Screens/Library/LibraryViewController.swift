@@ -53,7 +53,6 @@ class LibraryViewController: UIViewController {
         }
 
         collectionView.register(UINib(nibName: "CategoryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: reuseId)
-
         collectionView.dataSource = self
         collectionView.delegate = self
     }
@@ -68,7 +67,7 @@ class LibraryViewController: UIViewController {
         showImage(false)
     }
 
-    private func showImage(_ show: Bool) {
+    func showImage(_ show: Bool) {
         imageView.isHidden = !show
     }
 

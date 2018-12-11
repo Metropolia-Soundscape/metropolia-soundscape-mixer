@@ -8,6 +8,14 @@ enum AudioCategory: String {
     case record
 
     static var allCategories: [AudioCategory] = [.human, .machine, .nature]
+    static var color1: Dictionary<AudioCategory, String> = [.human: "#EA384D",
+                                                            .machine: "#414345",
+                                                            .nature: "#AAFFA9",
+                                                            .record: "#FE8C00"]
+    static var color2: Dictionary<AudioCategory, String> = [.human: "#D31027",
+                                                            .machine: "#232526",
+                                                            .nature: "#11FFBD",
+                                                            .record: "#F83600"]
 }
 
 class Audio: Object, Downloadable, Codable {

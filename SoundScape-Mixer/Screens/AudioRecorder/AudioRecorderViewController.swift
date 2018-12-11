@@ -5,7 +5,7 @@ import UIKit
 public let kRecordingNumberCountKey = "kRecordingNumberCountKey"
 
 protocol AudioRecorderViewControllerDelegate: class {
-    func audioRecorderViewControllerDidFinishRecording(recordingFileURL: URL)
+    func audioRecorderViewControllerDidSaveRecording(recordingFileURL: URL)
 }
 
 class AudioRecorderViewController: UIViewController {
@@ -14,7 +14,7 @@ class AudioRecorderViewController: UIViewController {
     @IBOutlet var playBtn: UIButton!
     @IBOutlet var timerLbl: UILabel!
 
-    var delegate: AudioRecorderViewControllerDelegate?
+    weak var delegate: AudioRecorderViewControllerDelegate?
     var recordingSession: AVAudioSession!
     var audioRecorder: AVAudioRecorder!
     var hasPermission: Bool = false
@@ -61,7 +61,6 @@ class AudioRecorderViewController: UIViewController {
     }
 
     lazy var cancelBtn: UIBarButtonItem = {
-//        let btn = UIBarButtonItem(title: "Cancel", style: .cancel, target: self, action: #selector(cancelBtnPressed))
         let btn = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelBtnPressed))
         return btn
     }()
@@ -132,6 +131,13 @@ class AudioRecorderViewController: UIViewController {
         alertController.addTextField { textField in
             textField.placeholder = "New recording"
         }
+        
+        alertController.addAction(
+            UIAlertAction(
+                title: "Cancel", style: UIAlertAction.Style.default, handler: { _ in
+                    alertController.dismiss(animated: true, completion: nil)
+            })
+        )
 
         let confirmAction = UIAlertAction(
             title: "Save",
@@ -144,7 +150,7 @@ class AudioRecorderViewController: UIViewController {
                     let url = self.getDocumentDirectory().appendingPathComponent("\(fileName).\(self.audioFileExtension)")
                     if !FileManager.default.fileExists(atPath: url.path) {
                         // Send file URL
-                        self.delegate?.audioRecorderViewControllerDidFinishRecording(recordingFileURL: url)
+                        self.delegate?.audioRecorderViewControllerDidSaveRecording(recordingFileURL: url)
 
                         // Replace filename
                         try! FileManager.default.moveItem(at: tempURL, to: url)
@@ -166,14 +172,6 @@ class AudioRecorderViewController: UIViewController {
                 }
             }
         }
-
-        alertController.addAction(
-            UIAlertAction(
-                title: "Cancel", style: UIAlertAction.Style.default, handler: { _ in
-                    alertController.dismiss(animated: true, completion: nil)
-                }
-            )
-        )
 
         alertController.addAction(confirmAction)
 
