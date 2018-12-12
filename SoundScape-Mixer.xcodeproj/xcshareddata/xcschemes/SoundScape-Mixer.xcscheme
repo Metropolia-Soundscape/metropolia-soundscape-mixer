@@ -38,6 +38,16 @@
                ReferencedContainer = "container:SoundScape-Mixer.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "411D831521C194E500F2CD68"
+               BuildableName = "AudioTest.xctest"
+               BlueprintName = "AudioTest"
+               ReferencedContainer = "container:SoundScape-Mixer.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
