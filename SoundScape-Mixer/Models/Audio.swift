@@ -5,17 +5,17 @@ enum AudioCategory: String {
     case human
     case machine
     case nature
-    case record
+    case recording
 
     static var allCategories: [AudioCategory] = [.human, .machine, .nature]
     static var color1: Dictionary<AudioCategory, String> = [.human: "#EA384D",
                                                             .machine: "#414345",
                                                             .nature: "#AAFFA9",
-                                                            .record: "#FE8C00"]
+                                                            .recording: "#FE8C00"]
     static var color2: Dictionary<AudioCategory, String> = [.human: "#D31027",
                                                             .machine: "#232526",
                                                             .nature: "#11FFBD",
-                                                            .record: "#F83600"]
+                                                            .recording: "#F83600"]
 }
 
 class Audio: Object, Downloadable, Codable {
@@ -30,8 +30,6 @@ class Audio: Object, Downloadable, Codable {
     @objc dynamic var fileName: String?
     @objc dynamic var downloadLink: String?
     @objc dynamic var category: String?
-
-    var volume: Float = 1.0
 
     var categoryType: AudioCategory? {
         if let categoryName = category {
@@ -51,4 +49,9 @@ class Audio: Object, Downloadable, Codable {
 
 class SuccessMessage: Codable {
     var success: String?
+}
+
+class SoundscapeAudio: Object, Codable {
+    @objc dynamic var audio: Audio?
+    @objc dynamic var volume: Int = 100
 }

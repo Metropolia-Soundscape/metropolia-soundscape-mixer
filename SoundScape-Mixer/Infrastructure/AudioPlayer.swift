@@ -27,16 +27,18 @@ class AudioPlayer: NSObject {
         player = nil
     }
 
-    func playSoundscape(audio: [Audio]) {
+    func playSoundscape(audio: [SoundscapeAudio]) {
         soundscapePlaying = true
         players = audio.map {
-            var player: AVPlayer
-            if FileManager.default.downloadedFileExist(for: $0) {
-                player = AVPlayer(url: FileManager.default.localFileURL(for: $0))
-            } else {
-                player = AVPlayer(url: $0.downloadURL)
+            var player: AVPlayer = AVPlayer()
+            if let audio = $0.audio {
+                if FileManager.default.downloadedFileExist(for: audio) {
+                    player = AVPlayer(url: FileManager.default.localFileURL(for: audio))
+                } else {
+                    player = AVPlayer(url: audio.downloadURL)
+                }
+                player.volume = Float($0.volume)
             }
-            player.volume = $0.volume
             return player
         }
         players?.forEach { $0?.play() }
