@@ -24,21 +24,6 @@ class CreateSoundscapeViewController: UIViewController {
     var newSoundscape: Bool = true
     var logMessage: String = ""
 
-//    var items: [Audio] = [] {
-//        didSet {
-//            if items.isEmpty {
-//                navigationItem.rightBarButtonItem?.isEnabled = false
-//                playSoundscapeBtn.isEnabled = false
-//                player.stopSoundscape()
-//                playing = false
-//            } else {
-//                navigationItem.rightBarButtonItem?.isEnabled = true
-//                playSoundscapeBtn.isEnabled = true
-//            }
-//            audioCollectionView.reloadData()
-//        }
-//    }
-    
     var items: [SoundscapeAudio] = [] {
         didSet {
             if items.isEmpty {

@@ -15,8 +15,6 @@ class LoginViewController: UIViewController {
     var lastOffset: CGPoint!
     var keyboardHeight: CGFloat = 0
 
-//    let appController = AppDelegate.appDelegate.appController
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setupVC()

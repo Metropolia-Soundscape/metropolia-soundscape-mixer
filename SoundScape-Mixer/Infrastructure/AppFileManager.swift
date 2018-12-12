@@ -18,12 +18,12 @@ class AppFileManager<SubDirectory: RawRepresentable> where SubDirectory.RawValue
     }
 
     func create(subDirectory: SubDirectory) {
-        let url = baseURL.appendingPathComponent(subDirectory.rawValue)
+        _ = baseURL.appendingPathComponent(subDirectory.rawValue)
     }
 
     // If subDirectory is nil, save to the current directory
     func save(data _: Data, toFileName _: String, inSubDirectory subDirectory: SubDirectory) {
-        let url = baseURL.appendingPathComponent(subDirectory.rawValue)
+        _ = baseURL.appendingPathComponent(subDirectory.rawValue)
     }
 
     func save(data _: Data, toFileName _: String) {}
