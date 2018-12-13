@@ -267,18 +267,16 @@ extension CreateSoundscapeViewController: CreateSoundscapeCollectionViewCellDele
     }
 
     func createSoundscapeCollectionViewCellDidDeleteAudio(_ cell: CreateSoundscapeCollectionViewCell) {
-        guard let indexPath = audioCollectionView.indexPath(for: cell) else {
-            return
-        }
+        guard let indexPath = audioCollectionView.indexPath(for: cell) else { return }
         
-        items.remove(at: indexPath.row)
-        player.players?.remove(at: indexPath.row)
         if let audio = items[indexPath.row].audio {
             if let title = audio.title {
                 logMessage = "Removed \(title)"
                 soundscape.log.append(logMessage)
             }
         }
+        player.players?.remove(at: indexPath.row)
+        items.remove(at: indexPath.row)
     }
 }
 
