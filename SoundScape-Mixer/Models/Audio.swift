@@ -53,5 +53,5 @@ class SuccessMessage: Codable {
 
 class SoundscapeAudio: Object, Codable {
     @objc dynamic var audio: Audio?
-    @objc dynamic var volume: Int = 100
+    @objc dynamic var volume: Float = 1.0
 }

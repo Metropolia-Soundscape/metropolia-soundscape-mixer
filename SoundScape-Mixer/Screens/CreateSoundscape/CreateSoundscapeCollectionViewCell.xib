@@ -52,7 +52,7 @@
                             <constraint firstAttribute="width" constant="20" id="pZC-RY-4S9"/>
                         </constraints>
                     </imageView>
-                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="1" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EQb-5M-eZi">
+                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="EQb-5M-eZi">
                         <rect key="frame" x="44" y="100" width="204" height="31"/>
                         <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -105,6 +105,6 @@
     <resources>
         <image name="iconDelete" width="40.069564819335938" height="40.069564819335938"/>
         <image name="iconDownload" width="200" height="200"/>
-        <image name="iconSound" width="250" height="200"/>
+        <image name="iconSound" width="45" height="45"/>
     </resources>
 </document>

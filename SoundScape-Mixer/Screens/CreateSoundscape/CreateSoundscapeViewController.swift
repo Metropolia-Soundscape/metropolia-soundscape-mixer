@@ -261,17 +261,9 @@ extension CreateSoundscapeViewController: UICollectionViewDelegateFlowLayout {
 extension CreateSoundscapeViewController: CreateSoundscapeCollectionViewCellDelegate {
     func createSoundscapeCollectionViewCell(_ cell: CreateSoundscapeCollectionViewCell, didChangeVolume audioVolume: Float) {
         guard let indexPath = audioCollectionView.indexPath(for: cell) else { return }
-        
-        let volumePercentage = Int(audioVolume * 100)
-        if let audio = items[indexPath.row].audio {
-            if let title = audio.title {
-                logMessage = "Changed volume of \(title) to \(volumePercentage)%"
-                soundscape.log.append(logMessage)
-            }
-        }
-        
+
         player.players?[indexPath.row]?.volume = audioVolume
-        items[indexPath.row].volume = volumePercentage
+        items[indexPath.row].volume = audioVolume
     }
 
     func createSoundscapeCollectionViewCellDidDeleteAudio(_ cell: CreateSoundscapeCollectionViewCell) {

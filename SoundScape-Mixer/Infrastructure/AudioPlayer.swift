@@ -37,8 +37,8 @@ class AudioPlayer: NSObject {
                 } else {
                     player = AVPlayer(url: audio.downloadURL)
                 }
-                player.volume = Float($0.volume)
             }
+            player.volume = $0.volume
             return player
         }
         players?.forEach { $0?.play() }

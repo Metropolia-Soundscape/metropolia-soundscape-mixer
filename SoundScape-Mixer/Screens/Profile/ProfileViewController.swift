@@ -9,8 +9,6 @@ class ProfileViewController: UIViewController {
     private var player = AudioPlayer.sharedInstance
     var items: [String] = ["Recordings"]
     
-    var recordingsObserverToken: NotificationToken?
-
     // MARK: - IBOutlets
     
     @IBOutlet var tableView: UITableView!
@@ -84,7 +82,7 @@ class ProfileViewController: UIViewController {
                     for recording in systemRecordings {
                         try self.fileManager.removeItem(atPath: self.fileManager.recordingsDirectory.appendingPathComponent(recording).relativePath)
                     }
-                    let realmRecordings = self.realm.objects(Audio.self).filter("category = 'record'")
+                    let realmRecordings = self.realm.objects(Audio.self).filter("category = 'recording'")
                     try self.realm.write {
                         self.realm.delete(realmRecordings)
                     }

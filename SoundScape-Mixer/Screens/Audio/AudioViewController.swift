@@ -1,5 +1,6 @@
 import AVFoundation
 import UIKit
+import RealmSwift
 
 protocol AudioViewControllerDelegate: class {
     func audioViewControllerDidSelectAudio(_ controller: AudioViewController, didSelectAudio audio: Audio)
@@ -14,7 +15,7 @@ class AudioViewController: UIViewController {
     private var downloadService: DownloadService = DownloadService.shared
 
     var category: AudioCategory?
-
+    
     private lazy var dataSource: AudioDataSource = {
         if let category = category {
             let dataSource = AudioDataSource(category: category)
