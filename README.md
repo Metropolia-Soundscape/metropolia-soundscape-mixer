@@ -11,10 +11,10 @@
 ![](demo8.png)
 
 ## App's features
-- [x]Download audio
-- [x]Mix multiple audio
-- [x]Record audio
-- [x]Stream audio
+- [x] Download audio
+- [x] Mix multiple audio
+- [x] Record audio
+- [x] Stream audio
 
 ## Requirements
 * iOS 11.0+
