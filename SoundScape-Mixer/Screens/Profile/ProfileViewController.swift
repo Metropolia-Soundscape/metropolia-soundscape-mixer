@@ -4,6 +4,7 @@ import RealmSwift
 
 public let kRecordingCell: String = "kRecordingCell"
 
+// Keep recording list and app related setting functions
 class ProfileViewController: UIViewController {
   
     private var player = AudioPlayer.sharedInstance

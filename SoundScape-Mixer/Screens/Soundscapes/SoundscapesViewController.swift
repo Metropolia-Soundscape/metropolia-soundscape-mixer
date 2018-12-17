@@ -1,6 +1,7 @@
 import RealmSwift
 import UIKit
 
+// Keep existed soundscapes
 class SoundscapesViewController: UIViewController {
     @IBOutlet var soundscapesCollectionView: UICollectionView!
 

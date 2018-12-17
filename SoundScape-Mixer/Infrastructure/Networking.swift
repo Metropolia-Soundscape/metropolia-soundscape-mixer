@@ -12,6 +12,7 @@ public enum HTTPMethod: String {
     case connect = "CONNECT"
 }
 
+// Perform networking requests
 class Network {
     private let session: URLSession
     private let server: Server

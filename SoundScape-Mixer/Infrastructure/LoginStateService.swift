@@ -1,6 +1,7 @@
 import Foundation
 import KeychainSwift
 
+// Manage login state
 public enum LoginState {
     case loggedOut
     case loggedIn(token: String)

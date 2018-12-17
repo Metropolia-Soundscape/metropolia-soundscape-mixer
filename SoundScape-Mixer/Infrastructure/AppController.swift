@@ -1,5 +1,6 @@
 import UIKit
 
+// Check login state
 class AppController {
     let networking = Network(server: Network.Server.tekniikanmuseo, mock: false)
     let loginStateService = LoginStateService()

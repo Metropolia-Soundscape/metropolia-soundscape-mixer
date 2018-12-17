@@ -127,6 +127,7 @@ class CreateSoundscapeViewController: UIViewController {
         audioCollectionView.reloadData()
     }
 
+    // Upload soundscape
     @objc private func saveBtnPressed() {
         let alertController = UIAlertController(
             title: "Saving soundscape file",
@@ -149,6 +150,7 @@ class CreateSoundscapeViewController: UIViewController {
                     soundscapeName.trimmingCharacters(in: .whitespacesAndNewlines) != "" {
                     self.soundscape.name = soundscapeName
                     
+                    // Upload if audio is a record
                     self.items.forEach {
                         self.soundscape.audioArray.append($0)
                         if let audio = $0.audio {

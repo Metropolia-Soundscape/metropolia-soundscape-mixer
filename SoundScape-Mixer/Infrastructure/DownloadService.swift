@@ -1,5 +1,7 @@
 import Foundation
 
+
+// Offline-mode services
 protocol Downloadable {
     var downloadURL: URL { get }
 }

@@ -2,6 +2,7 @@ import AVFoundation
 import Foundation
 import RealmSwift
 
+// Manage audio player object
 class AudioPlayer: NSObject {
     static let sharedInstance = AudioPlayer()
 

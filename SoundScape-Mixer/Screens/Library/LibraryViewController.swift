@@ -4,6 +4,7 @@ protocol LibraryViewControllerDelegate: class {
     func libraryViewController(_ viewController: UIViewController, didSelectAudio audio: Audio)
 }
 
+// Category list view controller
 class LibraryViewController: UIViewController {
     @IBOutlet var collectionView: UICollectionView!
 
@@ -19,7 +20,6 @@ class LibraryViewController: UIViewController {
         static let ImageRightMargin: CGFloat = 16
         /// Margin from bottom anchor of NavBar to bottom anchor of Image for Large NavBar state
         static let ImageBottomMarginForLargeState: CGFloat = 12
-        /// Margin from bottom anchor of NavBar to bottom anchor of Image for Small NavBar state
     }
 
     override func viewDidLoad() {
@@ -34,6 +34,7 @@ class LibraryViewController: UIViewController {
             navigationController?.navigationBar.prefersLargeTitles = true
             navigationController?.navigationBar.addSubview(imageView)
 
+            // Add image view next to large title
             imageView.isUserInteractionEnabled = true
             imageView.layer.cornerRadius = Const.ImageSizeForLargeState / 2
             imageView.clipsToBounds = true
@@ -70,6 +71,7 @@ class LibraryViewController: UIViewController {
         imageView.isHidden = !show
     }
 
+    // Tap profile image
     @objc func imageTapped(tapGestureRecognizer _: UITapGestureRecognizer) {
         let profileViewController = ProfileViewController()
         let profileNavigationController = UINavigationController(rootViewController: profileViewController)

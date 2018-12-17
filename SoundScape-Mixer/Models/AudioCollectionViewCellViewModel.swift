@@ -1,5 +1,6 @@
 import Foundation
 
+// Audio collectionview cell for cell with different progress: playing/downloaded/...
 struct AudioCollectionViewCellModel: Equatable {
     var isPlaying: Bool
     var title: String?

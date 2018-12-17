@@ -1,5 +1,6 @@
 import Foundation
 
+// FileManager directories
 enum DocumentSubDirectory: String {
     case resources = "Resources"
 }

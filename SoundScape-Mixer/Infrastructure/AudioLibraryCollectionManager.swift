@@ -1,6 +1,7 @@
 import Foundation
 import KeychainSwift
 
+// Save collection id in Keychain
 protocol LibraryCollectionManager {
     var collectionName: String? { get }
 

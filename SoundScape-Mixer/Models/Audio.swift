@@ -8,6 +8,8 @@ enum AudioCategory: String {
     case recording
 
     static var allCategories: [AudioCategory] = [.human, .machine, .nature]
+    
+    // Gradient colors
     static var color1: Dictionary<AudioCategory, String> = [.human: "#EA384D",
                                                             .machine: "#414345",
                                                             .nature: "#AAFFA9",

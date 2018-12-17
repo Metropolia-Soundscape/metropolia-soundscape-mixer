@@ -6,6 +6,7 @@ protocol AudioRecorderViewControllerDelegate: class {
     func audioRecorderViewControllerDidSaveRecording(recordingFileURL: URL)
 }
 
+// Recording view controller
 class AudioRecorderViewController: UIViewController {
     @IBOutlet var recordBtn: UIButton!
     @IBOutlet var pauseBtn: UIButton!

@@ -19,6 +19,7 @@ class ImageViewWithGradient: UIImageView {
         myGradientLayer.frame = layer.bounds
     }
 
+    // Apply gradient colors
     func setup(_ color1: String, _ color2: String) {
         myGradientLayer.startPoint = CGPoint(x: 0, y: 0.5)
         myGradientLayer.endPoint = CGPoint(x: 1, y: 0.5)

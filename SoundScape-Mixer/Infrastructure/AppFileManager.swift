@@ -1,5 +1,6 @@
 import Foundation
 
+// Functions for FileManager
 class AppFileManager<SubDirectory: RawRepresentable> where SubDirectory.RawValue == String {
     var baseURL: URL!
 

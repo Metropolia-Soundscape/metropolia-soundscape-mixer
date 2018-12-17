@@ -6,6 +6,7 @@ protocol AudioViewControllerDelegate: class {
     func audioViewControllerDidSelectAudio(_ controller: AudioViewController, didSelectAudio audio: Audio)
 }
 
+// Audio, records view controller
 class AudioViewController: UIViewController {
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var audioCollectionView: UICollectionView!

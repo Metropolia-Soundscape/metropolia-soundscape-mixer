@@ -19,7 +19,6 @@
 		AC1761DE219BD61300895E9F /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1761DD219BD61300895E9F /* RootViewController.swift */; };
 		AC1761E4219BD7D400895E9F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1761E3219BD7D400895E9F /* ProfileViewController.swift */; };
 		AC1761E6219BD7DE00895E9F /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC1761E5219BD7DE00895E9F /* ProfileViewController.xib */; };
-		AC3F5DD821A4D59C00EAA7ED /* AudioCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3F5DD521A4D59B00EAA7ED /* AudioCollectionViewCellViewModel.swift */; };
 		AC3F5DEE21A4D62700EAA7ED /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3F5DEA21A4D62700EAA7ED /* LibraryViewController.swift */; };
 		AC3F5DEF21A4D62700EAA7ED /* CategoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC3F5DEB21A4D62700EAA7ED /* CategoryCollectionViewCell.xib */; };
 		AC3F5DF121A4D62700EAA7ED /* LibraryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC3F5DED21A4D62700EAA7ED /* LibraryViewController.xib */; };
@@ -33,15 +32,17 @@
 		FA04B9EC21B67F2200A3FCA4 /* Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA04B9EB21B67F2100A3FCA4 /* Audio.swift */; };
 		FA04B9EE21B6B6B700A3FCA4 /* RealmObjectCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA04B9ED21B6B6B700A3FCA4 /* RealmObjectCodable.swift */; };
 		FA04B9F221B74DD900A3FCA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA04B9F121B74DD900A3FCA4 /* Assets.xcassets */; };
+		FA42E22321C3AFB70033A7C3 /* AudioDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA42E22221C3AFB70033A7C3 /* AudioDataSource.swift */; };
 		FA6A5FDD21AD8B1C00BDCD82 /* LoginStateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC8576321952F7900947BDB /* LoginStateService.swift */; };
 		FA6A5FDE21AD8EA800BDCD82 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 413769582190CC8200A961E3 /* LoginViewController.xib */; };
 		FA6A5FE021AF42F100BDCD82 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6A5FDF21AF42F000BDCD82 /* CategoryCollectionViewCell.swift */; };
 		FA6A5FE321B0AFC100BDCD82 /* SoundscapesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6A5FE121B0AFC100BDCD82 /* SoundscapesCollectionViewCell.swift */; };
 		FA6A5FE421B0AFC100BDCD82 /* SoundscapesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA6A5FE221B0AFC100BDCD82 /* SoundscapesCollectionViewCell.xib */; };
 		FA6B07C021BC8D6F00DB0050 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BE4D2721BB482700592E79 /* UIView.swift */; };
+		FA7896A521C80E0D00A3E320 /* AppFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7896A421C80E0C00A3E320 /* AppFileManager.swift */; };
+		FA7896A721C80E5800A3E320 /* AudioCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7896A621C80E5800A3E320 /* AudioCollectionViewCellViewModel.swift */; };
 		FA7970DB21B9D771008BF4BD /* NSUUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7970DA21B9D771008BF4BD /* NSUUID.swift */; };
 		FA7970DD21B9D803008BF4BD /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7970DC21B9D803008BF4BD /* Data.swift */; };
-		FA856D3D21AB55D7002A7D95 /* AppFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA856D3C21AB55D7002A7D95 /* AppFileManager.swift */; };
 		FA856D3F21AB58FA002A7D95 /* ResourcesFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA856D3E21AB58FA002A7D95 /* ResourcesFileManager.swift */; };
 		FA856D8D21AD788C002A7D95 /* AudioRecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA856D8C21AD788B002A7D95 /* AudioRecorderViewController.swift */; };
 		FA856D8F21AD7890002A7D95 /* AudioRecorderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA856D8E21AD7890002A7D95 /* AudioRecorderViewController.xib */; };
@@ -92,7 +93,6 @@
 		AC1761DD219BD61300895E9F /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		AC1761E3219BD7D400895E9F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		AC1761E5219BD7DE00895E9F /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
-		AC3F5DD521A4D59B00EAA7ED /* AudioCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioCollectionViewCellViewModel.swift; path = "SoundScape-Mixer/Models/AudioCollectionViewCellViewModel.swift"; sourceTree = SOURCE_ROOT; };
 		AC3F5DEA21A4D62700EAA7ED /* LibraryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
 		AC3F5DEB21A4D62700EAA7ED /* CategoryCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryCollectionViewCell.xib; sourceTree = "<group>"; };
 		AC3F5DED21A4D62700EAA7ED /* LibraryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LibraryViewController.xib; sourceTree = "<group>"; };
@@ -109,13 +109,14 @@
 		FA04B9EB21B67F2100A3FCA4 /* Audio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Audio.swift; sourceTree = "<group>"; };
 		FA04B9ED21B6B6B700A3FCA4 /* RealmObjectCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmObjectCodable.swift; sourceTree = "<group>"; };
 		FA04B9F121B74DD900A3FCA4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		FA2E2232219B76E2004B43A6 /* AudioCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
+		FA42E22221C3AFB70033A7C3 /* AudioDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioDataSource.swift; sourceTree = "<group>"; };
 		FA6A5FDF21AF42F000BDCD82 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		FA6A5FE121B0AFC100BDCD82 /* SoundscapesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundscapesCollectionViewCell.swift; sourceTree = "<group>"; };
 		FA6A5FE221B0AFC100BDCD82 /* SoundscapesCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SoundscapesCollectionViewCell.xib; sourceTree = "<group>"; };
+		FA7896A421C80E0C00A3E320 /* AppFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppFileManager.swift; sourceTree = "<group>"; };
+		FA7896A621C80E5800A3E320 /* AudioCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
 		FA7970DA21B9D771008BF4BD /* NSUUID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSUUID.swift; sourceTree = "<group>"; };
 		FA7970DC21B9D803008BF4BD /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
-		FA856D3C21AB55D7002A7D95 /* AppFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFileManager.swift; sourceTree = "<group>"; };
 		FA856D3E21AB58FA002A7D95 /* ResourcesFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesFileManager.swift; sourceTree = "<group>"; };
 		FA856D8C21AD788B002A7D95 /* AudioRecorderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRecorderViewController.swift; sourceTree = "<group>"; };
 		FA856D8E21AD7890002A7D95 /* AudioRecorderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioRecorderViewController.xib; sourceTree = "<group>"; };
@@ -237,8 +238,8 @@
 				4183491E2187082F0048E24A /* Info.plist */,
 				ACC8576121952CD400947BDB /* AppController.swift */,
 				418349122187082C0048E24A /* AppDelegate.swift */,
-				FA856D3C21AB55D7002A7D95 /* AppFileManager.swift */,
-				AC3F5DD521A4D59B00EAA7ED /* AudioCollectionViewCellViewModel.swift */,
+				FA7896A421C80E0C00A3E320 /* AppFileManager.swift */,
+				FA42E22221C3AFB70033A7C3 /* AudioDataSource.swift */,
 				FA04B9E721B0C4D200A3FCA4 /* AudioLibraryCollectionManager.swift */,
 				FAE0EAAF21AAC30600B0E79D /* AudioPlayer.swift */,
 				AC14741E21953AE500FF6D94 /* AuthJSON.swift */,
@@ -260,7 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				FA04B9EB21B67F2100A3FCA4 /* Audio.swift */,
-				FA2E2232219B76E2004B43A6 /* AudioCollectionViewCellViewModel.swift */,
+				FA7896A621C80E5800A3E320 /* AudioCollectionViewCellViewModel.swift */,
 				FAE0EAB421AAFD9500B0E79D /* Soundscape.swift */,
 			);
 			path = Models;
@@ -537,6 +538,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA42E22321C3AFB70033A7C3 /* AudioDataSource.swift in Sources */,
 				FA6A5FDD21AD8B1C00BDCD82 /* LoginStateService.swift in Sources */,
 				FAC5ECDE21A736E900B16359 /* CreateSoundscapeViewController.swift in Sources */,
 				AC14741B219539F600FF6D94 /* NetworkingRequests.swift in Sources */,
@@ -546,7 +548,6 @@
 				FA856DAA21AD8344002A7D95 /* FileManager.swift in Sources */,
 				AC3F5DFC21A4D65500EAA7ED /* SoundscapesViewController.swift in Sources */,
 				ACC8576221952CD400947BDB /* AppController.swift in Sources */,
-				AC3F5DD821A4D59C00EAA7ED /* AudioCollectionViewCellViewModel.swift in Sources */,
 				AC3F5DEE21A4D62700EAA7ED /* LibraryViewController.swift in Sources */,
 				AC1761DE219BD61300895E9F /* RootViewController.swift in Sources */,
 				FA04B9E621B0B54700A3FCA4 /* UIViewController.swift in Sources */,
@@ -554,9 +555,10 @@
 				AC1761E4219BD7D400895E9F /* ProfileViewController.swift in Sources */,
 				FA6A5FE021AF42F100BDCD82 /* CategoryCollectionViewCell.swift in Sources */,
 				FA6B07C021BC8D6F00DB0050 /* UIView.swift in Sources */,
+				FA7896A721C80E5800A3E320 /* AudioCollectionViewCellViewModel.swift in Sources */,
 				4146038321A1AB6500D772AB /* UIColor.swift in Sources */,
 				FA04B9EE21B6B6B700A3FCA4 /* RealmObjectCodable.swift in Sources */,
-				FA856D3D21AB55D7002A7D95 /* AppFileManager.swift in Sources */,
+				FA7896A521C80E0D00A3E320 /* AppFileManager.swift in Sources */,
 				FA7970DB21B9D771008BF4BD /* NSUUID.swift in Sources */,
 				FA856D8D21AD788C002A7D95 /* AudioRecorderViewController.swift in Sources */,
 				FA7970DD21B9D803008BF4BD /* Data.swift in Sources */,
